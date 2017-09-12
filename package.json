@@ -1,15 +1,15 @@
 {
-  "name": "lore-monorepo",
+  "name": "lore-forms-monorepo",
   "private": true,
   "license": "MIT",
-  "description": "This is the monorepo for Lore",
-  "homepage": "https://github.com/lore/lore#readme",
+  "description": "This is the monorepo for Lore Forms",
+  "homepage": "https://github.com/lore/lore-forms#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lore/lore.git"
+    "url": "git+https://github.com/lore/lore-forms.git"
   },
   "bugs": {
-    "url": "https://github.com/lore/lore/issues"
+    "url": "https://github.com/lore/lore-forms/issues"
   },
   "scripts": {
     "lerna:bootstrap": "lerna bootstrap",
