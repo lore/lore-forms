@@ -1,5 +1,6 @@
 /* eslint prefer-template: "off" */
 /* eslint import/no-unresolved: "off" */
+/* eslint no-shadow: "off" */
 
 import React from 'react';
 import _ from 'lodash';
@@ -11,10 +12,10 @@ class SelectField extends Field {
   onChange(event) {
     this.onBlur();
 
-    var option = _.find(this.props.options.data, function(option) {
+    const option = _.find(this.props.options.data, function(option) {
       return String(option.id) === event.target.value;
     });
-    var value = option ? option.id : null;
+    const value = option ? option.id : null;
 
     this.props.onChange(this.props.name, value);
     if (this.props.afterChange) {
@@ -63,9 +64,9 @@ class SelectField extends Field {
     const optionsData = mapDataToOptions(options.data);
 
     return (
-      <div className={'form-group' + (displayError ? ' has-error' : '')}>
+      <div className={`form-group ${displayError ? 'has-error' : ''}`}>
         <label>{label}</label>
-        <select ref="select" className="form-control" onChange={this.onChange} value={value}>
+        <select className="form-control" onChange={this.onChange} value={value}>
           {[this.renderOption({ value: null, text: '' })].concat(
             optionsData.map(this.renderOption)
           )}

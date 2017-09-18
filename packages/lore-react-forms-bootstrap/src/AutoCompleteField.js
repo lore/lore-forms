@@ -1,5 +1,3 @@
-/* global lore */
-
 import React from 'react';
 import _ from 'lodash';
 import { PayloadStates } from 'lore-utils';
@@ -19,7 +17,7 @@ class AutoCompleteField extends Field {
     this.filter = this.filter.bind(this);
 
     // setup debounce if configured
-    var debounceDelay = this.props.debounceDelay;
+    const debounceDelay = this.props.debounceDelay;
     if (debounceDelay > 0) {
       this.updateOptions = _.debounce(this.updateOptions, debounceDelay);
     }
@@ -188,7 +186,7 @@ class AutoCompleteField extends Field {
       <div className={className}>
         {label ? (
           <label>{label}</label>
-        ): null}
+        ) : null}
         <input
           type="text"
           value={searchText}
