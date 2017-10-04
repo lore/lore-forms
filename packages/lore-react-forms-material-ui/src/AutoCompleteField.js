@@ -9,11 +9,7 @@ class AutoCompleteField extends Field {
   constructor(props) {
     super(props);
     this.handleUpdateInput = this.handleUpdateInput.bind(this);
-    // this.handleUpdateInput = _.debounce(this.handleUpdateInput, 500);
-
     this.handleNewRequest = this.handleNewRequest.bind(this);
-    // this.handleNewRequest = _.debounce(this.handleNewRequest, 1000);
-
     this.updateOptions = this.updateOptions.bind(this);
     this.updateOptions = _.debounce(this.updateOptions, 250);
 

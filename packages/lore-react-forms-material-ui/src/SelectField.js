@@ -4,13 +4,29 @@ import _ from 'lodash';
 import { Field } from 'lore-react-forms';
 import { PayloadStates } from 'lore-utils';
 
+function mapDataToOptions(data, field) {
+  return data.map(function(datum) {
+    return {
+      value: datum.id,
+      text: datum.data[field]
+    };
+  });
+}
+
 class SelectField extends Field {
 
   onChange(event, key, value) {
-    this.onBlur();
-    this.props.onChange(this.props.name, value);
-    if (this.props.afterChange) {
-      this.props.afterChange(this.props.onChange);
+    const {
+      name,
+      onChange,
+      afterChange,
+      onBlur
+    } = this.props;
+
+    onBlur();
+    onChange(name, value);
+    if (afterChange) {
+      afterChange(onChange);
     }
   }
 
@@ -28,14 +44,18 @@ class SelectField extends Field {
   }
 
   render() {
-    const name = this.props.name;
-    const error = this.props.errors[name];
-    const value = this.props.data[name];
-    const touched = this.state.touched;
+    const {
+      name,
+      data,
+      errors,
+      errorText,
+      options,
+      field,
+      ...other
+    } = this.props;
 
-    const label = this.props.label;
-    const options = this.props.options;
-    const field = this.props.field;
+    const value = data[name];
+    const touched = this.state.touched;
 
     if (options.state === PayloadStates.FETCHING) {
       return (
@@ -43,25 +63,14 @@ class SelectField extends Field {
       );
     }
 
-    function mapDataToOptions(data) {
-      return data.map(function(datum) {
-        return {
-          value: datum.id,
-          text: datum.data[field]
-        };
-      });
-    }
-
-    const optionsData = mapDataToOptions(options.data);
+    const optionsData = mapDataToOptions(options.data, field);
 
     return (
       <MuiSelectField
-        fullWidth={true}
-        maxHeight={200}
-        floatingLabelText={label}
+        {...other}
         value={value}
         onChange={this.onChange}
-        errorText={touched && error}
+        errorText={touched && (errors[name] || errorText)}
       >
         {[this.renderOption({ value: null, text: '' })].concat(
           optionsData.map(this.renderOption)

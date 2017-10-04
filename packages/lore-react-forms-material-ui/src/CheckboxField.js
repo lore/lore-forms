@@ -11,18 +11,20 @@ class CheckboxField extends Field {
   }
 
   render() {
-    const name = this.props.name;
-    // const error = this.props.errors[name];
-    const value = this.props.data[name];
-    // const touched = this.state.touched;
-    const label = this.props.label;
+    const {
+      name,
+      data,
+      errors,
+      errorText,
+      ...other
+    } = this.props;
 
-    const style = _.assign({}, { width: '100%' }, this.props.style);
+    const value = data[name];
+    const touched = this.state.touched;
 
     return (
       <Checkbox
-        style={style}
-        label={label}
+        {...other}
         checked={value}
         onCheck={this.onChange}
       />
