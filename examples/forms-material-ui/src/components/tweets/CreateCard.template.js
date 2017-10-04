@@ -1,18 +1,18 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
-var moment = require('moment');
+import React from 'react';
+import { Card, CardTitle } from 'material-ui';
+import _ from 'lodash';
+import moment from 'moment';
+import PayloadStates from '../../constants/PayloadStates';
 
 // Hook Dialogs
-var withMuiTheme = require('../../decorators/withMuiTheme').default;
-var validators = require('../../utils/validators');
-var Template = require('../templates/Template');
-var Overlay = require('../common/Overlay');
+import withMuiTheme from '../../decorators/withMuiTheme';
+import validators from '../../utils/validators';
+import Template from '../templates/Template';
+import Overlay from '../common/Overlay';
 
-var tweetConfig = require('../../models/tweet');
+import tweetConfig from '../../models/tweet';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'CreateCard.template',
 
   getInitialState: function() {
@@ -76,12 +76,12 @@ module.exports = React.createClass({
 
     return (
       <Overlay model={tweet}>
-        <mui.Card className="form-card">
-          <mui.CardTitle
+        <Card className="form-card">
+          <CardTitle
             title="Template Form"
             subtitle="Created by providing a config to the template used by the forms hook" />
           {this.getForm()}
-        </mui.Card>
+        </Card>
       </Overlay>
     );
   }

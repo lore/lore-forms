@@ -1,24 +1,21 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
-var moment = require('moment');
+import React from 'react';
+import { Card, CardTitle, FlatButton } from 'material-ui';
+import _ from 'lodash';
+import PayloadStates from '../../constants/PayloadStates';
+import moment from 'moment';
 
 // Hook Dialogs
-// var withMuiTheme = require('../../decorators/withMuiTheme').default;
-var validators = require('../../utils/validators');
-// var Template = require('../../../hooks/lore-hook-forms-material-ui/Template');
-var Overlay = require('../common/Overlay');
+// import withMuiTheme from '../../decorators/withMuiTheme';
+import validators from '../../utils/validators';
+// import Template = from '../../../hooks/lore-hook-forms-material-ui/Template';
+import Overlay from '../common/Overlay';
 
-var Form = require('lore-react-forms').Form;
-var FormSection = require('lore-react-forms').FormSection;
-var PropBarrier = require('lore-react-forms').PropBarrier;
+import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 
-var TextField = require('lore-react-forms-material-ui').TextField;
-var AutoCompleteField = require('lore-react-forms-material-ui').AutoCompleteField;
-var Connect = require('../Connect');
+import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
+import Connect from '../Connect';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'CreateCard.form',
 
   getInitialState: function() {
@@ -93,7 +90,7 @@ module.exports = React.createClass({
               <FormSection className="row">
                 <FormSection className="col-md-12">
                   <TextField
-                    label="Text"
+                    floatingLabelText="Text"
                     name="text"
                     multiLine={true}
                   />
@@ -103,7 +100,7 @@ module.exports = React.createClass({
                 <FormSection className="col-md-12">
                   <Connect callback={this.getOptions}>
                     <AutoCompleteField
-                      label="User"
+                      floatingLabelText="User"
                       name="userId"
                       field="username"
                     />
@@ -113,7 +110,7 @@ module.exports = React.createClass({
             </FormSection>
             <FormSection className="mui-card-actions">
               <PropBarrier>
-                <mui.FlatButton
+                <FlatButton
                   label="Save"
                   primary={true}
                   onTouchTap={this.onSubmit}
@@ -131,12 +128,12 @@ module.exports = React.createClass({
 
     return (
       <Overlay model={tweet}>
-        <mui.Card className="form-card">
-          <mui.CardTitle
+        <Card className="form-card">
+          <CardTitle
             title="Component Form"
             subtitle="Created by manually building the form using React components" />
           {this.getForm()}
-        </mui.Card>
+        </Card>
       </Overlay>
     );
   }

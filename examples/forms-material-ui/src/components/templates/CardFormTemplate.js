@@ -1,21 +1,21 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Card, CardTitle } from 'material-ui';
+import _ from 'lodash';
 
 // Hook Dialogs
-var Overlay = require('../common/Overlay');
-// var Template = require('../../../hooks/lore-hook-forms-material-ui/Template');
-var Template = require('./Template');
+import Overlay from '../common/Overlay';
+// import Template from '../../../hooks/lore-hook-forms-material-ui/Template';
+import Template from './Template';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'CardFormTemplate',
 
   propTypes: {
-    title: React.PropTypes.string.isRequired,
-    subtitle: React.PropTypes.string.isRequired,
-    model: React.PropTypes.object,
-    config: React.PropTypes.object
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    model: PropTypes.object,
+    config: PropTypes.object
   },
 
   getForm: function(config) {
@@ -30,14 +30,14 @@ module.exports = React.createClass({
 
     return (
       <Overlay model={model}>
-        <mui.Card className="form-card">
-          <mui.CardTitle
+        <Card className="form-card">
+          <CardTitle
             title="Hook Form"
             subtitle="Created by providing a config to the forms hook" />
           <div>
             {this.getForm(config)}
           </div>
-        </mui.Card>
+        </Card>
       </Overlay>
     );
   }

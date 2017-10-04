@@ -1,20 +1,19 @@
-var React = require('react');
-var PayloadStates = require('../../constants/PayloadStates');
-var CreateCardForm = require('./CreateCard.form');
-var CreateCardTemplate = require('./CreateCard.template');
-var CreateCardHook = require('./CreateCard.hook');
-var CustomCreateCardHook = require('./CreateCard.hook.custom');
+import React from 'react';
+import PayloadStates from '../../constants/PayloadStates';
+import CreateCardForm from './CreateCard.form';
+import CreateCardTemplate from './CreateCard.template';
+import CreateCardHook from './CreateCard.hook';
+import CustomCreateCardHook from './CreateCard.hook.custom';
+import UpdateCardForm from './UpdateCard.form';
+import UpdateCardTemplate from './UpdateCard.template';
+import CustomUpdateCardTemplate from './UpdateCard.template.custom';
+import UpdateCardHook from './UpdateCard.hook';
+import CustomUpdateCardHook from './UpdateCard.hook.custom';
+import List from './List';
+import Connect from '../Connect';
+import Spinner from '../Spinner';
 
-var UpdateCardForm = require('./UpdateCard.form');
-var UpdateCardTemplate = require('./UpdateCard.template');
-var CustomUpdateCardTemplate = require('./UpdateCard.template.custom');
-var UpdateCardHook = require('./UpdateCard.hook');
-var CustomUpdateCardHook = require('./UpdateCard.hook.custom');
-var List = require('./List');
-var Connect = require('../Connect');
-var Spinner = require('../Spinner');
-
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'Layout',
 
   getTweet: function(getState, props) {

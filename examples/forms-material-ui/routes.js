@@ -1,25 +1,23 @@
-var React = require('react');
-var Route = require('react-router').Route;
-var IndexRoute = require('react-router').IndexRoute;
-var Redirect = require('react-router').Redirect;
-var withMuiTheme = require('./src/decorators/withMuiTheme').default;
+import React from 'react';
+import { Route, IndexRoute, Redirect } from 'react-router';
+import withMuiTheme from './src/decorators/withMuiTheme';
 
 /**
  * Wrapping the Master component with this decorator provides an easy way
  * to redirect the user to a login experience if we don't know who they are.
  */
-var UserIsAuthenticated = require('./src/decorators/UserIsAuthenticated');
+import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
 /**
  * Routes are used to declare your view hierarchy
  * See: https://github.com/rackt/react-router/blob/master/docs/API.md
  */
-var Master = require('./src/components/Master');
-var Layout = require('./src/components/Layout');
-var Users = require('./src/components/users/Layout');
-var Tweets = require('./src/components/tweets/Layout');
+import Master from './src/components/Master';
+import Layout from './src/components/Layout';
+import Users from './src/components/users/Layout';
+import Tweets from './src/components/tweets/Layout';
 
-module.exports = (
+export default (
   <Route component={UserIsAuthenticated(withMuiTheme(Master))}>
     <Redirect path="/" to="/tweets" />
     <Route path="/" component={Layout}>

@@ -1,15 +1,14 @@
-var React = require('react');
-var Router = require('react-router');
-var mui = require('material-ui');
-var _ = require('lodash');
-var Spinner = require('../common/Spinner');
-var PayloadStates = require('../../constants/PayloadStates');
-var SelectableList = require('../SelectableList');
-var Connect = require('../Connect');
-var moment = require('moment');
-var Tweet = require('./Tweet');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { Paper, Subheader } from 'material-ui';
+import PayloadStates from '../../constants/PayloadStates';
 
-module.exports = lore.connect(function(getState, props){
+import Spinner from '../common/Spinner';
+import SelectableList from '../SelectableList';
+import Tweet from './Tweet';
+
+export default lore.connect(function(getState, props){
   return {
     newTweets: getState('tweet.all', {
       where: function(tweet) {
@@ -28,12 +27,12 @@ module.exports = lore.connect(function(getState, props){
     })
   }
 })(
-Router.withRouter(React.createClass({
+withRouter(React.createClass({
   displayName: 'List',
 
   propTypes: {
-    tweets: React.PropTypes.object.isRequired,
-    newTweets: React.PropTypes.object.isRequired
+    tweets: PropTypes.object.isRequired,
+    newTweets: PropTypes.object.isRequired
   },
 
   renderTweet: function(tweet) {
@@ -60,15 +59,15 @@ Router.withRouter(React.createClass({
 
     return (
       <div>
-        <mui.Paper>
-          <mui.Subheader>
+        <Paper>
+          <Subheader>
             Tweets
-          </mui.Subheader>
+          </Subheader>
           <SelectableList defaultValue={0}>
             {newTweets}
             {tweets.data.map(this.renderTweet)}
           </SelectableList>
-        </mui.Paper>
+        </Paper>
       </div>
     );
   }

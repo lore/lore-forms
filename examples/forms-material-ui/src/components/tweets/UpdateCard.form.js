@@ -1,21 +1,18 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Card, CardTitle, FlatButton, CircularProgress } from 'material-ui';
+import PayloadStates from '../../constants/PayloadStates';
 
 // Hook Dialogs
-var validators = require('../../utils/validators');
-var Overlay = require('../common/Overlay');
+import validators from '../../utils/validators';
+import Overlay from '../common/Overlay';
 
-var Form = require('lore-react-forms').Form;
-var FormSection = require('lore-react-forms').FormSection;
-var PropBarrier = require('lore-react-forms').PropBarrier;
+import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 
-var TextField = require('lore-react-forms-material-ui').TextField;
-var AutoCompleteField = require('lore-react-forms-material-ui').AutoCompleteField;
-var Connect = require('../Connect');
+import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
+import Connect from '../Connect';
 
-module.exports = lore.connect(function(getState, props){
+export default lore.connect(function(getState, props){
   return {
     user: getState('user.byId', {
       id: props.tweet.data.userId
@@ -26,8 +23,8 @@ React.createClass({
   displayName: 'UpdateCard.form',
 
   propTypes: {
-    tweet: React.PropTypes.object.isRequired,
-    user: React.PropTypes.object.isRequired,
+    tweet: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   },
 
   getInitialState: function() {
@@ -78,7 +75,7 @@ React.createClass({
               <FormSection className="row">
                 <FormSection className="col-md-12">
                   <TextField
-                    label="Text"
+                    floatingLabelText="Text"
                     name="text"
                     multiLine={true}
                   />
@@ -88,7 +85,7 @@ React.createClass({
                 <FormSection className="col-md-12">
                   <Connect callback={this.getOptions}>
                     <AutoCompleteField
-                      label="User"
+                      floatingLabelText="User"
                       name="userId"
                       field="username"
                     />
@@ -98,7 +95,7 @@ React.createClass({
             </FormSection>
             <FormSection className="mui-card-actions">
               <PropBarrier>
-                <mui.FlatButton
+                <FlatButton
                   label="Save"
                   primary={true}
                   onTouchTap={this.onSubmit}
@@ -117,12 +114,12 @@ React.createClass({
 
     return (
       <Overlay model={tweet}>
-        <mui.Card className="form-card">
-          <mui.CardTitle
+        <Card className="form-card">
+          <CardTitle
             title="Component Form"
             subtitle="Created by manually building the form using React components" />
-          {user.state === PayloadStates.RESOLVED ? this.getForm() : <mui.CircularProgress />}
-        </mui.Card>
+          {user.state === PayloadStates.RESOLVED ? this.getForm() : <CircularProgress />}
+        </Card>
       </Overlay>
     );
   }

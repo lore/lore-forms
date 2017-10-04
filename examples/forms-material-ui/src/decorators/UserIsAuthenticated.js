@@ -12,10 +12,10 @@
  * https://github.com/lore/lore/tree/master/packages/lore-auth
  */
 
-var React = require('react');
-var AuthenticationGenerator = require('lore-auth').AuthenticationGenerator;
+import React from 'react';
+import { AuthenticationGenerator } from 'lore-auth';
 
-module.exports = AuthenticationGenerator({
+export default AuthenticationGenerator({
   wrapperDisplayName: 'UserIsAuthenticated',
 
   // redirectUrl: '/login',

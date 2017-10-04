@@ -1,8 +1,8 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {deepOrange500, blue700, amber500} from 'material-ui/styles/colors';
+import { deepOrange500, blue700, amber500 } from 'material-ui/styles/colors';
 
-module.exports = getMuiTheme({
+export default getMuiTheme({
   palette: {
     // primary1Color: deepOrange500,
     primary1Color: blue700,

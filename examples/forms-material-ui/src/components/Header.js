@@ -1,16 +1,14 @@
-var React = require('react');
-var Router = require('react-router');
-var mui = require('material-ui');
-var SvgIcons = require('material-ui/svg-icons');
-var AddIcon = require('material-ui/svg-icons/content/add').default;
-var withMuiTheme = require('../decorators/withMuiTheme').default;
+import React from 'react';
+import { withRouter } from 'react-router';
+import { AppBar, Tabs, Tab, IconButton } from 'material-ui';
+import { ActionHome } from 'material-ui/svg-icons';
 
 var Routes = {
   TWEETS: '/tweets',
   USERS: '/users'
 };
 
-module.exports = Router.withRouter(React.createClass({
+export default withRouter(React.createClass({
   displayName: 'Header',
 
   getStyles: function(){
@@ -56,36 +54,36 @@ module.exports = Router.withRouter(React.createClass({
     var tabValue = this.getTabValue();
 
     var logoIcon = (
-      <mui.IconButton onTouchTap={this.onLeftIconButtonTouchTap}>
-        <SvgIcons.ActionHome />
-      </mui.IconButton>
+      <IconButton onTouchTap={this.onLeftIconButtonTouchTap}>
+        <ActionHome />
+      </IconButton>
     );
 
     return (
-      <mui.AppBar
+      <AppBar
         title="Material UI Forms"
         iconElementLeft={logoIcon}
         titleStyle={{flex: 'inherit', paddingRight: '48px'}}>
-        <mui.Tabs
+        <Tabs
           style={styles.tabs}
           value={tabValue}
           onChange={this.onTabChange}>
-          <mui.Tab
+          <Tab
             value={Routes.TWEETS}
             label="Tweets"
             style={styles.tab}
             onActive={() => {
               this.props.router.push(Routes.TWEETS);
             }}/>
-          <mui.Tab
+          <Tab
             value={Routes.USERS}
             label="Users"
             style={styles.tab}
             onActive={() => {
               this.props.router.push(Routes.USERS);
             }}/>
-        </mui.Tabs>
-      </mui.AppBar>
+        </Tabs>
+      </AppBar>
     );
   }
 }));

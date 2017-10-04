@@ -9,11 +9,12 @@
  * without having to pass it down through props or extract it from the Redux store directly.
  **/
 
-var React = require('react');
-var PayloadStates = require('../constants/PayloadStates');
-require('../../assets/less/main.less');
+import React from 'react';
+import PropTypes from 'prop-types';
+import PayloadStates from '../constants/PayloadStates';
+import '../../assets/less/main.less';
 
-module.exports = lore.connect(function(getState, props) {
+export default lore.connect(function(getState, props) {
   return {
     // user: getState('currentUser')
   };
@@ -22,11 +23,11 @@ React.createClass({
   displayName: 'Master',
 
   // propTypes: {
-  //   user: React.PropTypes.object.isRequired
+  //   user: PropTypes.object.isRequired
   // },
 
   // childContextTypes: {
-  //   user: React.PropTypes.object
+  //   user: PropTypes.object
   // },
 
   // getChildContext: function() {

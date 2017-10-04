@@ -1,15 +1,16 @@
-var React = require('react');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-module.exports = lore.connect(function(getState, props) {
+export default lore.connect(function(getState, props) {
   return props.callback.apply(null, arguments)
 })(
 React.createClass({
   displayName: 'Connect',
 
   propTypes: {
-    callback: React.PropTypes.func.isRequired,
-    children: React.PropTypes.node.isRequired,
+    callback: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
   },
 
   render: function() {

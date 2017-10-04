@@ -1,21 +1,20 @@
-var React = require('react');
-var mui = require('material-ui');
-var _ = require('lodash');
-var logo = require('../../../assets/images/logo.png');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Card } from 'material-ui';
+import _ from 'lodash';
+import logo from '../../../assets/images/logo.png';
 
 // react-form
-var Form = require('lore-react-forms').Form;
-var FormSection = require('lore-react-forms').FormSection;
-var PropBarrier = require('lore-react-forms').PropBarrier;
+import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 
-var Template = require('./Template');
-var Overlay = require('../common/Overlay');
+import Template from './Template';
+import Overlay from '../common/Overlay';
 
-var Header = React.createClass({
+const Header = React.createClass({
   displayName: 'Header',
 
   propTypes: {
-    label: React.PropTypes.string.isRequired
+    label: PropTypes.string.isRequired
   },
 
   render: function () {
@@ -30,11 +29,11 @@ var Header = React.createClass({
   }
 });
 
-var Footer = React.createClass({
+const Footer = React.createClass({
   displayName: 'Footer',
 
   propTypes: {
-    children: React.PropTypes.node.isRequired
+    children: PropTypes.node.isRequired
   },
 
   render: function () {
@@ -46,14 +45,14 @@ var Footer = React.createClass({
   }
 });
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'CustomTemplate',
 
   propTypes: {
-    title: React.PropTypes.string.isRequired,
-    footer: React.PropTypes.node.isRequired,
-    model: React.PropTypes.object,
-    config: React.PropTypes.object
+    title: PropTypes.string.isRequired,
+    footer: PropTypes.node.isRequired,
+    model: PropTypes.object,
+    config: PropTypes.object
   },
 
   getForm: function(config) {
@@ -68,13 +67,13 @@ module.exports = React.createClass({
 
     return (
       <Overlay model={model}>
-        <mui.Card className="form-card custom-form-card">
+        <Card className="form-card custom-form-card">
           <Header label={title} />
           {this.getForm(config)}
           <Footer>
             {footer}
           </Footer>
-        </mui.Card>
+        </Card>
       </Overlay>
     );
   }

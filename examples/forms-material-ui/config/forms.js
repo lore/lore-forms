@@ -3,14 +3,17 @@
  *
  * This file is where you define overrides for the default forms behavior.
  */
-var React = require('react');
+import React from 'react';
+import { Template as DefaultTemplate } from 'lore-react-forms';
+import CardFormTemplate from '../src/components/templates/CardFormTemplate';
+import CustomTemplate from '../src/components/templates/CardFormTemplate';
 
-module.exports = {
+export default {
 
   templates: {
-    // default: require('lore-react-forms/Template'),
-    card: require('../src/components/templates/CardFormTemplate'),
-    custom: require('../src/components/templates/CustomTemplate')
+    // default: DefaultTemplate,
+    card: CardFormTemplate,
+    custom: CustomTemplate
   },
 
   // typeFieldMap: {

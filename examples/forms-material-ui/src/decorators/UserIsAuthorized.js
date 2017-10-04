@@ -19,10 +19,10 @@
  * https://github.com/lore/lore/tree/master/packages/lore-auth
  */
 
-var React = require('react');
-var AuthorizationGenerator = require('lore-auth').AuthorizationGenerator;
+import React from 'react';
+import { AuthorizationGenerator } from 'lore-auth';
 
-module.exports = AuthorizationGenerator({
+export default AuthorizationGenerator({
   wrapperDisplayName: 'UserIsAuthorized',
 
   isAuthorized: function(storeState) {

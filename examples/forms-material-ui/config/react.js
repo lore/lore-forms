@@ -4,14 +4,12 @@
  * This file is where you define overrides for the default mounting behavior.
  */
 
-// var React = require('react');
-// var ReactDOM = require('react-dom');
-// var ReactRedux = require('react-redux');
-// var Provider = ReactRedux.Provider;
-// var ReactRouter = require('react-router');
-// var Router = ReactRouter.Router;
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
+// import { Router } from 'react-router';
 
-module.exports = {
+export default {
 
   /**
    * ID of DOM Element the application will be mounted to

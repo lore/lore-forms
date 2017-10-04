@@ -4,7 +4,7 @@
  * This file is where you define overrides for the default authentication behaviors.
  */
 
-module.exports = {
+export default {
 
   /**
    * The name of the model with a URL property set to the endpoint

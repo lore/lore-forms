@@ -1,18 +1,19 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Card, CardTitle, CircularProgress } from 'material-ui';
+import _ from 'lodash';
+import PayloadStates from '../../constants/PayloadStates';
 
 // Hook Dialogs
-var withMuiTheme = require('../../decorators/withMuiTheme').default;
-var validators = require('../../utils/validators');
-// var Template = require('../../../hooks/lore-hook-forms-material-ui/Template');
-var Template = require('../templates/Template');
-var Overlay = require('../common/Overlay');
+import withMuiTheme from '../../decorators/withMuiTheme';
+import validators from '../../utils/validators';
+// import Template from '../../../hooks/lore-hook-forms-material-ui/Template';
+import Template from '../templates/Template';
+import Overlay from '../common/Overlay';
 
-var tweetConfig = require('../../models/tweet');
+import tweetConfig from '../../models/tweet';
 
-module.exports = lore.connect(function(getState, props){
+export default lore.connect(function(getState, props){
   return {
     user: getState('user.byId', {
       id: props.tweet.data.userId
@@ -23,8 +24,8 @@ React.createClass({
   displayName: 'UpdateCard.template',
 
   propTypes: {
-    tweet: React.PropTypes.object.isRequired,
-    user: React.PropTypes.object.isRequired,
+    tweet: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   },
 
   getInitialState: function() {
@@ -63,12 +64,12 @@ React.createClass({
 
     return (
       <Overlay model={tweet}>
-        <mui.Card className="form-card">
-          <mui.CardTitle
+        <Card className="form-card">
+          <CardTitle
             title="Template Form"
             subtitle="Created by providing a config to the template used by the forms hook" />
-          {user.state === PayloadStates.RESOLVED ? this.getForm() : <mui.CircularProgress />}
-        </mui.Card>
+          {user.state === PayloadStates.RESOLVED ? this.getForm() : <CircularProgress />}
+        </Card>
       </Overlay>
     );
   }

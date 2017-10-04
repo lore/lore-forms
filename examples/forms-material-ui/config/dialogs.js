@@ -3,12 +3,10 @@
  *
  * This file is where you define overrides for the default dialogs behavior.
  */
-var React = require('react');
-var TextField = require('lore-react-forms-material-ui').TextField;
-var CheckboxField = require('lore-react-forms-material-ui').CheckboxField;
-var NumberField = require('lore-react-forms-material-ui').NumberField;
+import React from 'react';
+import { TextField, CheckboxField, NumberField } from 'lore-react-forms-material-ui';
 
-module.exports = {
+export default {
 
   typeFieldMap: {
 

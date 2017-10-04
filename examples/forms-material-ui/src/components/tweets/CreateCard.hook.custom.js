@@ -1,10 +1,9 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
-var moment = require('moment');
+import React from 'react';
+import _ from 'lodash';
+import moment from 'moment';
+import PayloadStates from '../../constants/PayloadStates';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'CustomCreateCard.hook',
 
   getInitialState: function() {

@@ -4,12 +4,12 @@
  * This file is where you define overrides for the default Redux behavior.
  */
 
-// var Redux = require('redux');
-// var thunk = require('redux-thunk').default;
-// var batchedSubscribe = require('redux-batched-subscribe').batchedSubscribe;
-// var _ = require('lodash');
+// import Redux from 'redux';
+// import thunk from 'redux-thunk';
+// import { batchedSubscribe } from 'redux-batched-subscribe';
+// import _ from 'lodash';
 
-module.exports = {
+export default {
 
   /**
    * Middleware injected into the dispatch flow, placed at the point between

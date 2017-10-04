@@ -1,9 +1,9 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CircularProgress } from 'material-ui';
+import PayloadStates from '../../constants/PayloadStates';
 
-module.exports = lore.connect(function(getState, props){
+export default lore.connect(function(getState, props){
   return {
     user: getState('user.byId', {
       id: props.tweet.data.userId
@@ -14,8 +14,8 @@ React.createClass({
   displayName: 'CustomUpdateCard.hook',
 
   propTypes: {
-    tweet: React.PropTypes.object.isRequired,
-    user: React.PropTypes.object.isRequired,
+    tweet: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   },
 
   onSubmit: function(params) {
@@ -29,7 +29,7 @@ React.createClass({
 
     if (user.state === PayloadStates.FETCHING) {
       return (
-        <mui.CircularProgress />
+        <CircularProgress />
       );
     }
 

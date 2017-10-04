@@ -6,12 +6,28 @@
 * `lore.models.xyz`, etc.)
 **/
 
-var lore = require('lore');
-var _ = require('lodash');
+import lore from 'lore';
+import _ from 'lodash';
 
 // Needed for using onTouchTap and removing the 300ms touch delay from mobile devices
-var injectTapEventPlugin = require('react-tap-event-plugin');
+import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
+// Hooks
+import auth from 'lore-hook-auth';
+import actions from 'lore-hook-actions';
+import bindActions from 'lore-hook-bind-actions';
+import collections from 'lore-hook-collections';
+import connections from 'lore-hook-connections';
+import connect from 'lore-hook-connect';
+import dialog from 'lore-hook-dialog';
+import dialogs from 'lore-hook-dialogs-material-ui';
+import forms from 'lore-hook-forms-material-ui';
+import models from 'lore-hook-models';
+import react from 'lore-hook-react';
+import reducers from 'lore-hook-reducers';
+import redux from 'lore-hook-redux';
+import router from 'lore-hook-router';
 
 // Allows you to access your lore app globally as well as from within
 // the console. Remove this line if you don't want to be able to do that.
@@ -20,20 +36,21 @@ window.lore = lore;
 // Summon the app!
 lore.summon({
   hooks: {
-    auth: require('lore-hook-auth'),
-    actions: require('./hooks/lore-hook-actions'),
-    bindActions: require('lore-hook-bind-actions'),
-    collections: require('lore-hook-collections'),
-    connections: require('lore-hook-connections'),
-    connect: require('lore-hook-connect'),
-    dialog: require('lore-hook-dialog'),
-    forms: require('lore-hook-forms-material-ui'),
-    models: require('lore-hook-models'),
-    react: require('lore-hook-react'),
-    reducers: require('lore-hook-reducers'),
-    redux: _.extend(require('lore-hook-redux'), {
+    auth,
+    actions,
+    bindActions,
+    collections,
+    connections,
+    connect,
+    dialog,
+    dialogs,
+    forms,
+    models,
+    react,
+    reducers,
+    redux: _.extend(redux, {
       dependencies: ['reducers', 'auth']
     }),
-    router: require('lore-hook-router')
+    router
   }
 });

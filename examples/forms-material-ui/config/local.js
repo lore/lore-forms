@@ -13,7 +13,7 @@
  * in the env/ subfolder.
  */
 
-module.exports = {
+export default {
 
   /**
    * This file will override other config settings based on the environment

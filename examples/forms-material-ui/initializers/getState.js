@@ -1,6 +1,6 @@
-var _getState = require('lore-hook-connect/lib/getState');
+import _getState from 'lore-hook-connect/es/getState';
 
-module.exports = function() {
+export default function() {
   // Hack to support a lore.getState ability
   var getState = lore.getState = _getState(
     lore.actions,

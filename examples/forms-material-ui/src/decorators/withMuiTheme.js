@@ -1,7 +1,7 @@
 import React from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-var muiTheme = require('../muiTheme');
+import muiTheme from '../muiTheme';
 
 lore.muiTheme = muiTheme;
 

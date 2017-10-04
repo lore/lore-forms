@@ -1,5 +1,5 @@
-var validator = require('validator');
-var PayloadStates = require('../constants/PayloadStates');
+import validator from 'validator';
+import PayloadStates from '../constants/PayloadStates';
 
 var isRequired = function(value) {
   if (value === null || value === undefined || validator.isEmpty(value)) {
@@ -51,7 +51,7 @@ var isUrl = function(value) {
   }
 };
 
-module.exports = {
+export default {
   isRequired: isRequired,
   isEmail: isEmail,
   isPasswordMatch: isPasswordMatch,

@@ -1,22 +1,23 @@
-var React = require('react');
-var mui = require('material-ui');
-var Router = require('react-router');
-var _ = require('lodash');
-var moment = require('moment');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { ListItem, Avatar } from 'material-ui';
+import _ from 'lodash';
+import moment from 'moment';
 
-var Tweet = lore.connect(function(getState, props){
+let Tweet = lore.connect(function(getState, props){
   return {
     user: getState('user.byId', {
       id: props.tweet.data.userId
     })
   }
 })(
-Router.withRouter(React.createClass({
+withRouter(React.createClass({
   displayName: 'Tweet',
 
   propTypes: {
-    tweet: React.PropTypes.object.isRequired,
-    user: React.PropTypes.object.isRequired
+    tweet: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   },
 
   onTouchTap: function() {
@@ -34,9 +35,9 @@ Router.withRouter(React.createClass({
     var other = _.omit(this.props, ['user', 'tweet', 'router', 'params', 'location', 'routes']);
 
     return (
-      <mui.ListItem
+      <ListItem
         {...other}
-        leftAvatar={<mui.Avatar src={user.data.avatar} />}
+        leftAvatar={<Avatar src={user.data.avatar} />}
         primaryText={(
           <span>
             <span>{user.data.username}</span>
@@ -56,4 +57,4 @@ Router.withRouter(React.createClass({
 // we need to provide a muiName in order for SelectableList to recognize this component as a mui.ListItem
 Tweet.muiName = 'ListItem';
 
-module.exports = Tweet;
+export default Tweet;

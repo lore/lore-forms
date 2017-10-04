@@ -1,14 +1,11 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
-var moment = require('moment');
+import React from 'react';
+import PropTypes from 'prop-types';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'UpdateCard.hook',
 
   propTypes: {
-    user: React.PropTypes.object
+    user: PropTypes.object
   },
 
   onSubmit: function(params) {

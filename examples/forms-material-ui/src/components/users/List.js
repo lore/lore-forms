@@ -1,15 +1,14 @@
-var React = require('react');
-var Router = require('react-router');
-var mui = require('material-ui');
-var _ = require('lodash');
-var Spinner = require('../common/Spinner');
-var PayloadStates = require('../../constants/PayloadStates');
-var SelectableList = require('../SelectableList');
-var Connect = require('../Connect');
-var moment = require('moment');
-var User = require('./User');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { Paper, Subheader } from 'material-ui';
 
-module.exports = lore.connect(function(getState, props){
+import Spinner from '../common/Spinner';
+import PayloadStates from '../../constants/PayloadStates';
+import SelectableList from '../SelectableList';
+import User from './User';
+
+export default lore.connect(function(getState, props){
   return {
     newUsers: getState('user.all', {
       where: function(user) {
@@ -28,12 +27,12 @@ module.exports = lore.connect(function(getState, props){
     })
   }
 })(
-Router.withRouter(React.createClass({
+withRouter(React.createClass({
   displayName: 'List',
 
   propTypes: {
-    users: React.PropTypes.object.isRequired,
-    newUsers: React.PropTypes.object.isRequired
+    users: PropTypes.object.isRequired,
+    newUsers: PropTypes.object.isRequired
   },
 
   renderUser: function(user) {
@@ -60,15 +59,15 @@ Router.withRouter(React.createClass({
 
     return (
       <div>
-        <mui.Paper>
-          <mui.Subheader>
+        <Paper>
+          <Subheader>
             Users
-          </mui.Subheader>
+          </Subheader>
           <SelectableList defaultValue={0}>
             {newUsers}
             {users.data.map(this.renderUser)}
           </SelectableList>
-        </mui.Paper>
+        </Paper>
       </div>
     );
   }

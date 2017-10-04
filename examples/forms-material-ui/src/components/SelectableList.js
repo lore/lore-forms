@@ -52,4 +52,4 @@ function wrapState(ComposedComponent) {
 
 SelectableList = wrapState(SelectableList);
 
-module.exports = SelectableList;
+export default SelectableList;

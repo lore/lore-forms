@@ -1,13 +1,14 @@
-var React = require('react');
-var mui = require('material-ui');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CircularProgress } from 'material-ui';
+import _ from 'lodash';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'Spinner',
 
   propTypes: {
-    display: React.PropTypes.func.isRequired,
-    children: React.PropTypes.node
+    display: PropTypes.func.isRequired,
+    children: PropTypes.node
   },
 
   getDefaultProps: function() {
@@ -36,7 +37,7 @@ module.exports = React.createClass({
     if (display) {
       return (
         <div style={styles.container}>
-          <mui.CircularProgress size={60} thickness={5}/>
+          <CircularProgress size={60} thickness={5}/>
         </div>
       );
     }

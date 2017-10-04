@@ -1,12 +1,12 @@
-var React = require('react');
-var PayloadStates = require('../../constants/PayloadStates');
-var CreateCardHook = require('./CreateCard.hook');
-var UpdateCardHook = require('./UpdateCard.hook');
-var List = require('./List');
-var Connect = require('../Connect');
-var Spinner = require('../Spinner');
+import React from 'react';
+import PayloadStates from '../../constants/PayloadStates';
+import CreateCardHook from './CreateCard.hook';
+import UpdateCardHook from './UpdateCard.hook';
+import List from './List';
+import Connect from '../Connect';
+import Spinner from '../Spinner';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'Layout',
 
   getUser: function(getState, props) {

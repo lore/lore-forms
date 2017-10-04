@@ -1,13 +1,14 @@
-var React = require('react');
-var mui = require('material-ui');
-var Router = require('react-router');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { ListItem, Avatar } from 'material-ui';
+import _ from 'lodash';
 
-var User = Router.withRouter(React.createClass({
+const User = withRouter(React.createClass({
   displayName: 'User',
 
   propTypes: {
-    user: React.PropTypes.object.isRequired
+    user: PropTypes.object.isRequired
   },
 
   onTouchTap: function() {
@@ -23,9 +24,9 @@ var User = Router.withRouter(React.createClass({
     var other = _.omit(this.props, ['user', 'router', 'params', 'location', 'routes']);
 
     return (
-      <mui.ListItem
+      <ListItem
         {...other}
-        leftAvatar={<mui.Avatar src={user.data.avatar} />}
+        leftAvatar={<Avatar src={user.data.avatar} />}
         primaryText={(
           <span>
             <span>{user.data.name}</span>
@@ -44,4 +45,4 @@ var User = Router.withRouter(React.createClass({
 // we need to provide a muiName in order for SelectableList to recognize this component as a mui.ListItem
 User.muiName = 'ListItem';
 
-module.exports = User;
+export default User;

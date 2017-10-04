@@ -1,12 +1,7 @@
-var React = require('react');
-var mui = require('material-ui');
-var _ = require('lodash');
+import React from 'react';
 
 // react-form
-var Form = require('lore-react-forms').Form;
-var FormSection = require('lore-react-forms').FormSection;
-var PropBarrier = require('lore-react-forms').PropBarrier;
-var Template = require('lore-react-forms').Template;
+import { Form, FormSection, PropBarrier, Template } from 'lore-react-forms';
 
 class CustomTemplate extends Template {
 
@@ -46,4 +41,4 @@ class CustomTemplate extends Template {
 
 }
 
-module.exports = CustomTemplate;
+export default CustomTemplate;

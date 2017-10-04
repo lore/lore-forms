@@ -1,11 +1,12 @@
-var React = require('react');
-var PayloadStates = require('../../constants/PayloadStates');
-var _ = require('lodash');
+import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+import PayloadStates from '../../constants/PayloadStates';
 
-var tweetConfig = require('../../models/tweet');
-var Template = require('../templates/CardFormTemplate');
+import tweetConfig from '../../models/tweet';
+import Template from '../templates/CardFormTemplate';
 
-module.exports = lore.connect(function(getState, props){
+export default lore.connect(function(getState, props){
   return {
     user: getState('user.byId', {
       id: props.tweet.data.userId
@@ -16,8 +17,8 @@ React.createClass({
   displayName: 'CustomUpdateCard.template',
 
   propTypes: {
-    tweet: React.PropTypes.object.isRequired,
-    user: React.PropTypes.object.isRequired,
+    tweet: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   },
 
   getInitialState: function() {

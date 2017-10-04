@@ -1,12 +1,13 @@
-var React = require('react');
-var mui = require('material-ui');
-var PayloadStates = require('../../constants/PayloadStates');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CircularProgress } from 'material-ui';
+import PayloadStates from '../../constants/PayloadStates';
 
-module.exports = React.createClass({
+export default React.createClass({
   displayName: 'Overlay',
 
   propTypes: {
-    model: React.PropTypes.object
+    model: PropTypes.object
   },
 
   isSaving: function() {
@@ -26,7 +27,7 @@ module.exports = React.createClass({
     return (
       <div className={"form-overlay" + (isSaving ? " saving" : "")}>
         <div className="overlay-label">
-          <mui.CircularProgress />
+          <CircularProgress />
         </div>
         <div className="form-overlay-content">
           {React.cloneElement(this.props.children)}
