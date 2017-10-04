@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "create-react-class": "^15.6.2",
     "lodash": "^4.0.0",
     "lore": "~0.13.0-beta",
     "lore-auth": "~0.13.0-beta",

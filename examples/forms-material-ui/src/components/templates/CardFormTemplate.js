@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardTitle } from 'material-ui';
 import _ from 'lodash';
+import createReactClass from 'create-react-class';
 
 // Hook Dialogs
 import Overlay from '../common/Overlay';
 // import Template from '../../../hooks/lore-hook-forms-material-ui/Template';
 import Template from './Template';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'CardFormTemplate',
 
   propTypes: {

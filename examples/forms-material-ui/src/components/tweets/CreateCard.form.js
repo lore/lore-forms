@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, CardTitle, FlatButton } from 'material-ui';
 import _ from 'lodash';
-import PayloadStates from '../../constants/PayloadStates';
+import createReactClass from 'create-react-class';
 import moment from 'moment';
+import PayloadStates from '../../constants/PayloadStates';
 
 // Hook Dialogs
 // import withMuiTheme from '../../decorators/withMuiTheme';
@@ -15,7 +16,7 @@ import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
 import Connect from '../Connect';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'CreateCard.form',
 
   getInitialState: function() {

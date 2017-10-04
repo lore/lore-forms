@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui';
 import PayloadStates from '../../constants/PayloadStates';
+import createReactClass from 'create-react-class';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Overlay',
 
   propTypes: {

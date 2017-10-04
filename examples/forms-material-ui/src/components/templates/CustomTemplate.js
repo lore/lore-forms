@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'material-ui';
 import _ from 'lodash';
+import createReactClass from 'create-react-class';
 import logo from '../../../assets/images/logo.png';
 
 // react-form
@@ -10,7 +11,7 @@ import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import Template from './Template';
 import Overlay from '../common/Overlay';
 
-const Header = React.createClass({
+const Header = createReactClass({
   displayName: 'Header',
 
   propTypes: {
@@ -29,7 +30,7 @@ const Header = React.createClass({
   }
 });
 
-const Footer = React.createClass({
+const Footer = createReactClass({
   displayName: 'Footer',
 
   propTypes: {
@@ -45,7 +46,7 @@ const Footer = React.createClass({
   }
 });
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'CustomTemplate',
 
   propTypes: {

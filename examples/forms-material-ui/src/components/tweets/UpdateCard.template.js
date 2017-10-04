@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import { Card, CardTitle, CircularProgress } from 'material-ui';
 import _ from 'lodash';
@@ -20,7 +21,7 @@ export default lore.connect(function(getState, props){
     })
   }
 })(
-React.createClass({
+createReactClass({
   displayName: 'UpdateCard.template',
 
   propTypes: {

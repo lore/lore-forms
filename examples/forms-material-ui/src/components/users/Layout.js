@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PayloadStates from '../../constants/PayloadStates';
 import CreateCardHook from './CreateCard.hook';
 import UpdateCardHook from './UpdateCard.hook';
@@ -6,7 +7,7 @@ import List from './List';
 import Connect from '../Connect';
 import Spinner from '../Spinner';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Layout',
 
   getUser: function(getState, props) {

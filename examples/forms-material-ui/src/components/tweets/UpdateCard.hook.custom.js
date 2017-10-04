@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui';
 import PayloadStates from '../../constants/PayloadStates';
@@ -10,7 +11,7 @@ export default lore.connect(function(getState, props){
     })
   }
 })(
-React.createClass({
+createReactClass({
   displayName: 'CustomUpdateCard.hook',
 
   propTypes: {

@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import hoistStatics from 'hoist-non-react-statics';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from '../muiTheme';
@@ -10,7 +11,7 @@ function getDisplayName(WrappedComponent) {
 }
 
 export default function withMuiTheme(WrappedComponent) {
-  const WithMuiTheme = React.createClass({
+  const WithMuiTheme = createReactClass({
     render() {
       return (
         <MuiThemeProvider muiTheme={muiTheme}>

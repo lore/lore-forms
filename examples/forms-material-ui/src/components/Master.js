@@ -11,6 +11,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import PayloadStates from '../constants/PayloadStates';
 import '../../assets/less/main.less';
 
@@ -19,7 +20,7 @@ export default lore.connect(function(getState, props) {
     // user: getState('currentUser')
   };
 }, { subscribe: true })(
-React.createClass({
+createReactClass({
   displayName: 'Master',
 
   // propTypes: {

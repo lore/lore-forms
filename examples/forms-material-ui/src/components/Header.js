@@ -2,13 +2,14 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { AppBar, Tabs, Tab, IconButton } from 'material-ui';
 import { ActionHome } from 'material-ui/svg-icons';
+import createReactClass from 'create-react-class';
 
 var Routes = {
   TWEETS: '/tweets',
   USERS: '/users'
 };
 
-export default withRouter(React.createClass({
+export default withRouter(createReactClass({
   displayName: 'Header',
 
   getStyles: function(){

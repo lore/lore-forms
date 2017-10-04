@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PayloadStates from '../../constants/PayloadStates';
 import CreateCardForm from './CreateCard.form';
 import CreateCardTemplate from './CreateCard.template';
@@ -13,7 +14,7 @@ import List from './List';
 import Connect from '../Connect';
 import Spinner from '../Spinner';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Layout',
 
   getTweet: function(getState, props) {

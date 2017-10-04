@@ -5,9 +5,10 @@
  **/
 
 import React from 'react';
+import createReactClass from 'create-react-class';
 import Header from './Header';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Layout',
 
   render: function() {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardTitle } from 'material-ui';
 import _ from 'lodash';
 import moment from 'moment';
+import createReactClass from 'create-react-class';
 import PayloadStates from '../../constants/PayloadStates';
 
 // Hook Dialogs
@@ -12,7 +13,7 @@ import Overlay from '../common/Overlay';
 
 import tweetConfig from '../../models/tweet';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'CreateCard.template',
 
   getInitialState: function() {

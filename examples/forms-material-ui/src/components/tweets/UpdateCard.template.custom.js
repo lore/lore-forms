@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import PayloadStates from '../../constants/PayloadStates';
@@ -13,7 +14,7 @@ export default lore.connect(function(getState, props){
     })
   }
 })(
-React.createClass({
+createReactClass({
   displayName: 'CustomUpdateCard.template',
 
   propTypes: {

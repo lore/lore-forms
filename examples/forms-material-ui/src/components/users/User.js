@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { ListItem, Avatar } from 'material-ui';
 import _ from 'lodash';
 
-const User = withRouter(React.createClass({
+const User = withRouter(createReactClass({
   displayName: 'User',
 
   propTypes: {

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import { withRouter } from 'react-router';
 import { Paper, Subheader } from 'material-ui';
 import PayloadStates from '../../constants/PayloadStates';
@@ -27,7 +28,7 @@ export default lore.connect(function(getState, props){
     })
   }
 })(
-withRouter(React.createClass({
+withRouter(createReactClass({
   displayName: 'List',
 
   propTypes: {

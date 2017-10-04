@@ -1,9 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
+import createReactClass from 'create-react-class';
 import PayloadStates from '../../constants/PayloadStates';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'CreateCard.hook',
 
   getInitialState: function() {

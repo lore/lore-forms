@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Paper, Subheader } from 'material-ui';
@@ -27,7 +28,7 @@ export default lore.connect(function(getState, props){
     })
   }
 })(
-withRouter(React.createClass({
+withRouter(createReactClass({
   displayName: 'List',
 
   propTypes: {
