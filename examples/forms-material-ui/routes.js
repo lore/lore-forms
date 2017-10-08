@@ -16,6 +16,7 @@ import Master from './src/components/Master';
 import Layout from './src/components/Layout';
 import Users from './src/components/users/Layout';
 import Tweets from './src/components/tweets/Layout';
+import Combined from './src/components/combined/Layout';
 
 export default (
   <Route component={UserIsAuthenticated(withMuiTheme(Master))}>
@@ -26,6 +27,7 @@ export default (
       <Route path="tweets/:tweetId" component={Tweets} />
       <Route path="users" component={Users} />
       <Route path="users/:userId" component={Users} />
+      <Route path="combined" component={Combined} />
     </Route>
   </Route>
 );

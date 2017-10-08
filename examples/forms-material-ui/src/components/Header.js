@@ -6,7 +6,8 @@ import createReactClass from 'create-react-class';
 
 var Routes = {
   TWEETS: '/tweets',
-  USERS: '/users'
+  USERS: '/users',
+  COMBINED: '/combined'
 };
 
 export default withRouter(createReactClass({
@@ -43,6 +44,10 @@ export default withRouter(createReactClass({
 
     if (router.isActive(Routes.USERS)) {
       return Routes.USERS;
+    }
+
+    if (router.isActive(Routes.COMBINED)) {
+      return Routes.COMBINED;
     }
   },
 
@@ -82,6 +87,13 @@ export default withRouter(createReactClass({
             style={styles.tab}
             onActive={() => {
               this.props.router.push(Routes.USERS);
+            }}/>
+          <Tab
+            value={Routes.COMBINED}
+            label="Combined"
+            style={styles.tab}
+            onActive={() => {
+              this.props.router.push(Routes.COMBINED);
             }}/>
         </Tabs>
       </AppBar>

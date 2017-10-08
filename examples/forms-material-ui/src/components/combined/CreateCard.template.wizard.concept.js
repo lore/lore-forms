@@ -3,27 +3,30 @@ import { Card, CardTitle, RaisedButton } from 'material-ui';
 import _ from 'lodash';
 import createReactClass from 'create-react-class';
 import moment from 'moment';
-import PayloadStates from '../../constants/PayloadStates';
 import validators from '../../utils/validators';
 import Overlay from '../common/Overlay';
-import TemplateForm from './templates/TemplateForm';
-import UsernameField from './templates/fields/UsernameField';
-import { getState } from '../../../hooks/lore-hook-connect';
+import TemplateForm from '../users/templates/TemplateForm';
+import UsernameField from '../users/templates/fields/UsernameField';
 
 export default createReactClass({
-  displayName: 'CreateCard.template.wizard.concept',
+  displayName: 'CreateCard.combined.template.wizard.concept',
 
   getInitialState: function() {
     return {
       stepIndex: 0,
-      request: null,
+
+      userRequest: null,
       name: '',
       username: '',
       avatar: '',
       password: '',
       confirmPassword: '',
       country: null,
-      region: null
+      region: null,
+
+      tweetRequest: null,
+      text: '',
+      userId: null,
     }
   },
 
@@ -34,9 +37,9 @@ export default createReactClass({
   onCreateUser: function() {
     const nextState = this.state;
     this.setState({
-      request: lore.actions.user.create({
-        name: nextState.name || 'Test',
-        username: nextState.username || 'test',
+      userRequest: lore.actions.user.create({
+        name: nextState.name || 'Combined Name',
+        username: nextState.username || 'combined_username',
         password: nextState.password,
         avatar: nextState.avatar || 'https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png',
         country: nextState.country,
@@ -47,19 +50,39 @@ export default createReactClass({
     this.onNext();
   },
 
+  onCreateTweet: function() {
+    const nextState = this.state;
+    this.setState({
+      tweetRequest: lore.actions.tweet.create({
+        text: nextState.text || 'Combined tweet text.',
+        userId: nextState.userId || 1,
+        createdAt: moment().unix()
+      }).payload
+    });
+    this.onNext();
+  },
+
+  onUserCreated: function(request) {
+    this.setState({
+      userRequest: request,
+      userId: request.id
+    });
+    this.onNext();
+  },
+
+  onTweetCreated: function(request) {
+    this.setState({
+      tweetRequest: request
+    });
+    this.onNext();
+  },
+
   onNext: function() {
-    console.log(this.state);
-    // return;
-
     const { stepIndex } = this.state;
-    let nextState = _.extend({}, this.state);
-
-    if (stepIndex > 0) {
-      this.setState(nextState);
-    }
-
-    // if (stepIndex === 1) {
-    //   this.onCreateUser();
+    // let nextState = _.extend({}, this.state);
+    //
+    // if (stepIndex > 0) {
+    //   this.setState(nextState);
     // }
 
     this.setState({
@@ -88,7 +111,6 @@ export default createReactClass({
   },
 
   onChange: function(name, value) {
-    console.log(`Changing: ${name}:${value}`);
     const state = {};
     state[name] = value;
 
@@ -181,48 +203,6 @@ export default createReactClass({
                       floatingLabelText: 'Confirm Password *'
                     }
                   },
-                },
-                actions: [
-                  {
-                    type: 'flat',
-                    props: {
-                      label: 'Back',
-                      onTouchTap: this.onPrevious
-                    }
-                  },
-                  {
-                    type: 'raised',
-                    props: (form) => {
-                      return {
-                        label: 'Next',
-                        disabled: form.hasError,
-                        onTouchTap: this.onCreateUser
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                name: 'Request 1',
-                type: 'request',
-                includeInStepper: false,
-                props: {
-                  request: this.state.request,
-                  reducer: 'user',
-                  onSuccess: this.onNext,
-                  onError: this.onRequestError
-                }
-              },
-              {
-                name: 'Demographics',
-                type: 'form',
-                data: this.state,
-                validators: {
-                  // country: [validators.number.isRequired],
-                  // region: [validators.number.isRequired]
-                },
-                onChange: this.onChange,
-                fields: {
                   country: {
                     type: 'select',
                     props: {
@@ -286,13 +266,74 @@ export default createReactClass({
                 ]
               },
               {
+                name: 'Request 1',
+                type: 'request',
+                includeInStepper: false,
+                props: {
+                  request: this.state.userRequest,
+                  reducer: 'user',
+                  onSuccess: this.onUserCreated,
+                  onError: this.onRequestError
+                }
+              },
+              {
+                name: 'Tweet',
+                type: 'form',
+                data: this.state,
+                validators: {
+                  // country: [validators.number.isRequired],
+                  // region: [validators.number.isRequired]
+                },
+                onChange: this.onChange,
+                fields: {
+                  text: {
+                    type: 'text',
+                    props: {
+                      floatingLabelText: 'Text *'
+                    }
+                  },
+                  userId: {
+                    type: 'select',
+                    props: {
+                      floatingLabelText: 'User',
+                      field: 'username',
+                      disabled: true,
+                      callback: function(getState, props) {
+                        return {
+                          options: getState('user.findAll')
+                        }
+                      }
+                    }
+                  },
+                },
+                actions: [
+                  {
+                    type: 'flat',
+                    props: {
+                      label: 'Back',
+                      onTouchTap: this.onPrevious
+                    }
+                  },
+                  {
+                    type: 'raised',
+                    props: (form) => {
+                      return {
+                        label: 'Next',
+                        disabled: form.hasError,
+                        onTouchTap: this.onCreateTweet
+                      }
+                    }
+                  }
+                ]
+              },
+              {
                 name: 'Request',
                 type: 'request',
                 includeInStepper: false,
                 props: {
-                  request: this.state.request,
-                  reducer: 'user',
-                  onSuccess: this.onNext,
+                  request: this.state.tweetRequest,
+                  reducer: 'tweet',
+                  onSuccess: this.onTweetCreated,
                   onError: this.onRequestError
                 }
               },
