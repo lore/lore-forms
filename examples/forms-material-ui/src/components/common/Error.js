@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import _ from 'lodash';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Error',
 
   propTypes: {
-    error: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array,
-      React.PropTypes.object
+    error: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object
     ]).isRequired
   },
 

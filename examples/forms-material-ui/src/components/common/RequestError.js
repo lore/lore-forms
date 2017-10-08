@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import Error from './Error';
 import PayloadStates from '../../constants/PayloadStates';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Error',
 
   propTypes: {
-    request: React.PropTypes.object
+    request: PropTypes.object
   },
 
   render: function() {

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import { CircularProgress } from 'material-ui';
 import PayloadStates from '../../constants/PayloadStates';
 
@@ -12,14 +14,14 @@ var styles = {
   }
 };
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Request',
 
   propTypes: {
-    request: React.PropTypes.object,
-    reducer: React.PropTypes.string.isRequired,
-    onSuccess: React.PropTypes.func.isRequired,
-    onError: React.PropTypes.func.isRequired,
+    request: PropTypes.object,
+    reducer: PropTypes.string.isRequired,
+    onSuccess: PropTypes.func.isRequired,
+    onError: PropTypes.func.isRequired,
   },
 
   getInitialState: function() {

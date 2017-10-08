@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 import _ from 'lodash';
 
 export default createReactClass({
-  displayName: 'Steps',
+  displayName: 'FormSteps',
 
   // getInitialState: function() {
   //   return {

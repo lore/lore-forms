@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import { RaisedButton } from 'material-ui';
 
 var styles = {
@@ -11,13 +13,13 @@ var styles = {
   }
 };
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'SuccessMessage',
 
   propTypes: {
-    children: React.PropTypes.node.isRequired,
-    onNext: React.PropTypes.func.isRequired,
-    raw: React.PropTypes.bool
+    children: PropTypes.node.isRequired,
+    onNext: PropTypes.func.isRequired,
+    raw: PropTypes.bool
   },
 
   render: function() {
@@ -28,7 +30,7 @@ export default React.createClass({
 
     return (
       <div style={styles.container}>
-        <div className="mui-card-text" style={{paddingBottom: '0px'}}>
+        <div className="mui-card-text">
           <div className="row">
             <div className="col-md-12">
               { raw ? children : (
