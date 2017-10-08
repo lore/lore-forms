@@ -19,9 +19,9 @@ import FieldsTemplate from '../src/components/users/templates/Fields';
 import FormTemplate from '../src/components/users/templates/Form';
 import FormStepTemplate from '../src/components/users/templates/FormStep';
 import FormStepsTemplate from '../src/components/users/templates/FormSteps';
+import RequestTemplate from '../src/components/users/templates/Request';
 import StepTemplate from '../src/components/users/templates/Step';
 import StepperTemplate from '../src/components/users/templates/Stepper';
-
 
 export default {
 
@@ -34,6 +34,7 @@ export default {
       Form: FormTemplate,
       FormStep: FormStepTemplate,
       FormSteps: FormStepsTemplate,
+      Request: RequestTemplate,
       Step: StepTemplate,
       Stepper: StepperTemplate,
     },

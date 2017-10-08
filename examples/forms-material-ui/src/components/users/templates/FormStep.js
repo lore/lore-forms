@@ -25,12 +25,34 @@ export default createReactClass({
 
   render: function() {
     const {
-      Form
+      Form,
+      Request
     } = this.context.template;
 
+    const {
+      type
+    } = this.props;
+
+    if (type === 'form') {
+      return (
+        <Form {...this.props} />
+      );
+    }
+
+    if (type === 'request') {
+      return (
+        <Request {...this.props.props} />
+      );
+    }
+
+    if (type === 'custom') {
+      return this.props.render();
+    }
+
     return (
-      <Form {...this.props} />
+      <div>Unknown form type: {type}</div>
     );
+
   }
 
 });
