@@ -1,6 +1,6 @@
 import React from 'react';
 import { CircularProgress } from 'material-ui';
-import SvgIcons from 'material-ui/svg-icons';
+import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import PayloadStates from '../constants/PayloadStates';
 import validators from '../utils/validators';
 
@@ -13,7 +13,7 @@ export default {
         data: '',
         validators: [validators.isRequired],
         options: {
-          label: 'Name'
+          floatingLabelText: 'Name'
         }
       },
       username: {
@@ -21,7 +21,7 @@ export default {
         data: '',
         validators: [validators.isRequired],
         options: {
-          label: 'Username',
+          floatingLabelText: 'Username',
           connect: function(getState, props) {
             var username = props.data['username'];
 
@@ -58,7 +58,7 @@ export default {
               );
             } else if (model.state === PayloadStates.NOT_FOUND) {
               options.icon = (
-                <SvgIcons.NavigationCheck
+                <NavigationCheck
                   style={{
                     position: 'absolute',
                     bottom: '12px',
@@ -68,7 +68,7 @@ export default {
               );
             } else if (model.state === PayloadStates.RESOLVED) {
               options.icon = (
-                <SvgIcons.AvNotInterested
+                <AvNotInterested
                   style={{
                     position: 'absolute',
                     bottom: '12px',
@@ -88,7 +88,7 @@ export default {
         data: '',
         validators: [validators.isUrl],
         options: {
-          label: 'Avatar (optional)',
+          floatingLabelText: 'Avatar (optional)',
           hintText: 'https://some.image/url'
         }
       },
@@ -97,7 +97,7 @@ export default {
         data: '',
         validators: [validators.isRequired],
         options: {
-          label: 'Password'
+          floatingLabelText: 'Password'
         }
       },
       confirmPassword: {
@@ -109,7 +109,7 @@ export default {
           ];
         },
         options: {
-          label: 'Confirm Password'
+          floatingLabelText: 'Confirm Password'
         }
       },
       country: {
@@ -117,7 +117,7 @@ export default {
         data: null,
         validators: [validators.number.isRequired],
         options: {
-          label: 'Country',
+          floatingLabelText: 'Country',
           field: 'name',
           getOptions: function(getState, props) {
             return {
@@ -131,7 +131,7 @@ export default {
         data: null,
         validators: [validators.number.isRequired],
         options: {
-          label: 'Region',
+          floatingLabelText: 'Region',
           field: 'name',
           getOptions: function(getState, props) {
             var countryId = props.data.country;

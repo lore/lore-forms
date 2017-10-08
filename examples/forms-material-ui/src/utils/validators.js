@@ -27,9 +27,11 @@ var isEmail = function(value) {
   }
 };
 
-var isPasswordMatch = function(password, value) {
-  if (value !== password) {
-    return 'Passwords must match'
+var matchesPassword = function(password) {
+  return function(value) {
+    if (value !== password) {
+      return 'Passwords must match'
+    }
   }
 };
 
@@ -51,11 +53,33 @@ var isUrl = function(value) {
   }
 };
 
+function usernameIsAvailable(model) {
+  return function(value) {
+    if (!model) return;
+
+    if (model.state === PayloadStates.FETCHING) {
+      return 'Checking availability...'
+    }
+
+    if (model.state === PayloadStates.RESOLVED) {
+      return 'Username is already taken'
+    }
+
+    if (
+      model.state === PayloadStates.ERROR_FETCHING ||
+      model.state === PayloadStates.NOT_FOUND
+    ) {
+      return;
+    }
+  }
+}
+
 export default {
   isRequired: isRequired,
   isEmail: isEmail,
-  isPasswordMatch: isPasswordMatch,
   isUrl: isUrl,
+  matchesPassword: matchesPassword,
+  usernameIsAvailable: usernameIsAvailable,
   number: {
     isRequired: isRequiredAndNumber,
   },
