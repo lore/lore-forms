@@ -36,8 +36,8 @@ createReactClass({
 
     return lore.forms.tweet.update(tweet, {
       template: 'card',
-      title: 'Hook Form',
-      subtitle: 'Created by providing a config to the forms hook',
+      title: 'Update Tweet',
+      subtitle: 'Change the text or user of the tweet',
       model: tweet,
       onSubmit: this.onSubmit
     });

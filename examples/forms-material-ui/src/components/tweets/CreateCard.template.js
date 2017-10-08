@@ -79,8 +79,9 @@ export default createReactClass({
       <Overlay model={tweet}>
         <Card className="form-card">
           <CardTitle
-            title="Template Form"
-            subtitle="Created by providing a config to the template used by the forms hook" />
+            title="Create Tweet"
+            subtitle="Enter text and select the user to tweet it"
+          />
           {this.getForm()}
         </Card>
       </Overlay>

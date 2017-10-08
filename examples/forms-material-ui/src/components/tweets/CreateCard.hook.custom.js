@@ -47,8 +47,8 @@ export default createReactClass({
 
     return lore.forms.tweet.create({
       template: 'custom',
-      title: 'Hook Form with Custom Template',
-      footer: 'This is some footer text',
+      title: 'Create Tweet',
+      footer: 'Enter text and select the user to tweet it',
       model: tweet,
       onSubmit: this.onSubmit
     });

@@ -49,8 +49,8 @@ createReactClass({
 
     return (
       <Template
-        title="Custom Template Form"
-        subtitle="Created by providing a config to a custom template"
+        title="Update Tweet"
+        subtitle="Change the text or user of the tweet"
         model={tweet}
         config={_.merge({}, tweetConfig.forms, {
           fields: {

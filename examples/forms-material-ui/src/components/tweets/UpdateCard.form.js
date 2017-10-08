@@ -77,6 +77,7 @@ createReactClass({
                 <FormSection className="col-md-12">
                   <TextField
                     floatingLabelText="Text"
+                    style={{ width: '100%' }}
                     name="text"
                     multiLine={true}
                   />
@@ -117,8 +118,8 @@ createReactClass({
       <Overlay model={tweet}>
         <Card className="form-card">
           <CardTitle
-            title="Component Form"
-            subtitle="Created by manually building the form using React components" />
+            title="Update Tweet"
+            subtitle="Change the text or user of the tweet" />
           {user.state === PayloadStates.RESOLVED ? this.getForm() : <CircularProgress />}
         </Card>
       </Overlay>

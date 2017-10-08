@@ -19,8 +19,8 @@ export default createReactClass({
 
     return lore.forms.user.update(user, {
       template: 'card',
-      title: 'Hook Form',
-      subtitle: 'Created by providing a config to the forms hook',
+      title: 'Update User',
+      subtitle: 'Edit the data for the user',
       model: user,
       onSubmit: this.onSubmit
     });

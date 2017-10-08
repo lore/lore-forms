@@ -36,8 +36,8 @@ createReactClass({
 
     return lore.forms.tweet.update(tweet, {
       template: 'custom',
-      title: 'Hook Form with Custom Template',
-      footer: 'This is some footer text',
+      title: 'Update Tweet',
+      footer: 'Change the text or user of the tweet',
       model: tweet,
       onSubmit: this.onSubmit
     });

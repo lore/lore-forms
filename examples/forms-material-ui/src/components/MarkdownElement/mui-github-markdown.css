@@ -654,11 +654,12 @@
  * Custom Styles
  */
 
-.markdown-body {
-  padding: 0px !important;
-  margin-left: -12px;
-  margin-right: -13px;
-}
+/*.markdown-body {*/
+  /*padding: 0px !important;*/
+  /*margin-left: -12px;*/
+  /*margin-right: -13px;*/
+/*}*/
+
 .markdown-body pre {
   border: none;
 }

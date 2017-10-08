@@ -47,8 +47,8 @@ export default createReactClass({
 
     return lore.forms.user.create({
       template: 'card',
-      title: 'Hook Form',
-      subtitle: 'Created by providing a config to the forms hook',
+      title: 'Create User',
+      subtitle: 'Enter fields to describe the user',
       model: user,
       onSubmit: this.onSubmit
     });

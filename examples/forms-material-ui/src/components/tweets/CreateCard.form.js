@@ -92,6 +92,7 @@ export default createReactClass({
                 <FormSection className="col-md-12">
                   <TextField
                     floatingLabelText="Text"
+                    style={{ width: '100%' }}
                     name="text"
                     multiLine={true}
                   />
@@ -127,12 +128,19 @@ export default createReactClass({
   render: function() {
     var tweet = this.state.tweet;
 
+    // return (
+    //   <Overlay model={tweet}>
+    //     {this.getForm()}
+    //   </Overlay>
+    // );
+
     return (
       <Overlay model={tweet}>
         <Card className="form-card">
           <CardTitle
-            title="Component Form"
-            subtitle="Created by manually building the form using React components" />
+            title="Create Tweet"
+            subtitle="Enter text and select the user to tweet it"
+          />
           {this.getForm()}
         </Card>
       </Overlay>

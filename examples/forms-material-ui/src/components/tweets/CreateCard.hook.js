@@ -47,8 +47,8 @@ export default createReactClass({
 
     return lore.forms.tweet.create({
       template: 'card',
-      title: 'Hook Form',
-      subtitle: 'Created by providing a config to the forms hook',
+      title: 'Create Tweet',
+      subtitle: 'Enter text and select the user to tweet it',
       model: tweet,
       onSubmit: this.onSubmit
     });

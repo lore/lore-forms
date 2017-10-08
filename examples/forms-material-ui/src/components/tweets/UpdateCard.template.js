@@ -67,8 +67,8 @@ createReactClass({
       <Overlay model={tweet}>
         <Card className="form-card">
           <CardTitle
-            title="Template Form"
-            subtitle="Created by providing a config to the template used by the forms hook" />
+            title="Update Tweet"
+            subtitle="Change the text or user of the tweet" />
           {user.state === PayloadStates.RESOLVED ? this.getForm() : <CircularProgress />}
         </Card>
       </Overlay>
