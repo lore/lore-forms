@@ -19,11 +19,10 @@ class SelectField extends Field {
     const {
       name,
       onChange,
-      afterChange,
-      onBlur
+      afterChange
     } = this.props;
 
-    onBlur();
+    this.onBlur();
     onChange(name, value);
     if (afterChange) {
       afterChange(onChange);

@@ -19,7 +19,7 @@ class TextField extends Field {
 
     return (
       <MuiTextField
-        {...other}
+        {..._.omit(other, ['validators', 'element', 'hasError'])}
         value={value}
         onChange={this.onChange}
         onFocus={this.onFocus}

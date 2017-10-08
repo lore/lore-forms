@@ -14,7 +14,7 @@ class AutoCompleteField extends Field {
     this.updateOptions = _.debounce(this.updateOptions, 250);
 
     const initialOption = _.find(props.options.data, function(option) {
-      console.log(`props.data[props.name]: ${props.data[props.name]}`);
+      // console.log(`props.data[props.name]: ${props.data[props.name]}`);
       return option.id === props.data[props.name];
     });
 
@@ -44,7 +44,7 @@ class AutoCompleteField extends Field {
   }
 
   updateOptions(searchText) {
-    console.log(`updateOptions: ${searchText}`);
+    // console.log(`updateOptions: ${searchText}`);
     this.setState({
       // searchText: searchText,
       options: lore.getState('user.find', {
@@ -56,7 +56,7 @@ class AutoCompleteField extends Field {
   }
 
   handleUpdateInput(searchText) {
-    console.log(`handleUpdateInput: ${searchText}`);
+    // console.log(`handleUpdateInput: ${searchText}`);
     this.setState({
       searchText: searchText,
       isModified: true,
@@ -85,7 +85,7 @@ class AutoCompleteField extends Field {
   }
 
   handleNewRequest(item, index) {
-    console.log('handleNewRequest');
+    // console.log('handleNewRequest');
     // this.setState({
     //   searchText: '',
     // });

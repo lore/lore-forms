@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 import _ from 'lodash';
-import { Field } from 'lore-react-forms';
+import { Field, PropBarrier } from 'lore-react-forms';
 
 class DynamicTextField extends Field {
 
@@ -40,12 +40,12 @@ class DynamicTextField extends Field {
       ...other
     } = this.props;
 
-    const value = data[name];
+    const value = this.state.value;
     const touched = this.state.touched;
     const options = getMessage ? getMessage(_model) : {};
 
     return (
-      <div style={{ position: 'relative' }}>
+      <PropBarrier style={{ position: 'relative' }}>
         <TextField
           {...other}
           value={value}
@@ -53,10 +53,9 @@ class DynamicTextField extends Field {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           errorText={touched && (errors[name] || errorText) || options.message}
-          disabled={disabled}
         />
         {options.icon}
-      </div>
+      </PropBarrier>
     );
   }
 

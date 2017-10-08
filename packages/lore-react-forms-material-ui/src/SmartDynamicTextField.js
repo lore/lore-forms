@@ -97,13 +97,13 @@ class SmartDynamicTextField extends Field {
     let icon = null;
 
     if (state === 'PENDING') {
-      console.log('pending icon');
+      // console.log('pending icon');
       icon = this.props.pendingIcon || <PendingIcon />;
     } else if (state === 'SUCCESS') {
-      console.log('success icon');
+      // console.log('success icon');
       icon = this.props.successIcon || <SuccessIcon />;
     } else if (state === 'ERROR') {
-      console.log('error icon');
+      // console.log('error icon');
       icon = this.props.errorIcon || <ErrorIcon />;
     }
 
