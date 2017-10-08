@@ -19,7 +19,7 @@ import actions from 'lore-hook-actions';
 import bindActions from 'lore-hook-bind-actions';
 import collections from 'lore-hook-collections';
 import connections from 'lore-hook-connections';
-import connect from 'lore-hook-connect';
+import connect from './hooks/lore-hook-connect';
 import dialog from 'lore-hook-dialog';
 import dialogs from 'lore-hook-dialogs-material-ui';
 import forms from 'lore-hook-forms-material-ui';
