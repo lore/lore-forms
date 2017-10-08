@@ -5,23 +5,29 @@ export default React.createClass({
 
   propTypes: {
     element: React.PropTypes.string,
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+    style: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
       element: 'div',
-      className: ''
+      className: '',
+      style: {},
     };
   },
 
   render: function() {
-    const element = this.props.element;
-    const className = this.props.className;
-    const children = this.props.children;
+    const {
+      element,
+      className,
+      style,
+      children
+    } = this.props;
 
     const props = {
-      className: className || null
+      className: className || null,
+      style: style || {}
     };
 
     if (children.length) {
