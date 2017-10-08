@@ -21,15 +21,62 @@ export default createReactClass({
       steps
     } = this.props;
 
+    // 0: account
+    // 1. account request
+    // 2. demographics
+    // 3. demographics request
+    // 4. confirmation
+
+    let displayedStepIndex = stepIndex;
+    let displayedStep = steps[displayedStepIndex];
+
+    while (displayedStep.includeInStepper !== false && displayedStep > 0) {
+      displayedStepIndex--;
+    }
+
+    let lastActiveStepIndex = 0;
+    const stepIndexMap = {};
+
+    steps.map(function(step, index) {
+      if (step.includeInStepper === false) {
+        stepIndexMap[index] = lastActiveStepIndex;
+      } else {
+        stepIndexMap[index] = lastActiveStepIndex;
+        lastActiveStepIndex++;
+      }
+    });
+
+    // const stepIndexMap_real = {
+    //   0: 0,
+    //   1: 0,
+    //   2: 1,
+    //   3: 1,
+    //   4: 2
+    // };
+
     return (
-      <Stepper activeStep={stepIndex}>
+      <Stepper activeStep={stepIndexMap[stepIndex]}>
         {steps.map((step, index) => {
+          if (step.includeInStepper === false) {
+            // return (
+            //   <Step
+            //     key={step.name || index}
+            //     step={step}
+            //     style={{display: 'none'}}
+            //   />
+            // );
+
+            return null;
+          }
+
           return (
             <Step
               key={step.name || index}
               step={step}
             />
           );
+        }).filter(function(step) {
+          return !!step;
         })}
       </Stepper>
     );
