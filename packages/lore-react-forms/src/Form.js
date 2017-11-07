@@ -60,7 +60,15 @@ export default React.createClass({
       return this.props.getErrors(validatorDictionary, data);
     }
 
-    return _.mapValues(data, function(value, key) {
+    // make sure we include errors for validator keys that aren't in data yet
+    const _data = _.merge({}, data);
+    _.keys(validatorDictionary).map(function(key, index) {
+      if (_data[key] === undefined) {
+        _data[key] = undefined;
+      }
+    });
+
+    return _.mapValues(_data, function(value, key) {
       const validators = validatorDictionary[key];
       let error = null;
       if (validators) {
@@ -120,9 +128,11 @@ export default React.createClass({
     const parentErrors = this.props.errors;
     const allErrors = _.assign({}, errors, parentErrors);
 
+    const other = _.omit(this.props, ['data', 'validators', 'errors']);
+
     return (
       <div>
-        {this.createFields(allErrors, hasError, {
+        {this.createFields(allErrors, hasError, _.merge({
           data: data,
           validators: validators,
           errors: errors,
@@ -131,7 +141,7 @@ export default React.createClass({
           allErrors: allErrors,
           isModified: this.state.isModified,
           isSaving: this.state.isSaving
-        })}
+        }, other))}
       </div>
     );
   }
