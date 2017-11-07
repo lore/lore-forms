@@ -19,14 +19,14 @@ export default createReactClass({
   displayName: 'FormStep',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {
     const {
       Form,
       Request
-    } = this.context.template;
+    } = this.context.schema;
 
     const {
       type

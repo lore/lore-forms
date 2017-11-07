@@ -6,14 +6,14 @@ export default createReactClass({
   displayName: 'FormSteps',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {
     const {
       Stepper,
       FormStep
-    } = this.context.template;
+    } = this.context.schema;
 
     const {
       config: {

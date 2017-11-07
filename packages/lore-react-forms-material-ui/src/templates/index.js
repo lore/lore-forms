@@ -8,7 +8,7 @@ import FormSteps from './FormSteps';
 import Request from './Request';
 import Step from './Step';
 import Stepper from './Stepper';
-import TemplateForm from './TemplateForm';
+import SchemaForm from './SchemaForm';
 
 export {
   Action,
@@ -21,5 +21,5 @@ export {
   Request,
   Step,
   Stepper,
-  TemplateForm
+  SchemaForm
 };

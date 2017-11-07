@@ -7,7 +7,7 @@ export default createReactClass({
   displayName: 'Field',
 
   contextTypes: {
-    template: PropTypes.object,
+    schema: PropTypes.object,
     fields: PropTypes.object
   },
 

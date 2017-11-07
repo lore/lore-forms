@@ -8,7 +8,7 @@ export default createReactClass({
   displayName: 'Action',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {
@@ -18,11 +18,11 @@ export default createReactClass({
       form,
       ...other
     } = this.props;
-    
+
     if (_.isFunction(props)) {
       props = props(form);
     }
-    
+
     if (type === 'flat') {
       return (
         <FlatButton

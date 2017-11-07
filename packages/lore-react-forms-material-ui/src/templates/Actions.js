@@ -7,19 +7,23 @@ export default createReactClass({
   displayName: 'Actions',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {
     const {
       Action
-    } = this.context.template;
+    } = this.context.schema;
 
     const {
       actions,
       form,
       ...other
     } = this.props;
+
+    if (!actions || actions.length === 0) {
+      return <div/>;
+    }
 
     return (
       <PropBarrier className="mui-card-actions">

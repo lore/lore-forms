@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import { CircularProgress } from 'material-ui';
 import { PayloadStates } from 'lore-utils';
+import _ from 'lodash';
 
-var styles = {
+const styles = {
   container: {
     paddingTop: '24px'
   },
@@ -22,6 +23,7 @@ export default createReactClass({
     reducer: PropTypes.string.isRequired,
     onSuccess: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
+    children: PropTypes.node
   },
 
   getInitialState: function() {
@@ -37,6 +39,22 @@ export default createReactClass({
     ) : (
       storeState[this.props.reducer].byCid[nextProps.request.cid]
     );
+
+    // if the resource was deleted, it typically won't be the in store
+    if (
+      this.state.request &&
+      this.state.request.state === PayloadStates.DELETING &&
+      !request
+    ) {
+      this.props.onSuccess();
+      this.setState({
+        request: request
+      });
+    }
+
+    if (!request) {
+      return;
+    }
 
     if (
       request.state === PayloadStates.RESOLVED ||
@@ -60,6 +78,15 @@ export default createReactClass({
   },
 
   render: function () {
+    const { children } = this.props;
+
+    if (children) {
+      if (_.isFunction(children)) {
+        return children();
+      }
+      return children;
+    }
+
     return (
       <div style={styles.container}>
         <div className="mui-card-text">

@@ -7,13 +7,13 @@ export default createReactClass({
   displayName: 'Stepper',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {
     const {
       Step
-    } = this.context.template;
+    } = this.context.schema;
 
     const {
       stepIndex,

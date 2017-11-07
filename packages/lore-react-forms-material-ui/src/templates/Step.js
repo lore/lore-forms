@@ -7,7 +7,7 @@ export default createReactClass({
   displayName: 'Step',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {

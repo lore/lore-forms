@@ -73,7 +73,7 @@ class Template extends React.Component {
     const {
       Actions,
       Fields
-    } = this.context.template;
+    } = this.context.schema;
 
     const data = this.props.data || this.state;
     const validators = this.getValidators(data);
@@ -93,6 +93,7 @@ class Template extends React.Component {
         validators={validators}
         onChange={this.onChange}
         isSaving={this.props.isSaving}
+        {..._.omit(this.props, ['data', 'fields', 'actions'])}
       >
         {(form) => (
           <FormSection>
@@ -117,7 +118,7 @@ Template.propTypes = {
 };
 
 Template.contextTypes = {
-  template: PropTypes.object
+  schema: PropTypes.object
 };
 
 Template.defaultProps = {

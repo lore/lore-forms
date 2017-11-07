@@ -8,13 +8,13 @@ export default createReactClass({
   displayName: 'Fields',
 
   contextTypes: {
-    template: PropTypes.object
+    schema: PropTypes.object
   },
 
   render: function() {
     const {
       Field
-    } = this.context.template;
+    } = this.context.schema;
 
     const {
       data,
