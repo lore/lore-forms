@@ -63,7 +63,7 @@ export default createReactClass({
     } = this.state;
 
     return lore.forms.tweet.create({
-      template: 'default',
+      template: 'card',
       // reducer: 'tweet',
       // action: 'tweet',
       // onChange: this.onChange,

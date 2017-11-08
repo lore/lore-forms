@@ -35,6 +35,7 @@ import Connect from '../src/components/Connect';
 import Markdown from 'react-markdown';
 
 import { FlatButton } from 'material-ui';
+import CardSchemaForm from '../src/forms/_templates/CardSchemaForm';
 
 const defaultSchema = {
   Action: ActionSchema,
@@ -52,7 +53,8 @@ const defaultSchema = {
 export default {
 
   templates: {
-    // default: SchemaForm
+    // default: SchemaForm,
+    card: CardSchemaForm
   },
 
   schemas: {

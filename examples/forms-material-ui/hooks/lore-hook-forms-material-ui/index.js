@@ -71,7 +71,7 @@ export default {
 
         lore.forms[folderName][fileName] = function(props={}, options={}) {
           const templateProps = {
-            schema: schemas[props.template || 'default'],
+            schema: schemas[props.schema || 'default'],
             // template: props.template || 'card',
             // model: model,
             reducer: props.reducer || folderName,
