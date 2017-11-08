@@ -185,5 +185,12 @@
       "name": "Zeal Palace",
       "createdAt": 1480133005
     }
+  ],
+  "quotes": [
+    {
+      "quote": "If you do good because you expect to be rewarded, it is greed.",
+      "author": "L.E. Modesitt Jr.",
+      "id": 1
+    }
   ]
 }

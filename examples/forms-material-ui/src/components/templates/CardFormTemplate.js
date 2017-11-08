@@ -5,9 +5,9 @@ import _ from 'lodash';
 import createReactClass from 'create-react-class';
 
 // Hook Dialogs
-import Overlay from '../common/Overlay';
+import Overlay from '../_common/Overlay';
 // import Template from '../../../hooks/lore-hook-forms-material-ui/Template';
-import Template from './Template';
+import Template from '../../forms/_templates/Template';
 
 export default createReactClass({
   displayName: 'CardFormTemplate',

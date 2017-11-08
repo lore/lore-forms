@@ -4,168 +4,162 @@
  * This file is where you define overrides for the default forms behavior.
  */
 import React from 'react';
-import { Template as DefaultTemplate } from 'lore-react-forms';
-import CardFormTemplate from '../src/components/templates/CardFormTemplate';
-import CustomTemplate from '../src/components/templates/CustomTemplate';
-import { TextField, DynamicTextField, SelectField } from 'lore-react-forms-material-ui';
-// import ConfigConnect from 'lore-hook-forms-material-ui/ConfigConnect';
-// import ConfigConnect from '../hooks/lore-hook-forms-material-ui/ConfigConnect';
-import { Connect } from '../hooks/lore-hook-connect'
+import _ from 'lodash';
+import { FormSection, PropBarrier } from 'lore-react-forms';
+import {
+  Action as ActionSchema,
+  Actions as ActionsSchema,
+  Field as FieldSchema,
+  Fields as FieldsSchema,
+  Form as FormSchema,
+  FormStep as FormStepSchema,
+  FormSteps as FormStepsSchema,
+  Request as RequestSchema,
+  Step as StepSchema,
+  Stepper as StepperSchema,
+  SchemaForm
+} from 'lore-react-forms-material-ui';
 
-import ActionTemplate from '../src/components/users/templates/Action';
-import ActionsTemplate from '../src/components/users/templates/Actions';
-import FieldTemplate from '../src/components/users/templates/Field';
-import FieldsTemplate from '../src/components/users/templates/Fields';
-import FormTemplate from '../src/components/users/templates/Form';
-import FormStepTemplate from '../src/components/users/templates/FormStep';
-import FormStepsTemplate from '../src/components/users/templates/FormSteps';
-import RequestTemplate from '../src/components/users/templates/Request';
-import StepTemplate from '../src/components/users/templates/Step';
-import StepperTemplate from '../src/components/users/templates/Stepper';
+import {
+  TextField,
+//   PasswordField,
+//   ConnectedSelectField,
+  AutoCompleteField,
+//   CheckboxField,
+//   MarkdownField,
+} from 'lore-react-forms-material-ui';
+
+// import { Connect } from '../hooks/lore-hook-connect';
+import Connect from '../src/components/Connect';
+
+import Markdown from 'react-markdown';
+
+import { FlatButton } from 'material-ui';
+
+const defaultSchema = {
+  Action: ActionSchema,
+  Actions: ActionsSchema,
+  Field: FieldSchema,
+  Fields: FieldsSchema,
+  Form: FormSchema,
+  FormStep: FormStepSchema,
+  FormSteps: FormStepsSchema,
+  Request: RequestSchema,
+  Step: StepSchema,
+  Stepper: StepperSchema
+};
 
 export default {
 
   templates: {
-    defaultNew: {
-      Action: ActionTemplate,
-      Actions: ActionsTemplate,
-      Field: FieldTemplate,
-      Fields: FieldsTemplate,
-      Form: FormTemplate,
-      FormStep: FormStepTemplate,
-      FormSteps: FormStepsTemplate,
-      Request: RequestTemplate,
-      Step: StepTemplate,
-      Stepper: StepperTemplate,
-    },
-    // default: DefaultTemplate,
-    card: CardFormTemplate,
-    custom: CustomTemplate
+    default: SchemaForm
   },
 
-  typeFieldMap: {
+  schemas: {
+    default: {
+      fields: (form) => {
+        return (fields) => {
+          return (
+            <FormSection className="mui-card-text">
+              {fields}
+            </FormSection>
+          );
+        };
+      },
+      field: (form) => {
+        return (field) => {
+          return (
+            <FormSection className="row">
+              <FormSection className="col-md-12">
+                {field}
+              </FormSection>
+            </FormSection>
+          );
+        }
+      },
+      actions: (form) => {
+        return (actions) => {
+          return (
+            <FormSection className="mui-card-actions">
+              <PropBarrier>
+                {actions}
+              </PropBarrier>
+            </FormSection>
+          );
+        };
+      },
+      action: (form) => {
+        return (action) => {
+          return (
+            action
+          );
+        }
+      }
+    }
+  },
 
-    string: function(name, attributes) {
+  fieldMap: {
+    text: (form, props) => {
       return (
         <TextField
-          {...attributes}
-          name={name}
-          style={{ width: '100%' }}
+          {...props}
         />
       );
     },
+    autocomplete: (form, props) => {
+      const {
+        getOptions,
+        ...other
+      } = props;
 
-    dynamicString: function(name, attributes) {
-      // Connect = Connect || ConfigConnect();
       return (
-        <Connect callback={attributes.connect}>
-          <DynamicTextField
-            {...attributes}
-            name={name}
-            style={{ width: '100%' }}
-          />
-        </Connect>
-      );
-    },
-
-    // text: function(name, attributes) {
-    //   return (
-    //     <TextField
-    //       {...attributes}
-    //       name={name}
-    //       style={{ width: '100%' }}
-    //     />
-    //   );
-    // },
-
-    // checkbox: function(name, attributes) {
-    //   return (
-    //     <CheckboxField
-    //       {...attributes}
-    //       name={name}
-    //     />
-    //   );
-    // },
-
-    // number: function(name, attributes) {
-    //   return (
-    //     <NumberField
-    //       {...attributes}
-    //       name={name}
-    //       style={{ width: '100%' }}
-    //     />
-    //   );
-    // },
-
-    select: function(name, attributes) {
-      // Connect = Connect || ConfigConnect();
-      return (
-        <Connect callback={attributes.getOptions}>
-          <SelectField
-            {...attributes}
-            name={name}
-            style={{ width: '100%' }}
-          />
-        </Connect>
-      );
-    },
-
-    autocomplete: function(name, attributes) {
-      // Connect = Connect || ConfigConnect();
-      return (
-        <Connect callback={attributes.getOptions}>
+        <Connect callback={getOptions}>
           <AutoCompleteField
-            {...attributes}
-            name={name}
-            style={{ width: '100%' }}
+            {...other}
           />
         </Connect>
       );
     }
-
   },
 
-  typeActionMap: {
-
-    // cancel: function(name, attributes) {
-    //   return (
-    //     <mui.FlatButton
-    //       key={name}
-    //       label={attributes.label || 'Cancel'}
-    //       onTouchTap={function() {}}
-    //     />
-    //   );
-    // },
-
-    // submit: function(name, attributes, onSubmit) {
-    //   return (
-    //     <mui.FlatButton
-    //       key={name}
-    //       label={attributes.label || 'Submit'}
-    //       primary={true}
-    //       onTouchTap={onSubmit}
-    //     />
-    //   );
-    // },
-
-    flat: function(name, attributes) {
+  actionMap: {
+    submit: (form, props) => {
       return (
-        <mui.FlatButton
-          {...attributes}
-          key={name}
+        <FlatButton
+          {...props}
         />
+      )
+    }
+  },
+
+  fields: {
+    text: function(common, props) {
+      const {
+        description,
+        ...other
+      } = props;
+
+      return (
+        <FormSection>
+          <TextField
+            {...common}
+            multiLine={true}
+            style={{ width: '100%' }}
+            {...other}
+          />
+          {description ? (
+            <PropBarrier className="form-field-explanation">
+              <div className="markdown-body">
+                <Markdown source={description || ''} />
+              </div>
+            </PropBarrier>
+          ) : null }
+        </FormSection>
       );
     },
+  },
 
-    raised: function(name, attributes, onSubmit) {
-      return (
-        <mui.FlatButton
-          {...attributes}
-          key={name}
-          primary={true}
-        />
-      );
-    }
+  actions: {
 
   }
 

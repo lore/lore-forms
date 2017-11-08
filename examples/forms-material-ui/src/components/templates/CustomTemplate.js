@@ -8,8 +8,8 @@ import logo from '../../../assets/images/logo.png';
 // react-form
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 
-import Template from './Template';
-import Overlay from '../common/Overlay';
+import Template from '../../forms/_templates/Template';
+import Overlay from '../_common/Overlay';
 
 const Header = createReactClass({
   displayName: 'Header',

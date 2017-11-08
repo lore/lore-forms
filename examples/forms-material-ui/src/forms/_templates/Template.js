@@ -6,7 +6,7 @@ import { Form, FormSection, PropBarrier, Template } from 'lore-react-forms';
 class CustomTemplate extends Template {
 
   renderField(name, field) {
-    var Field = lore.config.forms.typeFieldMap[field.type];
+    var Field = lore.config.forms.fields[field.type];
 
     return (
       <FormSection key={name} className="row">

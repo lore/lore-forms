@@ -8,7 +8,7 @@ import { TextField, DynamicTextField, SelectField } from 'lore-react-forms-mater
 import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import PayloadStates from '../../constants/PayloadStates';
 import validators from '../../utils/validators';
-import Overlay from '../common/Overlay';
+import Overlay from '../_common/Overlay';
 import Connect from '../Connect';
 
 export default createReactClass({

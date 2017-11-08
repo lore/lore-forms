@@ -9,14 +9,14 @@ import { TextField, DynamicTextField, SelectField } from 'lore-react-forms-mater
 import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import PayloadStates from '../../constants/PayloadStates';
 import validators from '../../utils/validators';
-import Overlay from '../common/Overlay';
+import Overlay from '../_common/Overlay';
 import Connect from '../Connect';
 import FormSteps from '../common/FormSteps';
 import FormStep from '../common/FormStep';
 import RequestError from '../common/RequestError';
 import Request from '../common/Request';
 import SuccessMessage from '../common/SuccessMessage';
-import Template from '../templates/Template';
+import Template from '../../forms/_templates/Template';
 import userConfig from '../../models/user';
 
 import StepperTemplate from './templates/StepperTemplate';

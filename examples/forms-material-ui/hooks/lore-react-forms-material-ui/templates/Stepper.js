@@ -28,14 +28,14 @@ export default createReactClass({
 
     const step = steps[stepIndex];
 
-    if (step.displayStepper === false) {
+    if (!step.stepper) {
       return null;
     }
 
     let displayedStepIndex = stepIndex;
     let displayedStep = steps[displayedStepIndex];
 
-    while (displayedStep.includeInStepper !== false && displayedStep > 0) {
+    while (displayedStep.stepper.include !== false && displayedStep > 0) {
       displayedStepIndex--;
     }
 
@@ -43,7 +43,7 @@ export default createReactClass({
     const stepIndexMap = {};
 
     steps.map(function(step, index) {
-      if (step.includeInStepper === false) {
+      if (step.stepper.include === false) {
         stepIndexMap[index] = lastActiveStepIndex;
       } else {
         stepIndexMap[index] = lastActiveStepIndex;
@@ -62,7 +62,7 @@ export default createReactClass({
     return (
       <Stepper activeStep={stepIndexMap[stepIndex]}>
         {steps.map((step, index) => {
-          if (step.includeInStepper === false) {
+          if (step.stepper.include === false) {
             // return (
             //   <Step
             //     key={step.name || index}
@@ -76,7 +76,7 @@ export default createReactClass({
 
           return (
             <Step
-              key={step.name || index}
+              key={index}
               step={step}
             />
           );

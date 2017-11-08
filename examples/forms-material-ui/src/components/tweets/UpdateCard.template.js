@@ -9,8 +9,8 @@ import PayloadStates from '../../constants/PayloadStates';
 import withMuiTheme from '../../decorators/withMuiTheme';
 import validators from '../../utils/validators';
 // import Template from '../../../hooks/lore-hook-forms-material-ui/Template';
-import Template from '../templates/Template';
-import Overlay from '../common/Overlay';
+import Template from '../../forms/_templates/Template';
+import Overlay from '../_common/Overlay';
 
 import tweetConfig from '../../models/tweet';
 

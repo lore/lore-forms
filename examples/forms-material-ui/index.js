@@ -43,7 +43,7 @@ lore.summon({
     connections,
     connect,
     dialog,
-    dialogs,
+    // dialogs,
     forms,
     models,
     react,

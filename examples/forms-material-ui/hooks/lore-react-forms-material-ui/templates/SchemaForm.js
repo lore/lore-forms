@@ -18,6 +18,7 @@ export default createReactClass({
 
   getSchema: function() {
     const { schema } = this.props;
+    return schema;
     // const { templates } = lore.config.forms;
     // const templateName = config.template || 'default';
     // return templates[templateName];
@@ -28,6 +29,7 @@ export default createReactClass({
     // const { fields } = lore.config.forms;
     // return fields;
     const { fields } = this.props;
+    return fields;
     return fields || lore.config.forms.fields;
   },
 

@@ -1,66 +1,40 @@
 import React from 'react';
-import { Card, CardTitle, FlatButton } from 'material-ui';
-import _ from 'lodash';
 import createReactClass from 'create-react-class';
+import _ from 'lodash';
 import moment from 'moment';
-import PayloadStates from '../../constants/PayloadStates';
-
-// Hook Dialogs
-// import withMuiTheme from '../../decorators/withMuiTheme';
-import validators from '../../utils/validators';
-// import Template = from '../../../hooks/lore-hook-forms-material-ui/Template';
-import Overlay from '../common/Overlay';
-
+import { FlatButton } from 'material-ui';
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
-
 import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
+import validators from '../../utils/validators';
 import Connect from '../Connect';
+
+let key = 0;
 
 export default createReactClass({
   displayName: 'CreateCard.form',
 
   getInitialState: function() {
     return {
-      tweet: null,
       userId: null,
       text: ''
     }
   },
 
-  componentWillReceiveProps: function (nextProps) {
-    var tweet = this.state.tweet;
-
-    if (!tweet) {
-      return;
-    }
-
-    var nextTweet = lore.store.getState().tweet.byCid[tweet.cid];
-
-    if (nextTweet.state === PayloadStates.RESOLVED) {
-      this.setState({
-        tweet: null
-      })
-    } else {
-      this.setState({
-        tweet: nextTweet
-      })
-    }
-  },
-
   onSubmit: function() {
-    var params = _.omit(this.state, ['tweet']);
-    var action = lore.actions.tweet.create(_.extend({
-      createdAt: moment().unix()
-    }, params));
-    this.setState({
-      tweet: action.payload
-    });
-  },
+    const {
+      userId,
+      text
+    } = this.state;
 
-  getOptions: function(getState, props) {
-    return {
-      options: getState('user.find')
-    }
+    lore.actions.tweet.create({
+      userId: userId,
+      text: text,
+      createdAt: moment().unix()
+    });
+
+    key = key + 1;
+
+    this.setState(this.getInitialState());
   },
 
   onChange: function(name, value) {
@@ -76,12 +50,13 @@ export default createReactClass({
     }
   },
 
-  getForm: function() {
-    var data = _.omit(this.state, ['tweet']);
+  render: function() {
+    var data = this.state;
     var validators = this.getValidators(data);
 
     return (
       <Form
+        key={key}
         data={data}
         validators={validators}
         onChange={this.onChange}>
@@ -100,7 +75,11 @@ export default createReactClass({
               </FormSection>
               <FormSection className="row">
                 <FormSection className="col-md-12">
-                  <Connect callback={this.getOptions}>
+                  <Connect callback={(getState, props) => {
+                    return {
+                      options: getState('user.find')
+                    }
+                  }}>
                     <AutoCompleteField
                       floatingLabelText="User"
                       name="userId"
@@ -122,28 +101,6 @@ export default createReactClass({
           </FormSection>
         )}
       </Form>
-    );
-  },
-
-  render: function() {
-    var tweet = this.state.tweet;
-
-    // return (
-    //   <Overlay model={tweet}>
-    //     {this.getForm()}
-    //   </Overlay>
-    // );
-
-    return (
-      <Overlay model={tweet}>
-        <Card className="form-card">
-          <CardTitle
-            title="Create Tweet"
-            subtitle="Enter text and select the user to tweet it"
-          />
-          {this.getForm()}
-        </Card>
-      </Overlay>
     );
   }
 

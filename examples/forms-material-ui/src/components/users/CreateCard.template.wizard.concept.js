@@ -5,7 +5,7 @@ import createReactClass from 'create-react-class';
 import moment from 'moment';
 import PayloadStates from '../../constants/PayloadStates';
 import validators from '../../utils/validators';
-import Overlay from '../common/Overlay';
+import Overlay from '../_common/Overlay';
 import TemplateForm from './templates/TemplateForm';
 import UsernameField from './templates/fields/UsernameField';
 import { getState } from '../../../hooks/lore-hook-connect';

@@ -6,7 +6,7 @@ import PayloadStates from '../../constants/PayloadStates';
 
 // Hook Dialogs
 import validators from '../../utils/validators';
-import Overlay from '../common/Overlay';
+import Overlay from '../_common/Overlay';
 
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 
