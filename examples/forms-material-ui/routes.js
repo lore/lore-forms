@@ -14,6 +14,7 @@ import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
  */
 import Master from './src/components/Master';
 import Layout from './src/components/Layout';
+import Quotes from './src/components/quotes/Layout';
 import Users from './src/components/users/Layout';
 import Tweets from './src/components/tweets/Layout';
 import Combined from './src/components/combined/Layout';
@@ -22,7 +23,8 @@ export default (
   <Route component={UserIsAuthenticated(withMuiTheme(Master))}>
     <Redirect path="/" to="/tweets" />
     <Route path="/" component={Layout}>
-      <IndexRoute component={Tweets} />
+      <IndexRoute component={Quotes} />
+      <Route path="quotes" component={Quotes} />
       <Route path="tweets" component={Tweets} />
       <Route path="tweets/:tweetId" component={Tweets} />
       <Route path="users" component={Users} />

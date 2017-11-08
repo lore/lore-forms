@@ -5,6 +5,7 @@ import { ActionHome } from 'material-ui/svg-icons';
 import createReactClass from 'create-react-class';
 
 var Routes = {
+  QUOTES: '/quotes',
   TWEETS: '/tweets',
   USERS: '/users',
   COMBINED: '/combined'
@@ -37,6 +38,10 @@ export default withRouter(createReactClass({
 
   getTabValue: function() {
     var router = this.props.router;
+
+    if (router.isActive(Routes.QUOTES)) {
+      return Routes.QUOTES;
+    }
 
     if (router.isActive(Routes.TWEETS)) {
       return Routes.TWEETS;
@@ -74,6 +79,13 @@ export default withRouter(createReactClass({
           style={styles.tabs}
           value={tabValue}
           onChange={this.onTabChange}>
+          <Tab
+            value={Routes.QUOTES}
+            label="Concept"
+            style={styles.tab}
+            onActive={() => {
+              this.props.router.push(Routes.QUOTES);
+            }}/>
           <Tab
             value={Routes.TWEETS}
             label="Tweets"
