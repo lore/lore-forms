@@ -11,8 +11,8 @@ export default {
       userId: [validators.number.isRequired]
     }
   },
-  fields: [
-    {
+  fields: {
+    text: {
       type: 'text',
       props: (form) => {
         return {
@@ -23,18 +23,22 @@ export default {
         };
       }
     },
-    {
+    userId: {
       type: 'autocomplete',
       props: (form) => {
         return {
           floatingLabelText: "User",
           name: "userId",
-          getOptions: this.getOptions,
+          getOptions: (getState, props) => {
+            return {
+              options: getState('user.find')
+            }
+          },
           field: "username"
         };
       }
     }
-  ],
+  },
   actions: [
     {
       type: 'submit',
@@ -42,7 +46,7 @@ export default {
         return {
           label: "Save",
           primary: true,
-          onTouchTap: form.callbacks.onSubmit
+          onTouchTap: form.callbacks.onSubmit.bind(null, form.data)
         }
       }
     }

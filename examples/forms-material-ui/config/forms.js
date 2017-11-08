@@ -52,7 +52,7 @@ const defaultSchema = {
 export default {
 
   templates: {
-    default: SchemaForm
+    // default: SchemaForm
   },
 
   schemas: {

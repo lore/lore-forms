@@ -39,20 +39,15 @@ export default createReactClass({
     }
   },
 
-  onSubmit: function() {
-    var params = _.omit(this.state, ['tweet']);
+  onSubmit: function(data) {
+    // var params = _.omit(this.state, ['tweet']);
     var action = lore.actions.tweet.create(_.extend({
       createdAt: moment().unix()
-    }, params));
+    }, data));
+
     this.setState({
       tweet: action.payload
     });
-  },
-
-  getOptions: function(getState, props) {
-    return {
-      options: getState('user.find')
-    }
   },
 
   onChange: function(name, value) {
@@ -61,77 +56,21 @@ export default createReactClass({
     this.setState(state);
   },
 
-  getValidators: function(data) {
-    return {
-      text: [validators.isRequired],
-      userId: [validators.number.isRequired]
-    }
-  },
-
-  getForm: function() {
-    var data = _.omit(this.state, ['tweet']);
-    var validators = this.getValidators(data);
-
-    return (
-      <SchemaForm
-        data={data}
-        validators={validators}
-        onChange={this.onChange}
-        callbacks={{
-          onSubmit: this.onSubmit
-        }}
-        schema={lore.config.forms.schemas.default}
-        fieldMap={lore.config.forms.fieldMap}
-        actionMap={lore.config.forms.actionMap}
-        config={{
-          fields: [
-            {
-              type: 'text',
-              props: (form) => {
-                return {
-                  floatingLabelText: "Text",
-                  style: { width: '100%' },
-                  name: "text",
-                  multiLine: true
-                };
-              }
-            },
-            {
-              type: 'autocomplete',
-              props: (form) => {
-                return {
-                  floatingLabelText: "User",
-                  name: "userId",
-                  getOptions: this.getOptions,
-                  field: "username"
-                };
-              }
-            }
-          ],
-          actions: [
-            {
-              type: 'submit',
-              props: (form) => {
-                return {
-                  label: "Save",
-                  primary: true,
-                  onTouchTap: form.callbacks.onSubmit
-                }
-              }
-            }
-          ]
-        }}
-      />
-    );
-  },
-
   render: function() {
-    const { tweet } = this.state;
+    const {
+      tweet,
+      ...data
+    } = this.state;
 
     return lore.forms.tweet.create({
       template: 'default',
-      reducer: 'tweet',
-      action: 'tweet'
+      // reducer: 'tweet',
+      // action: 'tweet',
+      // onChange: this.onChange,
+      // data: data,
+      callbacks: {
+        onSubmit: this.onSubmit
+      }
     });
 
     // return (
