@@ -41,7 +41,7 @@ export default createReactClass({
     };
 
     const templateProps = _.defaultsDeep({},
-      step.template.props(),
+      step.template.props ? step.template.props() : null,
       defaultTemplateProps
     );
 

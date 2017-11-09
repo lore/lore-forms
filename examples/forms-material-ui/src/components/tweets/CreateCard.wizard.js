@@ -21,7 +21,6 @@ export default createReactClass({
   },
 
   onSubmit: function(data) {
-    debugger
     this.setState({
       request: lore.actions.tweet.create(data)
     })

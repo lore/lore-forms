@@ -22,6 +22,7 @@ import SchemaTemplate from '../hooks/lore-hook-forms-material-ui/SchemaForm';
 import CardSchemaTemplate from '../src/forms/_templates/CardSchemaTemplate';
 import OverlayCardSchemaTemplate from '../src/forms/_templates/OverlayCardSchemaTemplate';
 import WizardSchemaTemplate from '../src/forms/_templates/WizardSchemaTemplate';
+import RequestWizardSchemaTemplate from '../src/forms/_templates/RequestWizardSchemaTemplate';
 import RequestTemplate from '../src/forms/_templates/RequestTemplate';
 
 export default {
@@ -31,6 +32,7 @@ export default {
     card: CardSchemaTemplate,
     overlayCard: OverlayCardSchemaTemplate,
     wizard: WizardSchemaTemplate,
+    requestWizard: RequestWizardSchemaTemplate,
     request: RequestTemplate
   },
 
@@ -133,6 +135,16 @@ export default {
           stepIndex={stepIndex}
           {...props}
         />
+      );
+    },
+    request: (config, props) => {
+      const {
+        render,
+        ...other
+      } = props;
+
+      return (
+        <h1>spinning!</h1>
       );
     },
     custom: (config, props) => {

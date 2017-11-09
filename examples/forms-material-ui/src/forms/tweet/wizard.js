@@ -1,7 +1,7 @@
 import validators from '../../utils/validators';
 
 export default {
-  // stepIndex: 0,
+  templateName: 'wizard',
   steps: [
     {
       template: {
@@ -114,17 +114,57 @@ export default {
       ]
     },
     {
+      // template: {
+      //   type: 'request'
+      // },
       template: {
-        type: 'request'
+        type: 'custom',
+        props: () => {
+          return {
+            // title: 'Create Tweet',
+            // subtitle: 'Enter text and select the user to tweet it',
+            stepper: {
+              label: 'Request'
+            }
+          };
+        }
+      },
+      render: (form) => {
+        return (
+          <h1>Success!</h1>
+        )
       },
       props: (form) => {
         return {
-          request: request,
+          request: form.props.request,
           reducer: 'tweet',
-          onSuccess: form.callbacks.onNext,
+          onSuccess: form.callbacks.onRequestSuccess,
           onError: form.callbacks.onRequestError
         }
-      }
+      },
+      fields: {},
+      actions: []
+    },
+    {
+      template: {
+        type: 'custom',
+        props: () => {
+          return {
+            // title: 'Create Tweet',
+            // subtitle: 'Enter text and select the user to tweet it',
+            stepper: {
+              label: 'Confirmation'
+            }
+          };
+        }
+      },
+      render: (form) => {
+        return (
+          <h1>Success!</h1>
+        )
+      },
+      fields: {},
+      actions: []
     }
   ]
 };
