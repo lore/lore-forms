@@ -1,28 +1,37 @@
-var ActionTypes = require('lore-utils').ActionTypes;
-var PayloadStates = require('lore-utils').PayloadStates;
-var payload = require('lore-utils').payload;
+import { ActionTypes, PayloadStates, payload } from 'lore-utils';
 
 /*
  * Blueprint for Create method
  */
 module.exports = function create(params) {
   return function(dispatch) {
-    var Model = lore.models.tweet;
-    var model = new Model(params);
+    const Model = lore.models.tweet;
+    const model = new Model(params);
 
-    model.save().then(function() {
+    setTimeout(function() {
+    if (params.text.toLowerCase() === 'explode') {
       dispatch({
         type: ActionTypes.update('tweet'),
-        payload: payload(model, PayloadStates.RESOLVED)
+        payload: payload(model, PayloadStates.ERROR_CREATING, {
+          message: 'Tweet could not be saved. Please change value to something other than "explode".'
+        })
       });
-    }).catch(function(response) {
-      var error = response.data;
+    } else {
+      model.save().then(function() {
+        dispatch({
+          type: ActionTypes.update('tweet'),
+          payload: payload(model, PayloadStates.RESOLVED)
+        });
+      }).catch(function(response) {
+        const error = response.data;
 
-      dispatch({
-        type: ActionTypes.remove('tweet'),
-        payload: payload(model, PayloadStates.ERROR_CREATING, error)
+        dispatch({
+          type: ActionTypes.update('tweet'),
+          payload: payload(model, PayloadStates.ERROR_CREATING, error)
+        });
       });
-    });
+    }
+    }, lore.config.actions.ajaxDelay);
 
     return dispatch({
       type: ActionTypes.add('tweet'),

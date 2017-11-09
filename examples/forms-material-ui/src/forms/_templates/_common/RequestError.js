@@ -1,5 +1,5 @@
 import React from 'react';
-import Error from './Error';
+import ErrorMessage from './ErrorMessage';
 import PayloadStates from '../../../constants/PayloadStates';
 
 export default React.createClass({
@@ -24,7 +24,7 @@ export default React.createClass({
 
     if (error) {
       return (
-        <Error error={error} />
+        <ErrorMessage error={error} />
       );
     }
 
@@ -33,7 +33,7 @@ export default React.createClass({
         let error = children(request);
         if (error) {
           return (
-            <Error error={error} />
+            <ErrorMessage error={error} />
           );
         }
       }
@@ -45,7 +45,7 @@ export default React.createClass({
         request.state === PayloadStates.ERROR_DELETING
       ) {
         return (
-          <Error error={request.error} />
+          <ErrorMessage error={request.error} />
         );
       }
     }

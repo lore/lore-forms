@@ -22,6 +22,7 @@ export default {
       props: (form) => {
         return {
           floatingLabelText: "Text",
+          hintText: 'Typing \'explode\' will cause an error to occur',
           style: { width: '100%' },
           name: "text",
           multiLine: true
@@ -51,6 +52,7 @@ export default {
         return {
           label: "Save",
           primary: true,
+          disabled: form.hasError,
           onTouchTap: form.callbacks.onSubmit.bind(null, form.data)
         }
       }

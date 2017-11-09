@@ -40,15 +40,21 @@ export default React.createClass({
       text = error;
     }
 
+    // return (
+    //   <div className="row" style={styles.container}>
+    //     <div className="col-md-12">
+    //       <h5 style={styles.text}>
+    //         {text}
+    //       </h5>
+    //     </div>
+    //   </div>
+    // );
+
     return (
-      <div className="row" style={styles.container}>
-        <div className="col-md-12">
-          <h5 style={styles.text}>
-            {text}
-          </h5>
-        </div>
+      <div className="alert alert-danger">
+        <strong>Error!</strong> {text}
       </div>
-    )
+    );
   }
 
 });

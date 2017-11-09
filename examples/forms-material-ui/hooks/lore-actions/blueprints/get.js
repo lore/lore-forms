@@ -27,7 +27,7 @@ export default function(opts = {}) {
         id: modelId
       });
 
-      setTimeout(function() {
+      // setTimeout(function() {
       model.fetch({
         data: query
       }).then(function() {
@@ -78,7 +78,7 @@ export default function(opts = {}) {
           });
         }
       });
-      }, lore.config.actions.ajaxDelay);
+      // }, lore.config.actions.ajaxDelay);
 
       if (options.optimistic) {
         return dispatch({

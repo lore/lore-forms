@@ -7,6 +7,8 @@ import { Card, CardTitle } from 'material-ui';
 import Overlay from './_common/Overlay';
 import Request from './_common/Request';
 import RequestError from './_common/RequestError';
+import SuccessMessage from './_common/SuccessMessage';
+import ErrorMessage from './_common/ErrorMessage';
 import CardSchemaTemplate from './CardSchemaTemplate';
 
 export default createReactClass({
@@ -20,7 +22,8 @@ export default createReactClass({
     return {
       isSaving: false,
       request: null,
-      showSuccessMessage: false
+      showSuccessMessage: false,
+      hasError: false
     }
   },
 
@@ -32,7 +35,8 @@ export default createReactClass({
         text: data.text,
         createdAt: moment().unix()
       }).payload,
-      showSuccessMessage: false
+      showSuccessMessage: false,
+      hasError: false
     });
   },
 
@@ -40,14 +44,16 @@ export default createReactClass({
     this.setState({
       isSaving: false,
       request: null,
-      showSuccessMessage: true
+      showSuccessMessage: true,
+      hasError: false
     });
   },
 
   onRequestError: function(request) {
     this.setState({
       isSaving: false,
-      request: request
+      request: request,
+      hasError: true
     });
   },
 
@@ -61,7 +67,9 @@ export default createReactClass({
 
     const {
       request,
-      isSaving
+      isSaving,
+      showSuccessMessage,
+      hasError
     } = this.state;
 
     const templateProps = template.props();
@@ -73,7 +81,7 @@ export default createReactClass({
     return (
       <Overlay isVisible={isSaving}>
         <div>
-          {request ? (
+          {(request && !hasError) ? (
             <Request
               request={request}
               reducer="tweet"
@@ -81,10 +89,18 @@ export default createReactClass({
               onError={this.onRequestError}
             />
           ) : null }
-          <RequestError request={request} />
           <CardSchemaTemplate
             {...this.props}
             callbacks={callbacks}
+            alert={showSuccessMessage ? (
+              <SuccessMessage />
+            ) : (
+              <RequestError request={request}>
+                {(request) => {
+                  return request.error.message;
+                }}
+              </RequestError>
+            )}
           />
         </div>
       </Overlay>

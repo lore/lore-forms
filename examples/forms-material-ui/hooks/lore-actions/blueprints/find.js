@@ -33,7 +33,7 @@ export default function(opts = {}) {
         pagination: pagination
       };
 
-      setTimeout(function() {
+      // setTimeout(function() {
       collection.fetch({
         data: queryParameters
       }).then(function() {
@@ -82,7 +82,7 @@ export default function(opts = {}) {
           });
         }
       });
-      }, lore.config.actions.ajaxDelay);
+      // }, lore.config.actions.ajaxDelay);
 
       if (options.optimistic) {
         return dispatch({

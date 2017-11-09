@@ -9,16 +9,17 @@ export default createReactClass({
 
   propTypes: {
     config: PropTypes.object.isRequired,
+    alert: PropTypes.node
   },
 
   render: function() {
     const {
-      config: {
-        template
-      }
+      config,
+      alert,
+      ...other
     } = this.props;
 
-    const templateProps = template.props();
+    const templateProps = config.template.props();
 
     return (
       <Card className="form-card">
@@ -26,7 +27,11 @@ export default createReactClass({
           title={templateProps.title}
           subtitle={templateProps.subtitle}
         />
-        <SchemaForm {...this.props} />
+        {alert}
+        <SchemaForm
+          config={config}
+          {...other}
+        />
       </Card>
     );
   }
