@@ -1,10 +1,13 @@
-const _ = require('lodash');
-const { payload, defaultOptions, validatePartialPairs } = require('../utils');
+/* eslint consistent-return: "off" */
+
+import _ from 'lodash';
+import { payload } from 'lore-utils';
+import { defaultOptions, validatePartialPairs } from '../utils';
 
 /*
  * Blueprint for Get method
  */
-module.exports = function(opts = {}) {
+export default function(opts = {}) {
   // clone the options so we don't unintentionally modify them
   let options = _.cloneDeep(opts);
 
@@ -18,7 +21,7 @@ module.exports = function(opts = {}) {
 
   validatePartialPairs(options);
 
-  return function fetch(modelId, query = {}) {
+  return function get(modelId, query = {}) {
     return function(dispatch) {
       const model = new Model({
         id: modelId
@@ -29,7 +32,7 @@ module.exports = function(opts = {}) {
         data: query
       }).then(function() {
         if (options.onSuccess) {
-          var actions = [];
+          let actions = [];
 
           if (options.normalize && options.normalize.getActions) {
             // look through the model and generate actions for any attributes with
@@ -52,7 +55,6 @@ module.exports = function(opts = {}) {
 
         if (response.status === 404) {
           if (options.onNotFound) {
-
             if (options.onNotFound.beforeDispatch) {
               options.onNotFound.beforeDispatch(response, [model]);
             }
@@ -66,7 +68,6 @@ module.exports = function(opts = {}) {
             });
           }
         } else if (options.onError) {
-
           if (options.onError.beforeDispatch) {
             options.onError.beforeDispatch(response, [modelId]);
           }
@@ -87,4 +88,4 @@ module.exports = function(opts = {}) {
       }
     };
   };
-};
+}
