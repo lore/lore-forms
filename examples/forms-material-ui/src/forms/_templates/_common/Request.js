@@ -1,19 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
-import { CircularProgress } from 'material-ui';
 import { PayloadStates } from 'lore-utils';
 import _ from 'lodash';
-
-const styles = {
-  container: {
-    paddingTop: '24px'
-  },
-  spinner: {
-    textAlign: 'center',
-    padding: '32px'
-  }
-};
 
 export default createReactClass({
   displayName: 'Request',
@@ -21,9 +10,16 @@ export default createReactClass({
   propTypes: {
     request: PropTypes.object,
     reducer: PropTypes.string.isRequired,
+    singleton: React.PropTypes.bool.isRequired,
     onSuccess: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
     children: PropTypes.node
+  },
+
+  getDefaultProps: function() {
+    return {
+      singleton: false
+    }
   },
 
   getInitialState: function() {
@@ -33,8 +29,8 @@ export default createReactClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var storeState = lore.store.getState();
-    var request = this.props.singleton ? (
+    const storeState = lore.store.getState();
+    const request = this.props.singleton ? (
       storeState[this.props.reducer]
     ) : (
       storeState[this.props.reducer].byCid[nextProps.request.cid]
@@ -87,18 +83,6 @@ export default createReactClass({
       return children;
     }
 
-    return (
-      <div style={styles.container}>
-        <div className="mui-card-text">
-          <div className="row">
-            <div className="col-md-12">
-              <div style={styles.spinner}>
-                <CircularProgress size={80} thickness={5} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return null;
   }
 });

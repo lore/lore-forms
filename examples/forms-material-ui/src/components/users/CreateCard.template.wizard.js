@@ -199,14 +199,14 @@ export default createReactClass({
           ]),
           actions: [
             {
-              type: 'cancel',
+              type: 'flat',
               options: {
                 label: 'Back',
                 // onTouchTap: this.onSubmit
               }
             },
             {
-              type: 'submit',
+              type: 'raised',
               options: {
                 label: 'Next',
                 // onTouchTap: this.onSubmit
@@ -224,14 +224,14 @@ export default createReactClass({
           ]),
           actions: [
             {
-              type: 'cancel',
+              type: 'flat',
               options: {
                 label: 'Back',
                 // onTouchTap: this.onSubmit
               }
             },
             {
-              type: 'submit',
+              type: 'raised',
               options: {
                 label: 'Next',
                 // onTouchTap: this.onSubmit

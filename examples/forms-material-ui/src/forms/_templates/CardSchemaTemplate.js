@@ -5,7 +5,7 @@ import { Card, CardTitle } from 'material-ui';
 import SchemaForm from '../../../hooks/lore-hook-forms-material-ui/SchemaForm';
 
 export default createReactClass({
-  displayName: 'CardSchemaForm',
+  displayName: 'CardSchemaTemplate',
 
   propTypes: {
     config: PropTypes.object.isRequired,
@@ -14,18 +14,17 @@ export default createReactClass({
   render: function() {
     const {
       config: {
-        template: {
-          title,
-          subtitle
-        }
+        template
       }
     } = this.props;
+
+    const templateProps = template.props();
 
     return (
       <Card className="form-card">
         <CardTitle
-          title={title}
-          subtitle={subtitle}
+          title={templateProps.title}
+          subtitle={templateProps.subtitle}
         />
         <SchemaForm {...this.props} />
       </Card>

@@ -93,12 +93,20 @@ class AutoCompleteField extends Field {
   }
 
   render() {
-    const isModified = this.state.isModified;
-    const option = this.props.option;
-    const field = this.props.field;
+    const {
+      isModified,
+      options
+    } = this.state;
+
+    const {
+      option,
+      field
+    } = this.props;
+
     const searchText = option ? (
       isModified ? this.state.searchText : option.data[field]
     ) : this.state.searchText;
+
     // const options = {
     //   data: [
     //     {
@@ -116,7 +124,6 @@ class AutoCompleteField extends Field {
     //   ]
     // };
 
-    const options = this.state.options;
     options.data = options.data || [];
 
     // console.log(this.state.options);

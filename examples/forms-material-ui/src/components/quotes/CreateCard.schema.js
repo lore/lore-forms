@@ -131,7 +131,7 @@ export default createReactClass({
           ],
           actions: [
             {
-              type: 'submit',
+              type: 'raised',
               props: (form) => {
                 return {
                   label: "Save",

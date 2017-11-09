@@ -6,6 +6,10 @@ import PayloadStates from '../../constants/PayloadStates';
 // import createCardFormCode from '!raw-loader!./CreateCard.form';
 import CreateCardHook from './CreateCard.hook';
 import createCardHookCode from '!raw-loader!./CreateCard.hook';
+import CreateCardHookOverlay from './CreateCard.hook.overlay';
+import createCardHookOverlayCode from '!raw-loader!./CreateCard.hook.overlay';
+import CreateCardHookWizard from './CreateCard.wizard';
+import createCardHookWizardCode from '!raw-loader!./CreateCard.wizard';
 // import CustomCreateCardHook from './CreateCard.hook.custom';
 // import customCreateCardHookCode from '!raw-loader!./CreateCard.hook.custom';
 
@@ -85,10 +89,30 @@ export default createReactClass({
           {tweetId ? null : (
             <CodeExample
               code={createCardHookCode}
-              title="Hook Form"
+              title="Hook Form (Card)"
               description="Created by invoking lore.forms.tweet.create using config in forms/tweet/create"
             >
               <CreateCardHook />
+            </CodeExample>
+          ) }
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardHookOverlayCode}
+              title="Hook Form (Card w/ Overlay)"
+              description="Created by wrapping the card template with an Overlay template"
+            >
+              <CreateCardHookOverlay />
+            </CodeExample>
+          ) }
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardHookWizardCode}
+              title="Hook Form (Wizard)"
+              description="Created by breaking the form config into a series of steps"
+            >
+              <CreateCardHookWizard />
             </CodeExample>
           ) }
         </div>

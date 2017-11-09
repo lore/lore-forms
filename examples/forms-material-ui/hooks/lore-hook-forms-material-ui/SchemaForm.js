@@ -94,7 +94,7 @@ export default createReactClass({
                 const mappedField = fieldMap[field.type];
                 return (
                   React.cloneElement(schema.field(form)(
-                    mappedField(form, field.props(form))
+                    mappedField(form, field.props(form), key)
                   ), {
                     key: key
                   })

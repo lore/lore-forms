@@ -2,8 +2,13 @@ import validators from '../../utils/validators';
 
 export default {
   template: {
-    title: 'Create Tweet',
-    subtitle: 'Enter text and select the user to tweet it'
+    type: 'default',
+    props: () => {
+      return {
+        title: 'Create Tweet',
+        subtitle: 'Enter text and select the user to tweet it'
+      }
+    }
   },
   validators: function(data) {
     return {
@@ -41,7 +46,7 @@ export default {
   },
   actions: [
     {
-      type: 'submit',
+      type: 'raised',
       props: (form) => {
         return {
           label: "Save",

@@ -65,12 +65,12 @@ export default createReactClass({
             <FormSection className="mui-card-text">
               <FormSection className="row">
                 <FormSection className="col-md-12">
-                  <TextField
-                    floatingLabelText="Text"
-                    style={{ width: '100%' }}
-                    name="text"
-                    multiLine={true}
-                  />
+                  {/*<TextField*/}
+                    {/*floatingLabelText="Text"*/}
+                    {/*style={{ width: '100%' }}*/}
+                    {/*name="text"*/}
+                    {/*multiLine={true}*/}
+                  {/*/>*/}
                 </FormSection>
               </FormSection>
               <FormSection className="row">

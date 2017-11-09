@@ -1,0 +1,130 @@
+import validators from '../../utils/validators';
+
+export default {
+  // stepIndex: 0,
+  steps: [
+    {
+      template: {
+        type: 'wizard',
+        props: () => {
+          return {
+            title: 'Create Tweet',
+            subtitle: 'Enter text and select the user to tweet it',
+            stepper: {
+              label: 'Enter Text'
+            }
+          };
+        }
+      },
+      validators: function(data) {
+        return {
+          text: [validators.isRequired]
+        }
+      },
+      fields: {
+        text: {
+          type: 'text',
+          props: (form) => {
+            return {
+              floatingLabelText: "Text",
+              style: { width: '100%' },
+              name: "text",
+              multiLine: true
+            };
+          }
+        }
+      },
+      actions: [
+        {
+          type: 'raised',
+          props: (form) => {
+            return {
+              label: "Next",
+              primary: true,
+              disabled: form.hasError,
+              onTouchTap: () => {
+                form.callbacks.onNext(form.data)
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      template: {
+        type: 'wizard',
+        props: () => {
+          return {
+            title: 'Create Tweet',
+            subtitle: 'Enter text and select the user to tweet it',
+            stepper: {
+              label: 'Select User'
+            }
+          };
+        }
+      },
+      validators: function(data) {
+        return {
+          userId: [validators.number.isRequired]
+        }
+      },
+      fields: {
+        userId: {
+          type: 'autocomplete',
+          props: (form) => {
+            return {
+              floatingLabelText: "User",
+              name: "userId",
+              getOptions: (getState, props) => {
+                return {
+                  options: getState('user.find')
+                }
+              },
+              field: "username"
+            };
+          }
+        }
+      },
+      actions: [
+        {
+          type: 'flat',
+          props: (form) => {
+            return {
+              label: "Back",
+              primary: false,
+              onTouchTap: () => {
+                form.callbacks.onPrevious(form.data)
+              }
+            }
+          }
+        },
+        {
+          type: 'raised',
+          props: (form) => {
+            return {
+              label: "Save",
+              primary: true,
+              disabled: form.hasError,
+              onTouchTap: () => {
+                form.callbacks.onSubmit(form.data)
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      template: {
+        type: 'request'
+      },
+      props: (form) => {
+        return {
+          request: request,
+          reducer: 'tweet',
+          onSuccess: form.callbacks.onNext,
+          onError: form.callbacks.onRequestError
+        }
+      }
+    }
+  ]
+};

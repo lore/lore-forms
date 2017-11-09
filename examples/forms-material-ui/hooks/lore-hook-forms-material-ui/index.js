@@ -3,6 +3,7 @@
 import React from 'react';
 import _ from 'lodash';
 import SchemaForm from './SchemaForm';
+import WizardSchemaForm from './WizardSchemaForm';
 import formLoader from './loaders/forms';
 
 export default {
@@ -12,11 +13,15 @@ export default {
   defaults: {
     forms: {
       templates: {
-        default: SchemaForm,
+        default: WizardSchemaForm
       },
 
       schemas: {
         // default: DefaultSchema
+      },
+
+      formMap: {
+
       },
 
       fieldMap: {
@@ -39,7 +44,7 @@ export default {
   load: function(lore) {
     // const schemas = lore.loader.loadModels();
     const formSchemas = formLoader.load();
-    const { templates, schemas, fieldMap, actionMap } = lore.config.forms;
+    const { templates, schemas, formMap, fieldMap, actionMap } = lore.config.forms;
 
     lore.forms = {};
 
@@ -77,6 +82,7 @@ export default {
             reducer: props.reducer || folderName,
             action: props.action || folderName,
             config: schema,
+            formMap: formMap,
             fieldMap: fieldMap,
             actionMap: actionMap,
             ..._.omit(props, ['template', 'reducer', 'action'])
