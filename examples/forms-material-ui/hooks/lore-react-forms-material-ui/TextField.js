@@ -10,8 +10,7 @@ class TextField extends Field {
       name,
       data,
       errors,
-      errorText,
-      ...other
+      props
     } = this.props;
 
     const value = data[name];
@@ -19,12 +18,12 @@ class TextField extends Field {
 
     return (
       <MuiTextField
-        {..._.omit(other, ['validators', 'element', 'hasError'])}
         value={value}
         onChange={this.onChange}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
-        errorText={touched && (errors[name] || errorText)}
+        errorText={touched && errors[name]}
+        {...props}
       />
     );
   }

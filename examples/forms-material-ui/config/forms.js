@@ -6,20 +6,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { FormSection, PropBarrier } from 'lore-react-forms';
-import {
-  Action as ActionSchema,
-  Actions as ActionsSchema,
-  Field as FieldSchema,
-  Fields as FieldsSchema,
-  Form as FormSchema,
-  FormStep as FormStepSchema,
-  FormSteps as FormStepsSchema,
-  Request as RequestSchema,
-  Step as StepSchema,
-  Stepper as StepperSchema,
-  SchemaForm
-} from 'lore-react-forms-material-ui';
-
+import { FlatButton, RaisedButton, Step, StepLabel } from 'material-ui';
 import {
   TextField,
 //   PasswordField,
@@ -28,37 +15,47 @@ import {
 //   CheckboxField,
 //   MarkdownField,
 } from 'lore-react-forms-material-ui';
-
-// import { Connect } from '../hooks/lore-hook-connect';
-import Connect from '../src/components/Connect';
-
 import Markdown from 'react-markdown';
 
-import { FlatButton } from 'material-ui';
-import CardSchemaForm from '../src/forms/_templates/CardSchemaForm';
-
-const defaultSchema = {
-  Action: ActionSchema,
-  Actions: ActionsSchema,
-  Field: FieldSchema,
-  Fields: FieldsSchema,
-  Form: FormSchema,
-  FormStep: FormStepSchema,
-  FormSteps: FormStepsSchema,
-  Request: RequestSchema,
-  Step: StepSchema,
-  Stepper: StepperSchema
-};
+import Connect from '../src/components/Connect';
+import SchemaTemplate from '../hooks/lore-hook-forms-material-ui/SchemaForm';
+import CardSchemaTemplate from '../src/forms/_templates/CardSchemaTemplate';
+import OverlayCardSchemaTemplate from '../src/forms/_templates/OverlayCardSchemaTemplate';
+import WizardSchemaTemplate from '../src/forms/_templates/WizardSchemaTemplate';
+import RequestTemplate from '../src/forms/_templates/RequestTemplate';
 
 export default {
 
   templates: {
-    // default: SchemaForm,
-    card: CardSchemaForm
+    // default: SchemaTemplate,
+    card: CardSchemaTemplate,
+    overlayCard: OverlayCardSchemaTemplate,
+    wizard: WizardSchemaTemplate,
+    request: RequestTemplate
   },
 
   schemas: {
     default: {
+      stepper: (step) => {
+        return (steps) => {
+          return (
+            <Stepper activeStep={0}>
+              {steps}
+            </Stepper>
+          );
+        };
+      },
+      step: (step) => {
+        return (step) => {
+          return (
+            <Step {...this.props}>
+              <StepLabel>
+                {step.name}
+              </StepLabel>
+            </Step>
+          );
+        };
+      },
       fields: (form) => {
         return (fields) => {
           return (
@@ -100,15 +97,64 @@ export default {
     }
   },
 
-  fieldMap: {
-    text: (form, props) => {
+  stepperMap: {
+    stepper: () => {
+
+    }
+  },
+
+  stepMap: {
+    step: () => {
+
+    }
+  },
+
+  formMap: {
+    form: (schema, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       return (
-        <TextField
+        <SchemaTemplate
+          schema={schema}
+          fieldMap={fieldMap}
+          actionMap={actionMap}
+          callbacks={callbacks}
+          config={config}
           {...props}
         />
       );
     },
-    autocomplete: (form, props) => {
+    wizard: (schema, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
+      return (
+        <WizardSchemaTemplate
+          schema={schema}
+          fieldMap={fieldMap}
+          actionMap={actionMap}
+          callbacks={callbacks}
+          config={config}
+          stepIndex={stepIndex}
+          {...props}
+        />
+      );
+    },
+    custom: (config, props) => {
+      const {
+        render,
+        ...other
+      } = props;
+
+      return render(other);
+    }
+  },
+
+  fieldMap: {
+    text: (form, props, name) => {
+      return (
+        <TextField
+          name={name}
+          props={props}
+        />
+      );
+    },
+    autocomplete: (form, props, name) => {
       const {
         getOptions,
         ...other
@@ -117,6 +163,7 @@ export default {
       return (
         <Connect callback={getOptions}>
           <AutoCompleteField
+            name={name}
             {...other}
           />
         </Connect>
@@ -125,9 +172,16 @@ export default {
   },
 
   actionMap: {
-    submit: (form, props) => {
+    flat: (form, props) => {
       return (
         <FlatButton
+          {...props}
+        />
+      )
+    },
+    raised: (form, props) => {
+      return (
+        <RaisedButton
           {...props}
         />
       )
