@@ -2,12 +2,21 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PayloadStates from '../../constants/PayloadStates';
 
-// import CreateCardForm from './CreateCard.form';
-// import createCardFormCode from '!raw-loader!./CreateCard.form';
-import CreateCardHook from './CreateCard.hook';
-import createCardHookCode from '!raw-loader!./CreateCard.hook';
-import CreateCardHookOverlay from './CreateCard.hook.overlay';
-import createCardHookOverlayCode from '!raw-loader!./CreateCard.hook.overlay';
+// Forms
+import CreateCardForm from './CreateCard.form';
+import createCardFormCode from '!raw-loader!./CreateCard.form';
+import CreateCardFormConfig1 from './CreateCard.form.config.1';
+import createCardFormConfig1Code from '!raw-loader!./CreateCard.form.config.1';
+import CreateCardFormConfig2 from './CreateCard.form.config.2';
+import createCardFormConfig2Code from '!raw-loader!./CreateCard.form.config.2';
+import CreateCardFormHook from './CreateCard.form.hook';
+import createCardFormHookCode from '!raw-loader!./CreateCard.form.hook';
+
+// Overlay
+// import CreateCardHookOverlay from './CreateCard.hook.overlay';
+// import createCardHookOverlayCode from '!raw-loader!./CreateCard.hook.overlay';
+
+// Wizards
 import CreateCardWizardRequest from './CreateCard.wizard.request';
 import createCardWizardRequestCode from '!raw-loader!./CreateCard.wizard.request';
 import CreateCardWizardRequestConfig from './CreateCard.wizard.request.config.1';
@@ -44,7 +53,7 @@ export default createReactClass({
   displayName: 'Layout',
 
   getTweet: function(getState, props) {
-    var tweetId = this.props.params.tweetId;
+    const { tweetId } = this.props.params;
 
     return {
       tweet: getState('tweet.byId', {
@@ -54,12 +63,12 @@ export default createReactClass({
     }
   },
 
-  shouldDisplaySpinner: function(tweetId) {
-    var tweetId = this.props.params.tweetId;
-    var tweet = lore.getState('tweet.byId', {
+  shouldDisplaySpinner: function() {
+    const { tweetId } = this.props.params;
+    const tweet = lore.getState('tweet.byId', {
       id: tweetId
     });
-    var users = lore.getState('user.find');
+    const users = lore.getState('user.find');
     return (
       tweet.state === PayloadStates.FETCHING ||
       users.state === PayloadStates.FETCHING
@@ -67,7 +76,7 @@ export default createReactClass({
   },
 
   render: function() {
-    var tweetId = this.props.params.tweetId;
+    const { tweetId } = this.props.params;
 
     return (
       <div className="row">
@@ -75,28 +84,52 @@ export default createReactClass({
           <h2 className="text-center">
             {tweetId ? "Update" : "Create"}
           </h2>
-          {/*<br/>*/}
-          {/*{tweetId ? (*/}
-            {/*<CodeExample*/}
-              {/*code={updateCardFormCode}*/}
-              {/*title="Component Form"*/}
-              {/*description="Created by manually building the form using React components"*/}
-            {/*>*/}
-              {/*<Connect callback={this.getTweet}>*/}
-                {/*<Spinner display={this.shouldDisplaySpinner}>*/}
-                  {/*<UpdateCardForm key={tweetId} />*/}
-                {/*</Spinner>*/}
-              {/*</Connect>*/}
-            {/*</CodeExample>*/}
-          {/*) : (*/}
-            {/*<CodeExample*/}
-              {/*code={createCardFormCode}*/}
-              {/*title="Component Form"*/}
-              {/*description="Created by manually building the form using React components"*/}
-            {/*>*/}
-              {/*<CreateCardForm />*/}
-            {/*</CodeExample>*/}
-          {/*) }*/}
+          <br/>
+          <h1>Forms</h1>
+          <h4>
+            Not a great experience. Assumes the operation will succeed and happen quickly. Relies on
+            successful optimistic experience to provide decent UX.
+          </h4>
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardFormCode}
+              title="Component Form (Basic)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardForm />
+            </CodeExample>
+          )}
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardFormConfig1Code}
+              title="Config Form #1 (Basic)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardFormConfig1 />
+            </CodeExample>
+          )}
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardFormConfig2Code}
+              title="Config Form #2 (Basic)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardFormConfig2 />
+            </CodeExample>
+          )}
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardFormHookCode}
+              title="Hook Form (Basic)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardFormHook />
+            </CodeExample>
+          )}
           {/*<br/>*/}
           {/*{tweetId ? null : (*/}
             {/*<CodeExample*/}
@@ -138,6 +171,8 @@ export default createReactClass({
             {/*</CodeExample>*/}
           {/*) }*/}
           <br/>
+          <h1>Wizards</h1>
+          <br/>
           {tweetId ? null : (
             <CodeExample
               code={createCardWizardRequestCode}
@@ -146,7 +181,7 @@ export default createReactClass({
             >
               <CreateCardWizardRequest />
             </CodeExample>
-          ) }
+          )}
           <br/>
           {tweetId ? null : (
             <CodeExample
@@ -156,7 +191,7 @@ export default createReactClass({
             >
               <CreateCardWizardRequestConfig />
             </CodeExample>
-          ) }
+          )}
           <br/>
           {tweetId ? null : (
             <CodeExample
@@ -166,7 +201,7 @@ export default createReactClass({
             >
               <CreateCardWizardRequestConfig2 />
             </CodeExample>
-          ) }
+          )}
           <br/>
           {tweetId ? null : (
             <CodeExample
@@ -176,7 +211,7 @@ export default createReactClass({
             >
               <CreateCardWizardRequestConfig3 />
             </CodeExample>
-          ) }
+          )}
           <br/>
           {tweetId ? null : (
             <CodeExample
@@ -186,7 +221,7 @@ export default createReactClass({
             >
               <CreateCardWizardRequestHook />
             </CodeExample>
-          ) }
+          )}
           {/*<br/>*/}
           {/*{tweetId ? null : (*/}
             {/*<CodeExample*/}
@@ -197,6 +232,9 @@ export default createReactClass({
               {/*<CreateCardHookWizardRequest />*/}
             {/*</CodeExample>*/}
           {/*) }*/}
+          <br/>
+          <h1>Dialogs</h1>
+          <br/>
         </div>
         <div className="col-md-4">
           <List />

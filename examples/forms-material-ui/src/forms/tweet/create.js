@@ -1,12 +1,21 @@
 import validators from '../../utils/validators';
+import moment from 'moment';
 
 export default {
+  templateName: 'form',
   template: {
     type: 'default',
-    props: () => {
+    props: (form) => {
       return {
         title: 'Create Tweet',
-        subtitle: 'Enter text and select the user to tweet it'
+        subtitle: 'Enter text and select the user to tweet it',
+        onSubmit: (data) => {
+          lore.actions.tweet.create({
+            userId: data.userId,
+            text: data.text,
+            createdAt: moment().unix()
+          })
+        }
       }
     }
   },

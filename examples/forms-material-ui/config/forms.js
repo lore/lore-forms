@@ -26,11 +26,13 @@ import RequestWizardSchemaTemplate from '../src/forms/_templates/RequestWizardSc
 import RequestTemplate from '../src/forms/_templates/RequestTemplate';
 import CustomTemplate from '../src/forms/_templates/CustomTemplate';
 import WizardTemplate from '../src/forms/_templates/WizardTemplate';
+import FormTemplate from '../src/forms/_templates/FormTemplate';
 
 export default {
 
   templates: {
-    // default: SchemaTemplate,
+    default: SchemaTemplate,
+    form: FormTemplate,
     // basic: SchemaTemplate,
     // dynamic: DynamicSchemaTemplate,
     // wizardDynamic: WizardDynamicSchemaTemplate,
