@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import { Card, CardTitle } from 'material-ui';
-import SchemaForm from '../../../hooks/lore-hook-forms-material-ui/SchemaForm';
+import SchemaForm from '../../../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
 
 export default createReactClass({
   displayName: 'CardSchemaTemplate',

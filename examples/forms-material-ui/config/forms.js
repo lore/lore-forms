@@ -18,7 +18,7 @@ import {
 import Markdown from 'react-markdown';
 
 import Connect from '../src/components/Connect';
-import SchemaTemplate from '../hooks/lore-hook-forms-material-ui/SchemaForm';
+import SchemaTemplate from '../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
 import CardSchemaTemplate from '../src/forms/_templates/CardSchemaTemplate';
 import OverlayCardSchemaTemplate from '../src/forms/_templates/OverlayCardSchemaTemplate';
 import WizardSchemaTemplate from '../src/forms/_templates/WizardSchemaTemplate';
@@ -29,6 +29,10 @@ export default {
 
   templates: {
     // default: SchemaTemplate,
+    // basic: SchemaTemplate,
+    // dynamic: DynamicSchemaTemplate,
+    // wizardDynamic: WizardDynamicSchemaTemplate,
+    // switchableWizardDynamic: SwitchableWizardDynamicSchemaTemplate
     card: CardSchemaTemplate,
     overlayCard: OverlayCardSchemaTemplate,
     wizard: WizardSchemaTemplate,
@@ -112,10 +116,11 @@ export default {
   },
 
   formMap: {
-    form: (schema, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
+    form: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       return (
         <SchemaTemplate
           schema={schema}
+          formMap={formMap}
           fieldMap={fieldMap}
           actionMap={actionMap}
           callbacks={callbacks}
@@ -124,36 +129,57 @@ export default {
         />
       );
     },
-    wizard: (schema, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
+    wizard: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       return (
         <WizardSchemaTemplate
           schema={schema}
+          formMap={formMap}
           fieldMap={fieldMap}
           actionMap={actionMap}
           callbacks={callbacks}
           config={config}
-          stepIndex={stepIndex}
+          // stepIndex={stepIndex}
           {...props}
         />
       );
     },
-    request: (config, props) => {
+    request: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       const {
         render,
         ...other
       } = props;
+
+      // return (
+      //   <h1>spinning!</h1>
+      // );
 
       return (
-        <h1>spinning!</h1>
-      );
+        <RequestTemplate
+          schema={schema}
+          formMap={formMap}
+          fieldMap={fieldMap}
+          actionMap={actionMap}
+          callbacks={callbacks}
+          config={config}
+          // stepIndex={stepIndex}
+          {...props}
+        />
+      )
     },
-    custom: (config, props) => {
+    custom: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       const {
-        render,
-        ...other
-      } = props;
+        render
+      } = config;
 
-      return render(other);
+      return render({
+        schema,
+        formMap,
+        fieldMap,
+        actionMap,
+        callbacks,
+        config,
+        props
+      });
     }
   },
 

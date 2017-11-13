@@ -13,7 +13,7 @@ module.exports = function create(params) {
       dispatch({
         type: ActionTypes.update('tweet'),
         payload: payload(model, PayloadStates.ERROR_CREATING, {
-          message: 'Tweet could not be saved. Please change value to something other than "explode".'
+          message: "Tweet could not be saved. Please change text to something other than 'explode'."
         })
       });
     } else {

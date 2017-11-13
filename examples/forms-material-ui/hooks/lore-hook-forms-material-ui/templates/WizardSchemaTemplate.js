@@ -4,7 +4,7 @@ import createReactClass from 'create-react-class';
 import _ from 'lodash';
 
 export default createReactClass({
-  displayName: 'WizardSchemaForm',
+  displayName: 'WizardSchemaTemplate',
 
   propTypes: {
     data: PropTypes.object,
@@ -91,6 +91,7 @@ export default createReactClass({
 
     return formMap[step.template.type](
       schema,
+      formMap,
       fieldMap,
       actionMap,
       modifiedCallbacks,

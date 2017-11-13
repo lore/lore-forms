@@ -1,17 +1,23 @@
+import React from 'react';
 import validators from '../../utils/validators';
+import moment from 'moment';
 
 export default {
-  templateName: 'wizard',
+  templateName: 'wizardDynamic',
   steps: [
     {
       template: {
         type: 'wizard',
-        props: () => {
+        props: (templateProps) => {
           return {
             title: 'Create Tweet',
             subtitle: 'Enter text and select the user to tweet it',
             stepper: {
-              label: 'Enter Text'
+              stepIndex: templateProps.stepIndex,
+              steps: [
+                'Enter Text',
+                'Select User',
+              ]
             }
           };
         }
@@ -53,12 +59,16 @@ export default {
     {
       template: {
         type: 'wizard',
-        props: () => {
+        props: (templateProps) => {
           return {
             title: 'Create Tweet',
             subtitle: 'Enter text and select the user to tweet it',
             stepper: {
-              label: 'Select User'
+              stepIndex: templateProps.stepIndex,
+              steps: [
+                'Enter Text',
+                'Select User',
+              ]
             }
           };
         }
@@ -114,57 +124,35 @@ export default {
       ]
     },
     {
-      // template: {
-      //   type: 'request'
-      // },
       template: {
-        type: 'custom',
-        props: () => {
+        type: 'request',
+        props: (form) => {
           return {
-            // title: 'Create Tweet',
-            // subtitle: 'Enter text and select the user to tweet it',
-            stepper: {
-              label: 'Request'
-            }
-          };
-        }
-      },
-      render: (form) => {
-        return (
-          <h1>Success!</h1>
-        )
-      },
-      props: (form) => {
-        return {
-          request: form.props.request,
-          reducer: 'tweet',
-          onSuccess: form.callbacks.onRequestSuccess,
-          onError: form.callbacks.onRequestError
-        }
-      },
-      fields: {},
-      actions: []
+            // request: form.props.request,
+            request: (form) => {
+              return lore.actions.tweet.create({
+                userId: form.data.userId,
+                text: form.data.text,
+                createdAt: moment().unix()
+              }).payload;
+            },
+            reducer: 'tweet',
+            onSuccess: form.callbacks.onRequestSuccess,
+            onError: form.callbacks.onRequestError
+          }
+        },
+
+      }
     },
     {
       template: {
-        type: 'custom',
-        props: () => {
-          return {
-            // title: 'Create Tweet',
-            // subtitle: 'Enter text and select the user to tweet it',
-            stepper: {
-              label: 'Confirmation'
-            }
-          };
-        }
+        type: 'custom'
       },
       render: (form) => {
         return (
           <h1>Success!</h1>
         )
-      },
-      fields: {},
-      actions: []
+      }
     }
   ]
 };

@@ -2,8 +2,10 @@
 
 import React from 'react';
 import _ from 'lodash';
-import SchemaForm from './SchemaForm';
-import WizardSchemaForm from './WizardSchemaForm';
+import SchemaTemplate from './templates/SchemaTemplate';
+import DynamicSchemaTemplate from './templates/DynamicSchemaTemplate';
+import WizardDynamicSchemaTemplate from './templates/WizardDynamicSchemaTemplate';
+import SwitchableWizardDynamicSchemaTemplate from './templates/SwitchableWizardDynamicSchemaTemplate';
 import formLoader from './loaders/forms';
 
 export default {
@@ -13,7 +15,11 @@ export default {
   defaults: {
     forms: {
       templates: {
-        default: WizardSchemaForm
+        default: SchemaTemplate,
+        basic: SchemaTemplate,
+        dynamic: DynamicSchemaTemplate,
+        wizardDynamic: WizardDynamicSchemaTemplate,
+        switchableWizardDynamic: SwitchableWizardDynamicSchemaTemplate
       },
 
       schemas: {
@@ -75,8 +81,9 @@ export default {
         }
 
         lore.forms[folderName][fileName] = function(props={}, options={}) {
+          const template = templates[props.templateName || schema.templateName || 'default'];
           const templateProps = {
-            schema: schemas[props.schema || 'default'],
+            schema: schemas[props.schemaName || schema.schemaName || 'default'],
             // template: props.template || 'card',
             // model: model,
             reducer: props.reducer || folderName,
@@ -85,10 +92,10 @@ export default {
             formMap: formMap,
             fieldMap: fieldMap,
             actionMap: actionMap,
-            ..._.omit(props, ['template', 'reducer', 'action'])
+            ..._.omit(props, ['templateName', 'template', 'reducer', 'action'])
           };
 
-          return React.createElement(templates[props.template], templateProps);
+          return React.createElement(template, templateProps);
         };
       })
     });

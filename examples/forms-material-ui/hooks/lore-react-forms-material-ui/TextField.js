@@ -18,6 +18,7 @@ class TextField extends Field {
 
     return (
       <MuiTextField
+        name={name}
         value={value}
         onChange={this.onChange}
         onFocus={this.onFocus}

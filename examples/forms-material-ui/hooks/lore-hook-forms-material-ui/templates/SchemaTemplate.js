@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import _ from 'lodash';
-import { Form, FormSection, PropBarrier } from 'lore-react-forms';
+import { Form, FormSection, PropBarrier } from '../../lore-react-forms';
 
 export default createReactClass({
-  displayName: 'SchemaForm',
+  displayName: 'SchemaTemplate',
 
   propTypes: {
     data: PropTypes.object,

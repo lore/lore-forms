@@ -8,10 +8,12 @@ import CreateCardHook from './CreateCard.hook';
 import createCardHookCode from '!raw-loader!./CreateCard.hook';
 import CreateCardHookOverlay from './CreateCard.hook.overlay';
 import createCardHookOverlayCode from '!raw-loader!./CreateCard.hook.overlay';
-import CreateCardHookWizard from './CreateCard.wizard';
-import createCardHookWizardCode from '!raw-loader!./CreateCard.wizard';
-import CreateCardHookWizardRequest from './CreateCard.wizard.request';
-import createCardHookWizardRequestCode from '!raw-loader!./CreateCard.wizard.request';
+import CreateCardWizardRequest from './CreateCard.wizard.request';
+import createCardWizardRequestCode from '!raw-loader!./CreateCard.wizard.request';
+import CreateCardHookWizard from './CreateCard.hook.wizard';
+import createCardHookWizardCode from '!raw-loader!./CreateCard.hook.wizard';
+import CreateCardHookWizardRequest from './CreateCard.hook.wizard.request';
+import createCardHookWizardRequestCode from '!raw-loader!./CreateCard.hook.wizard.request';
 // import CustomCreateCardHook from './CreateCard.hook.custom';
 // import customCreateCardHookCode from '!raw-loader!./CreateCard.hook.custom';
 
@@ -90,6 +92,16 @@ export default createReactClass({
           {/*<br/>*/}
           {/*{tweetId ? null : (*/}
             {/*<CodeExample*/}
+              {/*code={createCardFormCode}*/}
+              {/*title="Component Form"*/}
+              {/*description="Created by manually building the form using React components"*/}
+            {/*>*/}
+              {/*<CreateCardForm />*/}
+            {/*</CodeExample>*/}
+          {/*) }*/}
+          {/*<br/>*/}
+          {/*{tweetId ? null : (*/}
+            {/*<CodeExample*/}
               {/*code={createCardHookCode}*/}
               {/*title="Hook Form (Card)"*/}
               {/*description="Created by invoking lore.forms.tweet.create using config in forms/tweet/create"*/}
@@ -120,13 +132,23 @@ export default createReactClass({
           <br/>
           {tweetId ? null : (
             <CodeExample
-              code={createCardHookWizardRequestCode}
-              title="Hook Form (Wizard w/ Request Step)"
-              description="Created by wrapping the wizard template with a Request template"
+              code={createCardWizardRequestCode}
+              title="Component Form (Wizard w/ Request Step)"
+              description="Created by stringing components together"
             >
-              <CreateCardHookWizardRequest />
+              <CreateCardWizardRequest />
             </CodeExample>
           ) }
+          {/*<br/>*/}
+          {/*{tweetId ? null : (*/}
+            {/*<CodeExample*/}
+              {/*code={createCardHookWizardRequestCode}*/}
+              {/*title="Hook Form (Wizard w/ Request Step)"*/}
+              {/*description="Created by wrapping the wizard template with a Request template"*/}
+            {/*>*/}
+              {/*<CreateCardHookWizardRequest />*/}
+            {/*</CodeExample>*/}
+          {/*) }*/}
         </div>
         <div className="col-md-4">
           <List />
