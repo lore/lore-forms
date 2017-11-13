@@ -93,7 +93,10 @@ export default createReactClass({
             {...this.props}
             callbacks={callbacks}
             alert={showSuccessMessage ? (
-              <SuccessMessage />
+              <SuccessMessage
+                title="Success!"
+                message="Tweet posted."
+              />
             ) : (
               <RequestError request={request}>
                 {(request) => {

@@ -15,13 +15,19 @@ export default React.createClass({
   },
 
   componentDidMount: function() {
-    // setTimeout(() => {
-    //   if (this.isMounted()) {
-    //     this.setState({
-    //       isVisible: false
-    //     })
-    //   }
-    // }, 2000);
+    this.isMounted = true;
+
+    setTimeout(() => {
+      if (this.isMounted) {
+        this.setState({
+          isVisible: false
+        });
+      }
+    }, 3000);
+  },
+
+  componentWillUnmount: function() {
+    this.isMounted = false;
   },
 
   getDefaultProps: function() {
@@ -32,7 +38,7 @@ export default React.createClass({
   },
 
   render: function() {
-    var isVisible = this.state.isVisible;
+    const { isVisible } = this.state;
 
     return (
       <div className="alert alert-success" style={{display: isVisible ? 'block' :'none'}}>

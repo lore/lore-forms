@@ -104,6 +104,24 @@
       "text": "explode2",
       "createdAt": 1510553830,
       "id": 9
+    },
+    {
+      "userId": 1,
+      "text": "explode2",
+      "createdAt": 1510559568,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "text": "explode3",
+      "createdAt": 1510559802,
+      "id": 11
+    },
+    {
+      "userId": 5,
+      "text": "explode4",
+      "createdAt": 1510559836,
+      "id": 12
     }
   ],
   "usernames": [
