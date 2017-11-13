@@ -10,8 +10,14 @@ import CreateCardHookOverlay from './CreateCard.hook.overlay';
 import createCardHookOverlayCode from '!raw-loader!./CreateCard.hook.overlay';
 import CreateCardWizardRequest from './CreateCard.wizard.request';
 import createCardWizardRequestCode from '!raw-loader!./CreateCard.wizard.request';
-import CreateCardWizardRequestConfig from './CreateCard.wizard.request.config';
-import createCardWizardRequestConfigCode from '!raw-loader!./CreateCard.wizard.request.config';
+import CreateCardWizardRequestConfig from './CreateCard.wizard.request.config.1';
+import createCardWizardRequestConfigCode from '!raw-loader!./CreateCard.wizard.request.config.1';
+import CreateCardWizardRequestConfig2 from './CreateCard.wizard.request.config.2';
+import createCardWizardRequestConfig2Code from '!raw-loader!./CreateCard.wizard.request.config.2';
+import CreateCardWizardRequestConfig3 from './CreateCard.wizard.request.config.3';
+import createCardWizardRequestConfig3Code from '!raw-loader!./CreateCard.wizard.request.config.3';
+import CreateCardWizardRequestHook from './CreateCard.wizard.request.hook';
+import createCardWizardRequestHookCode from '!raw-loader!./CreateCard.wizard.request.hook';
 import CreateCardHookWizard from './CreateCard.hook.wizard';
 import createCardHookWizardCode from '!raw-loader!./CreateCard.hook.wizard';
 import CreateCardHookWizardRequest from './CreateCard.hook.wizard.request';
@@ -145,10 +151,40 @@ export default createReactClass({
           {tweetId ? null : (
             <CodeExample
               code={createCardWizardRequestConfigCode}
-              title="Config Form (Wizard w/ Request Step)"
+              title="Config Form #1 (Wizard w/ Request Step)"
               description="Created by using config + SchemaForm to display forms"
             >
               <CreateCardWizardRequestConfig />
+            </CodeExample>
+          ) }
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardWizardRequestConfig2Code}
+              title="Config Form #2 (Wizard w/ Request Step)"
+              description="Created by using templates for each step"
+            >
+              <CreateCardWizardRequestConfig2 />
+            </CodeExample>
+          ) }
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardWizardRequestConfig3Code}
+              title="Config Form #3 (Wizard w/ Request Step)"
+              description="Created by moving the whole wizard into a generic template"
+            >
+              <CreateCardWizardRequestConfig3 />
+            </CodeExample>
+          ) }
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardWizardRequestHookCode}
+              title="Hook Form (Wizard w/ Request Step)"
+              description="Created configuring the forms hook to use the template"
+            >
+              <CreateCardWizardRequestHook />
             </CodeExample>
           ) }
           {/*<br/>*/}

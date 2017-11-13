@@ -94,22 +94,16 @@
       "createdAt": 1480133005
     },
     {
-      "userId": 4,
+      "userId": 1,
       "text": "test",
-      "createdAt": 1510211151,
+      "createdAt": 1510551084,
       "id": 8
     },
     {
-      "userId": 4,
+      "userId": 6,
       "text": "explode2",
-      "createdAt": 1510531566,
+      "createdAt": 1510553830,
       "id": 9
-    },
-    {
-      "userId": 2,
-      "text": "explode3",
-      "createdAt": 1510531896,
-      "id": 10
     }
   ],
   "usernames": [

@@ -21,9 +21,11 @@ import Connect from '../src/components/Connect';
 import SchemaTemplate from '../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
 import CardSchemaTemplate from '../src/forms/_templates/CardSchemaTemplate';
 import OverlayCardSchemaTemplate from '../src/forms/_templates/OverlayCardSchemaTemplate';
-import WizardSchemaTemplate from '../src/forms/_templates/WizardSchemaTemplate';
+import WizardSchemaFormTemplate from '../src/forms/_templates/WizardSchemaFormTemplate';
 import RequestWizardSchemaTemplate from '../src/forms/_templates/RequestWizardSchemaTemplate';
 import RequestTemplate from '../src/forms/_templates/RequestTemplate';
+import CustomTemplate from '../src/forms/_templates/CustomTemplate';
+import WizardTemplate from '../src/forms/_templates/WizardTemplate';
 
 export default {
 
@@ -35,9 +37,11 @@ export default {
     // switchableWizardDynamic: SwitchableWizardDynamicSchemaTemplate
     card: CardSchemaTemplate,
     overlayCard: OverlayCardSchemaTemplate,
-    wizard: WizardSchemaTemplate,
-    requestWizard: RequestWizardSchemaTemplate,
-    request: RequestTemplate
+    // wizard: WizardSchemaFormTemplate,
+    wizard: WizardTemplate,
+    // requestWizard: RequestWizardSchemaTemplate,
+    // request: RequestTemplate,
+    // custom: CustomTemplate
   },
 
   schemas: {
@@ -118,6 +122,10 @@ export default {
   formMap: {
     form: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       return (
+        <SchemaTemplate {...schema} />
+      );
+
+      return (
         <SchemaTemplate
           schema={schema}
           formMap={formMap}
@@ -131,7 +139,11 @@ export default {
     },
     wizard: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
       return (
-        <WizardSchemaTemplate
+        <WizardSchemaFormTemplate {...schema} />
+      );
+
+      return (
+        <WizardSchemaFormTemplate
           schema={schema}
           formMap={formMap}
           fieldMap={fieldMap}
@@ -144,14 +156,9 @@ export default {
       );
     },
     request: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
-      const {
-        render,
-        ...other
-      } = props;
-
-      // return (
-      //   <h1>spinning!</h1>
-      // );
+      return (
+        <RequestTemplate {...schema} />
+      );
 
       return (
         <RequestTemplate
@@ -167,19 +174,22 @@ export default {
       )
     },
     custom: (schema, formMap, fieldMap, actionMap, callbacks, config, props, stepIndex) => {
-      const {
-        render
-      } = config;
+      return (
+        <CustomTemplate {...schema} />
+      );
 
-      return render({
-        schema,
-        formMap,
-        fieldMap,
-        actionMap,
-        callbacks,
-        config,
-        props
-      });
+      return (
+        <CustomTemplate
+          schema={schema}
+          formMap={formMap}
+          fieldMap={fieldMap}
+          actionMap={actionMap}
+          callbacks={callbacks}
+          config={config}
+          // stepIndex={stepIndex}
+          {...props}
+        />
+      );
     }
   },
 

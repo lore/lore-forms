@@ -47,10 +47,16 @@ export default createReactClass({
   },
 
   componentWillMount: function() {
-    const templateProps = this.getTemplateProps();
+    const {
+      data
+    } = this.props;
+
+    const {
+      request
+    } = this.getTemplateProps();
 
     this.setState({
-      request: templateProps.request(this.props),
+      request: request(data),
       isSaving: true
     });
   },

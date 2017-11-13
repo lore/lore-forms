@@ -1,9 +1,10 @@
 import React from 'react';
 import validators from '../../utils/validators';
 import moment from 'moment';
+import { Card, RaisedButton } from 'material-ui';
 
 export default {
-  templateName: 'wizardDynamic',
+  templateName: 'wizard',
   steps: [
     {
       template: {
@@ -13,7 +14,7 @@ export default {
             title: 'Create Tweet',
             subtitle: 'Enter text and select the user to tweet it',
             stepper: {
-              stepIndex: templateProps.stepIndex,
+              stepIndex: 0,
               steps: [
                 'Enter Text',
                 'Select User',
@@ -64,7 +65,7 @@ export default {
             title: 'Create Tweet',
             subtitle: 'Enter text and select the user to tweet it',
             stepper: {
-              stepIndex: templateProps.stepIndex,
+              stepIndex: 1,
               steps: [
                 'Enter Text',
                 'Select User',
@@ -116,7 +117,7 @@ export default {
               primary: true,
               disabled: form.hasError,
               onTouchTap: () => {
-                form.callbacks.onSubmit(form.data)
+                form.callbacks.onNext(form.data)
               }
             }
           }
@@ -129,10 +130,10 @@ export default {
         props: (form) => {
           return {
             // request: form.props.request,
-            request: (form) => {
+            request: (data) => {
               return lore.actions.tweet.create({
-                userId: form.data.userId,
-                text: form.data.text,
+                userId: data.userId,
+                text: data.text,
                 createdAt: moment().unix()
               }).payload;
             },
@@ -140,18 +141,42 @@ export default {
             onSuccess: form.callbacks.onRequestSuccess,
             onError: form.callbacks.onRequestError
           }
-        },
-
+        }
       }
     },
     {
       template: {
-        type: 'custom'
-      },
-      render: (form) => {
-        return (
-          <h1>Success!</h1>
-        )
+        type: 'custom',
+        props: () => {
+          return {
+            render: (form) => {
+              return (
+                <Card style={{ paddingTop: '16px', paddingBottom: '24px'}}>
+                  <div className="mui-card-text">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="text-center">
+                          <h2 style={{ padding: 0, margin: 0 }}>
+                            Tweet posted!
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mui-card-actions">
+                    <div className="text-center">
+                      <RaisedButton
+                        label="Create Another"
+                        primary={true}
+                        onTouchTap={form.callbacks.onResetWizard}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              );
+            }
+          }
+        }
       }
     }
   ]

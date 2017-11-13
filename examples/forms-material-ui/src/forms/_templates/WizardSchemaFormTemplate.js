@@ -4,32 +4,21 @@ import createReactClass from 'create-react-class';
 import _ from 'lodash';
 import { Card, CardTitle, Stepper, Step, StepLabel } from 'material-ui';
 import SchemaForm from '../../../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
+import RequestError from './_common/RequestError';
 
 export default createReactClass({
   displayName: 'WizardSchemaTemplate',
 
   propTypes: {
-    stepIndex: PropTypes.number.isRequired,
-    steps: PropTypes.array.isRequired,
+    // stepIndex: PropTypes.number.isRequired,
+    // steps: PropTypes.array.isRequired,
     config: PropTypes.object.isRequired
   },
 
-  render: function() {
+  getTemplateProps: function() {
     const {
-      stepIndex,
-      steps,
-      config,
-      ...formProps
+      config
     } = this.props;
-
-    // const step = steps[stepIndex];
-
-    // const {
-    //   template: {
-    //     title,
-    //     subtitle
-    //   }
-    // } = step;
 
     const defaultTemplateProps = {
       title: 'Title',
@@ -39,26 +28,35 @@ export default createReactClass({
       }
     };
 
-    const templateProps = _.defaultsDeep({},
+    return _.defaultsDeep({},
       config.template.props ? config.template.props(this.props) : null,
       defaultTemplateProps
     );
+  },
 
-    const stepperProps = templateProps.stepper;
+  render: function() {
+    const {
+      config,
+      request,
+      ...formProps
+    } = this.props;
+
+    const {
+      title,
+      subtitle,
+      stepper
+    } = this.getTemplateProps();
 
     return (
       <Card className="form-card">
         <CardTitle
-          title={templateProps.title}
-          subtitle={templateProps.subtitle}
+          title={title}
+          subtitle={subtitle}
         />
-        {stepperProps ? (
-          <Stepper activeStep={stepperProps.stepIndex}>
-            {stepperProps.steps.map((step, index) => {
-              // const stepTemplateProps = _.defaultsDeep({},
-              //   step.template.props ? step.template.props() : null,
-              //   defaultTemplateProps
-              // );
+        <RequestError request={request} />
+        {stepper ? (
+          <Stepper activeStep={stepper.stepIndex}>
+            {stepper.steps.map((step, index) => {
               return (
                 <Step key={index}>
                   <StepLabel>
@@ -66,8 +64,6 @@ export default createReactClass({
                   </StepLabel>
                 </Step>
               );
-            }).filter(function(step) {
-              return !!step;
             })}
           </Stepper>
         ) : null}

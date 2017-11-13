@@ -9,7 +9,7 @@ import Request from './_common/Request';
 import RequestError from './_common/RequestError';
 import SuccessMessage from './_common/SuccessMessage';
 import ErrorMessage from './_common/ErrorMessage';
-import WizardSchemaTemplate from './WizardSchemaTemplate';
+import WizardSchemaFormTemplate from './WizardSchemaFormTemplate';
 
 export default createReactClass({
   displayName: 'RequestWizardSchemaTemplate',
@@ -111,7 +111,7 @@ export default createReactClass({
               onError={this.onRequestError}
             />
           ) : null }
-          <WizardSchemaTemplate
+          <WizardSchemaFormTemplate
             {...this.props}
             stepIndex={stepIndex}
             callbacks={callbacks}
