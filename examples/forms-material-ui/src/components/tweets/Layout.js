@@ -10,6 +10,8 @@ import CreateCardHookOverlay from './CreateCard.hook.overlay';
 import createCardHookOverlayCode from '!raw-loader!./CreateCard.hook.overlay';
 import CreateCardWizardRequest from './CreateCard.wizard.request';
 import createCardWizardRequestCode from '!raw-loader!./CreateCard.wizard.request';
+import CreateCardWizardRequestConfig from './CreateCard.wizard.request.config';
+import createCardWizardRequestConfigCode from '!raw-loader!./CreateCard.wizard.request.config';
 import CreateCardHookWizard from './CreateCard.hook.wizard';
 import createCardHookWizardCode from '!raw-loader!./CreateCard.hook.wizard';
 import CreateCardHookWizardRequest from './CreateCard.hook.wizard.request';
@@ -137,6 +139,16 @@ export default createReactClass({
               description="Created by stringing components together"
             >
               <CreateCardWizardRequest />
+            </CodeExample>
+          ) }
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardWizardRequestConfigCode}
+              title="Config Form (Wizard w/ Request Step)"
+              description="Created by using config + SchemaForm to display forms"
+            >
+              <CreateCardWizardRequestConfig />
             </CodeExample>
           ) }
           {/*<br/>*/}
