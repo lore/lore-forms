@@ -2,18 +2,16 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import _ from 'lodash';
 import moment from 'moment';
-import { Card, CardTitle, RaisedButton } from 'material-ui';
-import { Form, FormSection, PropBarrier } from 'lore-react-forms';
-import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
-import validators from '../../utils/validators';
-import Connect from '../Connect';
+import { Card, CardTitle } from 'material-ui';
 import Overlay from '../../forms/_templates/_common/Overlay';
 import Request from '../../forms/_templates/_common/Request';
 import RequestError from '../../forms/_templates/_common/RequestError';
 import SuccessMessage from '../../forms/_templates/_common/SuccessMessage';
+import formConfig from '../../forms/tweet/overlay';
+import SchemaForm from '../../../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
 
 export default createReactClass({
-  displayName: 'CreateCard.overlay',
+  displayName: 'CreateCard.overlay.config.1',
 
   getInitialState: function() {
     return {
@@ -80,13 +78,6 @@ export default createReactClass({
     });
   },
 
-  getValidators: function(data) {
-    return {
-      text: [validators.isRequired],
-      userId: [validators.number.isRequired]
-    }
-  },
-
   render: function() {
     const {
       key,
@@ -96,7 +87,10 @@ export default createReactClass({
       showSuccessMessage,
       hasError
     } = this.state;
-    const validators = this.getValidators(data);
+
+    const callbacks = {
+      onSubmit: this.onSubmit
+    };
 
     return (
       <Overlay key={key} isVisible={isSaving}>
@@ -126,55 +120,18 @@ export default createReactClass({
               }}
             </RequestError>
           ) : null}
-          <Form
+          <SchemaForm
             key={key}
             data={data}
-            validators={validators}
-            onChange={this.onChange}>
-            {(form) => (
-              <FormSection>
-                <FormSection className="mui-card-text">
-                  <FormSection className="row">
-                    <FormSection className="col-md-12">
-                      <TextField
-                        name="text"
-                        props={{
-                          floatingLabelText: "Text",
-                          style: { width: '100%' },
-                          multiLine: true
-                        }}
-                      />
-                    </FormSection>
-                  </FormSection>
-                  <FormSection className="row">
-                    <FormSection className="col-md-12">
-                      <Connect callback={(getState, props) => {
-                        return {
-                          options: getState('user.find')
-                        }
-                      }}>
-                        <AutoCompleteField
-                          floatingLabelText="User"
-                          name="userId"
-                          field="username"
-                        />
-                      </Connect>
-                    </FormSection>
-                  </FormSection>
-                </FormSection>
-                <FormSection className="mui-card-actions">
-                  <PropBarrier>
-                    <RaisedButton
-                      label="Save"
-                      primary={true}
-                      disabled={form.hasError}
-                      onTouchTap={this.onSubmit}
-                    />
-                  </PropBarrier>
-                </FormSection>
-              </FormSection>
-            )}
-          </Form>
+            // validators={validators}
+            onChange={this.onChange}
+            callbacks={callbacks}
+            schema={lore.config.forms.schemas.default}
+            formMap={lore.config.forms.formMap}
+            fieldMap={lore.config.forms.fieldMap}
+            actionMap={lore.config.forms.actionMap}
+            config={formConfig}
+          />
         </Card>
       </Overlay>
     );

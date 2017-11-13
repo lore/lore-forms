@@ -27,12 +27,14 @@ import RequestTemplate from '../src/forms/_templates/RequestTemplate';
 import CustomTemplate from '../src/forms/_templates/CustomTemplate';
 import WizardTemplate from '../src/forms/_templates/WizardTemplate';
 import FormTemplate from '../src/forms/_templates/FormTemplate';
+import OverlayTemplate from '../src/forms/_templates/OverlayTemplate';
 
 export default {
 
   templates: {
     default: SchemaTemplate,
     form: FormTemplate,
+    overlay: OverlayTemplate,
     // basic: SchemaTemplate,
     // dynamic: DynamicSchemaTemplate,
     // wizardDynamic: WizardDynamicSchemaTemplate,

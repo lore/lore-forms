@@ -15,6 +15,12 @@ import createCardFormHookCode from '!raw-loader!./CreateCard.form.hook';
 // Overlay
 import CreateCardOverlay from './CreateCard.overlay';
 import createCardOverlayCode from '!raw-loader!./CreateCard.overlay';
+import CreateCardOverlayConfig1 from './CreateCard.overlay.config.1';
+import createCardOverlayConfig1Code from '!raw-loader!./CreateCard.overlay.config.1';
+import CreateCardOverlayConfig2 from './CreateCard.overlay.config.2';
+import createCardOverlayConfig2Code from '!raw-loader!./CreateCard.overlay.config.2';
+import CreateCardOverlayHook from './CreateCard.overlay.hook';
+import createCardOverlayHookCode from '!raw-loader!./CreateCard.overlay.hook';
 
 // Wizards
 import CreateCardWizardRequest from './CreateCard.wizard.request';
@@ -128,6 +134,36 @@ export default createReactClass({
               description="Created by manually building the form using React components."
             >
               <CreateCardOverlay />
+            </CodeExample>
+          )}
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardOverlayConfig1Code}
+              title="Config Form #1 (Overlay)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardOverlayConfig1 />
+            </CodeExample>
+          )}
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardOverlayConfig2Code}
+              title="Config Form #2 (Overlay)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardOverlayConfig2 />
+            </CodeExample>
+          )}
+          <br/>
+          {tweetId ? null : (
+            <CodeExample
+              code={createCardOverlayHookCode}
+              title="Hook Form (Overlay)"
+              description="Created by manually building the form using React components."
+            >
+              <CreateCardOverlayHook />
             </CodeExample>
           )}
           <br/>
