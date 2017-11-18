@@ -24,6 +24,7 @@
     "lodash": "^4.0.0",
     "lore": "~0.13.0-beta",
     "lore-auth": "~0.13.0-beta",
+    "lore-generate": "~0.13.0-beta",
     "lore-hook-actions": "~0.13.0-beta",
     "lore-hook-auth": "~0.13.0-beta",
     "lore-hook-bind-actions": "~0.13.0-beta",

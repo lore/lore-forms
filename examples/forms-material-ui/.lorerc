@@ -2,5 +2,11 @@
   "generators": {
     "language": "es5"
   },
-  "commands": {}
+  "commands": {
+    "extract": {
+      "commands": {
+        "form": "./commands/lore-extract-form"
+      }
+    }
+  }
 }
