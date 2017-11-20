@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
-import { FlatButton } from 'material-ui';
+import { RaisedButton } from 'material-ui';
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import { TextField } from 'lore-react-forms-material-ui';
 import validators from '../../utils/validators';
@@ -55,10 +55,12 @@ export default createReactClass({
                   <FormSection className="row">
                     <FormSection className="col-md-12">
                       <TextField
-                        floatingLabelText="Quote"
-                        style={{ width: '100%' }}
                         name="quote"
-                        multiLine={true}
+                        props={{
+                          floatingLabelText: "Quote",
+                          style: { width: '100%' },
+                          multiLine: true
+                        }}
                       />
                     </FormSection>
                   </FormSection>
@@ -71,9 +73,11 @@ export default createReactClass({
                   <FormSection className="row">
                     <FormSection className="col-md-12">
                       <TextField
-                        floatingLabelText="Author"
-                        style={{ width: '100%' }}
                         name="author"
+                        props={{
+                          floatingLabelText: "Author",
+                          style: { width: '100%' }
+                        }}
                       />
                     </FormSection>
                   </FormSection>
@@ -85,7 +89,7 @@ export default createReactClass({
             {
               render: (form) => {
                 return (
-                  <FlatButton
+                  <RaisedButton
                     label="Save"
                     primary={true}
                     onTouchTap={this.onSubmit}

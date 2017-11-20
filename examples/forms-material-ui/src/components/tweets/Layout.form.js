@@ -69,6 +69,11 @@ export default createReactClass({
                 <h4 style={{ paddingTop: 0 }}>
                   The code below builds on the example above by breaking out certain components into a configuration.
                 </h4>
+                <h4 style={{ paddingTop: 0 }}>
+                  This code uses the <strong>SchemForm</strong> from <strong>lore-hook-forms-material-ui</strong>,
+                  along with the <strong>schema</strong>, <strong>fieldMap</strong>, and <strong>actionMap</strong> from
+                  <strong>config/forms</strong>.
+                </h4>
                 <br/>
                 <CodeExample
                   code={createCardFormConfig1Code}
@@ -82,6 +87,11 @@ export default createReactClass({
                 <h4 style={{ paddingTop: 0 }}>
                   More configuration.
                 </h4>
+                <h4 style={{ paddingTop: 0 }}>
+                  This code uses a custom <strong>TemplateForm</strong> that holds the common functions for this type
+                  of form, like <strong>onChange</strong> and <strong>onSubmit</strong>. We've also moved the config
+                  object to <strong>forms/tweet/create.js</strong>.
+                </h4>
                 <br/>
                 <CodeExample
                   code={createCardFormConfig2Code}
@@ -93,7 +103,8 @@ export default createReactClass({
                 <br/>
                 <h3>Form (Hook)</h3>
                 <h4 style={{ paddingTop: 0 }}>
-                  This code uses a basic template along with the <strong>lore-hook-forms-material-ui</strong> library.
+                  This last step assumes some conventions, and compresses the previous form into the
+                  statement <strong>lore.forms.tweet.create()</strong>.
                 </h4>
                 <br/>
                 <CodeExample
