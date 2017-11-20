@@ -1,0 +1,31 @@
+export default {
+  template: 'default',
+  props: {
+    onSubmit: (data) => {
+      lore.actions.<%= modelName %>.create(data);
+    }
+  },
+  validators: function(data) {
+    return {
+<% Object.keys(attributes).forEach(function(attribute, index) { %><%- include('partials/validator', { attribute: attribute, last: (index + 1) === Object.keys(attributes).length }) %><% }); %>
+    };
+  },
+  fields: {
+<% Object.keys(attributes).forEach(function(key, index) { %><%- include('partials/field', { key: key, attribute: attributes[key], last: (index + 1) === Object.keys(attributes).length }) %><% }); %>
+  },
+  actions: [
+    {
+      type: 'raised',
+      props: (form) => {
+        return {
+          label: "Save",
+          primary: true,
+          disabled: form.hasError,
+          onTouchTap: () => {
+            form.callbacks.onSubmit(form.data)
+          }
+        }
+      }
+    }
+  ]
+};

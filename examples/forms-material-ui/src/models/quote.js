@@ -1,5 +1,14 @@
 module.exports = {
 
+  attributes: {
+    text: {
+      type: 'text'
+    },
+    author: {
+      type: 'string'
+    }
+  },
+
   properties: {
 
     /**
