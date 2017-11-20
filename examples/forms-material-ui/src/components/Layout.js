@@ -6,7 +6,9 @@
 
 import React from 'react';
 import createReactClass from 'create-react-class';
+import { Drawer, AppBar, List, ListItem } from 'material-ui';
 import Header from './Header';
+import Navigation from './Navigation';
 
 export default createReactClass({
   displayName: 'Layout',
@@ -14,10 +16,19 @@ export default createReactClass({
   render: function() {
     return (
       <div>
-        <Header />
-        <div className="container" style={{paddingTop: '64px'}}>
-          {React.cloneElement(this.props.children)}
-        </div>
+        <Navigation />
+        {/*<div style={{paddingLeft: '256px'}}>*/}
+          {/*<AppBar*/}
+            {/*title="Concept - Required Knowledge"*/}
+            {/*showMenuIconButton={false}*/}
+          {/*/>*/}
+        {/*</div>*/}
+        {React.cloneElement(this.props.children)}
+        {/*<div className="container-fluid" style={{ paddingTop: '64px', paddingLeft: '30px', paddingRight: '30px' }}>*/}
+          {/*<div style={{paddingLeft: '256px'}}>*/}
+            {/*{React.cloneElement(this.props.children)}*/}
+          {/*</div>*/}
+        {/*</div>*/}
       </div>
     );
   }

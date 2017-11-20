@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
-import { FlatButton } from 'material-ui';
+import { FlatButton, RaisedButton } from 'material-ui';
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import { TextField } from 'lore-react-forms-material-ui';
 import validators from '../../utils/validators';
@@ -97,9 +97,16 @@ export default createReactClass({
           }
         }}
         actionMap={{
-          submit: (form, props) => {
+          flat: (form, props) => {
             return (
               <FlatButton
+                {...props}
+              />
+            )
+          },
+          raised: (form, props) => {
+            return (
+              <RaisedButton
                 {...props}
               />
             )

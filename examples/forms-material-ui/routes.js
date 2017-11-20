@@ -17,6 +17,9 @@ import Layout from './src/components/Layout';
 import Quotes from './src/components/quotes/Layout';
 import Users from './src/components/users/Layout';
 import Tweets from './src/components/tweets/Layout';
+import TweetsForm from './src/components/tweets/Layout.form';
+import TweetsOverlay from './src/components/tweets/Layout.overlay';
+import TweetsWizard from './src/components/tweets/Layout.wizard';
 import Combined from './src/components/combined/Layout';
 
 export default (
@@ -26,6 +29,9 @@ export default (
       <IndexRoute component={Quotes} />
       <Route path="quotes" component={Quotes} />
       <Route path="tweets" component={Tweets} />
+      <Route path="tweets-basic" component={TweetsForm} />
+      <Route path="tweets-overlay" component={TweetsOverlay} />
+      <Route path="tweets-wizard" component={TweetsWizard} />
       <Route path="tweets/:tweetId" component={Tweets} />
       <Route path="users" component={Users} />
       <Route path="users/:userId" component={Users} />

@@ -1,8 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router';
-import { AppBar, Tabs, Tab, IconButton } from 'material-ui';
+import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router';
+import { AppBar, Tabs, Tab, IconButton, Paper, Toolbar, ToolbarGroup } from 'material-ui';
 import { ActionHome } from 'material-ui/svg-icons';
 import createReactClass from 'create-react-class';
+import HeaderLink from './HeaderLink';
 
 var Routes = {
   QUOTES: '/quotes',
@@ -11,25 +13,21 @@ var Routes = {
   COMBINED: '/combined'
 };
 
+const styles = {
+  tabs: {
+    // marginTop: '8px'
+  },
+  tab: {
+    // marginBottom: '8px',
+    // width: '150px'
+  }
+};
+
 export default withRouter(createReactClass({
   displayName: 'Header',
 
-  getStyles: function(){
-    return {
-      floatingActionButton: {
-        top: '32px',
-        right: '64px',
-        position: 'fixed',
-        zIndex: 5
-      },
-      tabs: {
-        marginTop: '8px'
-      },
-      tab: {
-        marginBottom: '8px',
-        width: '150px'
-      }
-    }
+  contextTypes: {
+    muiTheme: PropTypes.object.isRequired
   },
 
   onLeftIconButtonTouchTap: function() {
@@ -61,13 +59,76 @@ export default withRouter(createReactClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
+    const { muiTheme } = this.context;
     var tabValue = this.getTabValue();
 
     var logoIcon = (
       <IconButton onTouchTap={this.onLeftIconButtonTouchTap}>
         <ActionHome />
       </IconButton>
+    );
+
+    return (
+      <Paper rounded={false} zDepth={2} style={{
+        backgroundColor: muiTheme.palette.primary1Color,
+        // zIndex: muiTheme.zIndex.appBar,
+        position: 'relative'
+      }}>
+        <div className="container">
+        <Toolbar style={{ backgroundColor: muiTheme.palette.primary1Color }}>
+          <ToolbarGroup firstChild={true}>
+            <div>
+              <HeaderLink key="home" to="/" matches={[/^\//]}>
+                Material UI Forms
+              </HeaderLink>
+            </div>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <HeaderLink key="services" to="/services" matches={[/^\/service\//]}>Concept</HeaderLink>
+            <HeaderLink key="powered-services" to="/powered-services" matches={[/^\/powered-service\//]}>Tweets</HeaderLink>
+            <HeaderLink key="help-resources" to="/help-resources" matches={[/^\/help-resource\//]}>Users</HeaderLink>
+            <HeaderLink key="forms" to="/forms" matches={[/^\/forms\//]}>Combined</HeaderLink>
+          </ToolbarGroup>
+          <ToolbarGroup lastChild={true}>
+          </ToolbarGroup>
+        </Toolbar>
+          <Paper style={{ backgroundColor: muiTheme.palette.primary1Color }}>
+            <Tabs
+              style={styles.tabs}
+              value={tabValue}
+              onChange={this.onTabChange}>
+              <Tab
+                value={Routes.QUOTES}
+                label="Concept"
+                style={styles.tab}
+                onActive={() => {
+                  this.props.router.push(Routes.QUOTES);
+                }}/>
+              <Tab
+                value={Routes.TWEETS}
+                label="Tweets"
+                style={styles.tab}
+                onActive={() => {
+                  this.props.router.push(Routes.TWEETS);
+                }}/>
+              <Tab
+                value={Routes.USERS}
+                label="Users"
+                style={styles.tab}
+                onActive={() => {
+                  this.props.router.push(Routes.USERS);
+                }}/>
+              <Tab
+                value={Routes.COMBINED}
+                label="Combined"
+                style={styles.tab}
+                onActive={() => {
+                  this.props.router.push(Routes.COMBINED);
+                }}/>
+            </Tabs>
+          </Paper>
+        </div>
+      </Paper>
     );
 
     return (
