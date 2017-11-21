@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 import moment from 'moment';
 import _ from 'lodash';
 import SchemaForm from '../../../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
-import formConfig from '../../forms/tweet/create';
+import formConfig from '../../forms/tweet/default';
 
 export default createReactClass({
   displayName: 'CreateCard.form.config',

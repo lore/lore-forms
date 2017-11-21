@@ -42,11 +42,11 @@ export default withRouter(createReactClass({
           <ListItem primaryText="Wizard Form" value="/tweets-wizard" />
           <Divider />
           <Subheader>
-            Methods
+            Hook
           </Subheader>
-          <ListItem primaryText="Create" value="/create" />
-          <ListItem primaryText="Update" value="/update" />
-          <ListItem primaryText="Destroy" value="/destroy" />
+          <ListItem primaryText="Create" value="/hook/create" />
+          <ListItem primaryText="Update" value="/hook/update" />
+          <ListItem primaryText="Destroy" value="/hook/destroy" />
           <Divider />
           <Subheader>
             Fields

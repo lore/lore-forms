@@ -1,7 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import FormTemplate from '../../forms/_templates/FormTemplate';
-import formConfig from '../../forms/tweet/create';
+import formConfig from '../../forms/tweet/default';
 
 export default createReactClass({
   displayName: 'CreateCard.form.config.2',
