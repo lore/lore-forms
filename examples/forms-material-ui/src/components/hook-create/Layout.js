@@ -80,6 +80,7 @@ export default createReactClass({
                 >
                   <CreateCardWizardHook />
                 </CodeExample>
+
               </div>
               <Drawer width={300} openSecondary={true} open={true} >
                 <AppBar

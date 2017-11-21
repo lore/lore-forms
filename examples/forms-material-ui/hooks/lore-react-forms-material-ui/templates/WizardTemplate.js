@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import _ from 'lodash';
-import wizardConfig from '../../forms/tweet/wizard';
-import WizardSchemaFormTemplate from '../../forms/_templates/WizardSchemaFormTemplate';
-import WizardRequestTemplate from '../../forms/_templates/WizardRequestTemplate';
-import CustomTemplate from '../../forms/_templates/CustomTemplate';
 
 export default createReactClass({
   displayName: 'WizardTemplate',
@@ -103,7 +99,7 @@ export default createReactClass({
 
     const config = steps[stepIndex];
 
-    return formMap[steps[stepIndex].template.type]({
+    return formMap[steps[stepIndex].form]({
       data: data,
       onChange: this.onChange,
       request: request,

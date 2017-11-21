@@ -2,6 +2,12 @@ import validators from '../utils/validators';
 
 export default {
 
+  attributes: {
+    text: {
+      type: 'text'
+    }
+  },
+
   forms: {
     fields: {
       text: {
