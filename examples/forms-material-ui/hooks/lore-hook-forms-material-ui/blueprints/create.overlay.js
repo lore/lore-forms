@@ -8,6 +8,10 @@ export default function(modelName, attributes) {
     props: {
       title: `Create ${_.capitalize(modelName)}`,
       subtitle: `Fill out the form to create a ${modelName}`,
+      successMessage: {
+        title: 'Success!',
+        message: `${_.upperFirst(modelName)} created.`
+      },
       reducer: modelName,
       request: (data) => {
         return lore.actions[modelName].create(data).payload;

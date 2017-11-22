@@ -14,8 +14,8 @@ export default function(modelName, attributes) {
           stepper: {
             stepIndex: 0,
             steps: [
-              'Enter Data',
-              'Make Request'
+              'Data',
+              'Submit'
             ]
           }
         },

@@ -1,4 +1,5 @@
 import { ActionTypes, PayloadStates, payload } from 'lore-utils';
+import moment from 'moment';
 
 /*
  * Blueprint for Create method
@@ -6,6 +7,10 @@ import { ActionTypes, PayloadStates, payload } from 'lore-utils';
 module.exports = function create(params) {
   return function(dispatch) {
     const Model = lore.models.tweet;
+
+    // add the date if it doesn't exist
+    params.createdAt = params.createdAt || moment().unix();
+
     const model = new Model(params);
 
     setTimeout(function() {

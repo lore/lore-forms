@@ -27,16 +27,15 @@ export default createReactClass({
   },
 
   getInitialState: function() {
+    const { model } = this.props;
+
     return {
       key: 0,
       isSaving: false,
       showSuccessMessage: false,
       hasError: false,
       request: null,
-      data: this.props.data || {
-        userId: null,
-        text: ''
-      }
+      data: model ? model.data : {}
     }
   },
 
@@ -122,7 +121,10 @@ export default createReactClass({
     };
 
     const {
-      reducer
+      title,
+      subtitle,
+      reducer,
+      successMessage
     } = this.getTemplateProps();
 
     const requestProps = {
@@ -136,16 +138,17 @@ export default createReactClass({
       <Overlay key={key} isVisible={isSaving}>
         <Card className="form-card">
           <CardTitle
-            title="Create Tweet"
-            subtitle="Enter text and select the user to tweet it"
+            title={title}
+            subtitle={subtitle}
           />
           {(request && isSaving) ? (
             <Request {...requestProps} />
           ) : null}
           {showSuccessMessage ? (
-            <SuccessMessage
-              title="Success!"
-              message="Tweet posted."
+            <SuccessMessage {..._.defaults(successMessage, {
+              title: 'Success!',
+              message: 'Data saved.'
+            })}
             />
           ) : null}
           {hasError ? (

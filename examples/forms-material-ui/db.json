@@ -92,6 +92,39 @@
       "userId": 7,
       "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \"Melchior!\".",
       "createdAt": 1480133005
+    },
+    {
+      "text": "Test",
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "text": "Test",
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "text": "Test",
+      "userId": 2,
+      "id": 10
+    },
+    {
+      "text": "Test",
+      "userId": 1,
+      "createdAt": 1511319538,
+      "id": 11
+    },
+    {
+      "text": "Test2",
+      "userId": 2,
+      "createdAt": 1511319546,
+      "id": 12
+    },
+    {
+      "text": "explode222",
+      "userId": 3,
+      "createdAt": 1511319634,
+      "id": 13
     }
   ],
   "usernames": [

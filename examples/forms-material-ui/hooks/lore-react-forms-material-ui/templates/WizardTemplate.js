@@ -20,12 +20,11 @@ export default createReactClass({
   },
 
   getInitialState: function() {
+    const { model } = this.props;
+
     return {
       stepIndex: 0,
-      data: this.props.data || {
-        userId: null,
-        text: ''
-      }
+      data: model ? model.data : {}
     }
   },
 
@@ -74,6 +73,7 @@ export default createReactClass({
 
   render: function() {
     const {
+      model,
       schema,
       formMap,
       fieldMap,
@@ -100,6 +100,7 @@ export default createReactClass({
     const config = steps[stepIndex];
 
     return formMap[steps[stepIndex].form]({
+      model: model,
       data: data,
       onChange: this.onChange,
       request: request,

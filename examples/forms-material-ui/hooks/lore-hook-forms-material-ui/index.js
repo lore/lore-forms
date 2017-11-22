@@ -63,7 +63,7 @@ export default {
           wizard: DestroyWizardBlueprint
         },
         update: {
-          update: UpdateDefaultBlueprint,
+          default: UpdateDefaultBlueprint,
           overlay: UpdateOverlayBlueprint,
           wizard: UpdateWizardBlueprint
         }
@@ -275,9 +275,19 @@ export default {
       }
 
       _.assign(lore.forms[modelName], {
-        create: generateForm(blueprints.create),
-        destroy: generateForm(blueprints.destroy),
-        update: generateForm(blueprints.update)
+        create: function(props={}, options={}) {
+          return generateForm(blueprints.create)(props, options);
+        },
+        destroy: function(model, props={}, options={}) {
+          props.model = model;
+          // props.data = model.data;
+          return generateForm(blueprints.destroy)(props, options);
+        },
+        update: function(model, props={}, options={}) {
+          props.model = model;
+          // props.data = model.data;
+          return generateForm(blueprints.update)(props, options);
+        }
       });
     });
 

@@ -25,7 +25,7 @@ import Combined from './src/components/combined/Layout';
 // Hook Routes
 import HookCreateLayout from './src/components/hook-create/Layout';
 // import HookDestroyLayout from './src/components/hook-destroy/Layout';
-// import HookUpdateLayout from './src/components/hook-update/Layout';
+import HookUpdateLayout from './src/components/hook-update/Layout';
 
 export default (
   <Route component={UserIsAuthenticated(withMuiTheme(Master))}>
@@ -40,8 +40,8 @@ export default (
       <Route path="tweets/:tweetId" component={Tweets} />
 
       <Route path="hook/create" component={HookCreateLayout} />
-      {/*<Route path="hook/update" component={HookUpdateLayout} />*/}
-      {/*<Route path="hook/update/:tweetId" component={HookUpdateLayout} />*/}
+      <Route path="hook/update" component={HookUpdateLayout} />
+      <Route path="hook/update/:tweetId" component={HookUpdateLayout} />
       {/*<Route path="hook/destroy" component={HookDestroyLayout} />*/}
       {/*<Route path="hook/destroy/:tweetId" component={HookDestroyLayout} />*/}
 

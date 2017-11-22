@@ -7,8 +7,12 @@ export default function(modelName, attributes) {
     template: 'overlay',
     props: (form) => {
       return {
-        title: `Update ${_.capitalize(modelName)}`,
+        title: `Update ${_.upperFirst(modelName)}`,
         subtitle: `Fill out the form to update the ${modelName}`,
+        successMessage: {
+          title: 'Success!',
+          message: `${_.upperFirst(modelName)} updated.`
+        },
         reducer: modelName,
         request: (data) => {
           return lore.actions[modelName].update(form.model, data).payload;

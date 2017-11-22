@@ -22,12 +22,11 @@ export default createReactClass({
   },
 
   getInitialState: function() {
+    const { model } = this.props;
+
     return {
       key: 0,
-      data: this.props.data || {
-        userId: null,
-        text: ''
-      }
+      data: model ? model.data : {}
     }
   },
 
