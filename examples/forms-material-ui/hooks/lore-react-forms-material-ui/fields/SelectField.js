@@ -49,8 +49,11 @@ class SelectField extends Field {
       errors,
       errorText,
       options,
-      field,
-      ...other
+      // field,
+      props: {
+        field,
+        ...props
+      }
     } = this.props;
 
     const value = data[name];
@@ -66,7 +69,7 @@ class SelectField extends Field {
 
     return (
       <MuiSelectField
-        {...other}
+        {...props}
         value={value}
         onChange={this.onChange}
         errorText={touched && (errors[name] || errorText)}

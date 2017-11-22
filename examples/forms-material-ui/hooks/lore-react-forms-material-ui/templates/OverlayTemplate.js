@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import _ from 'lodash';
 import { Card, CardTitle } from 'material-ui';
-import SchemaForm from './SchemaTemplate';
+import SchemaForm from '../forms/SchemaForm';
 import Overlay from './_common/Overlay';
 import Request from './_common/Request';
 import RequestError from './_common/RequestError';

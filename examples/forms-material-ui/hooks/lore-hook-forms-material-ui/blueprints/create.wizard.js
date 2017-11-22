@@ -14,7 +14,8 @@ export default function(modelName, attributes) {
           stepper: {
             stepIndex: 0,
             steps: [
-              'Enter Data'
+              'Enter Data',
+              'Make Request'
             ]
           }
         },
@@ -37,17 +38,15 @@ export default function(modelName, attributes) {
         ]
       },
       {
-        template: {
-          type: 'request',
-          props: (form) => {
-            return {
-              request: (data) => {
-                return lore.actions[modelName].create(data).payload;
-              },
-              reducer: modelName,
-              onSuccess: form.callbacks.onResetWizard,
-              onError: form.callbacks.onRequestError
-            }
+        form: 'request',
+        props: (form) => {
+          return {
+            request: (data) => {
+              return lore.actions[modelName].create(data).payload;
+            },
+            reducer: modelName,
+            onSuccess: form.callbacks.onResetWizard,
+            onError: form.callbacks.onRequestError
           }
         }
       }

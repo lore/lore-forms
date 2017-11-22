@@ -59,21 +59,33 @@ export default createReactClass({
   },
 
   onRequestSuccess: function(request) {
+    const {
+      onSuccess
+    } = this.getTemplateProps();
+
     this.setState({
       isSaving: false,
       request: null,
       hasError: false
     });
-    this.props.callbacks.onRequestSuccess(request);
+
+    onSuccess(request);
+    // this.props.callbacks.onRequestSuccess(request);
   },
 
   onRequestError: function(request) {
+    const {
+      onError
+    } = this.getTemplateProps();
+
     this.setState({
       isSaving: false,
       request: request,
       hasError: true
     });
-    this.props.callbacks.onRequestError(request);
+
+    // this.props.callbacks.onRequestError(request);
+    onError(request);
   },
 
   render: function () {

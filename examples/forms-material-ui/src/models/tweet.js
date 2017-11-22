@@ -5,6 +5,10 @@ export default {
   attributes: {
     text: {
       type: 'text'
+    },
+    userId: {
+      type: 'model',
+      model: 'user'
     }
   },
 

@@ -26,7 +26,7 @@ import DestroyWizardBlueprint from './blueprints/destroy.wizard';
 import {
   TextField,
 //   PasswordField,
-//   ConnectedSelectField,
+  SelectField,
   AutoCompleteField,
 //   CheckboxField,
 //   MarkdownField,
@@ -164,6 +164,23 @@ export default {
             />
           );
         },
+
+        select: function(form, props, name) {
+          const {
+            getOptions,
+            ...other
+          } = props;
+
+          return (
+            <Connect callback={getOptions}>
+              <SelectField
+                name={name}
+                props={other}
+              />
+            </Connect>
+          );
+        },
+
         autocomplete: (form, props, name) => {
           const {
             getOptions,

@@ -2,121 +2,102 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import _ from 'lodash';
-import { Form, FormSection, PropBarrier } from '../../lore-react-forms';
+import SchemaForm from '../forms/SchemaForm';
 import _result from '../_result';
 
 export default createReactClass({
-  displayName: 'SchemaTemplate',
+  displayName: 'OverlayTemplate',
 
   propTypes: {
     data: PropTypes.object,
     validators: PropTypes.object,
     onChange: PropTypes.func,
+    request: PropTypes.object,
     callbacks: PropTypes.object,
     schema: PropTypes.object.isRequired,
+    formMap: PropTypes.object.isRequired,
     fieldMap: PropTypes.object.isRequired,
     actionMap: PropTypes.object.isRequired,
     config: PropTypes.object.isRequired,
   },
 
   getInitialState: function() {
-    const {
-      config: {
-        fields
+    return {
+      key: 0,
+      data: this.props.data || {
+        userId: null,
+        text: ''
       }
+    }
+  },
+
+  getTemplateProps: function() {
+    const {
+      config
     } = this.props;
 
-    return _.mapValues(fields, function(value, key) {
-      return value.initialValue;
+    return _result(config.props, this.props);
+  },
+
+  onResetForm: function() {
+    const { key } = this.state;
+    const initialData = this.getInitialState().data;
+
+    this.setState({
+      key: key + 1,
+      data: initialData
     });
   },
 
-  onChange: function(name, value) {
-    const { onChange } = this.props;
+  onSubmit: function() {
+    const {
+      onSubmit
+    } = this.getTemplateProps();
 
-    if (onChange) {
-      return onChange(name, value);
-    }
-
-    const state = {};
-    state[name] = value;
-    this.setState(state);
+    onSubmit(this.state.data);
+    this.onResetForm();
   },
 
-  getValidators: function(data) {
-    const {
-      config: {
-        validators,
-        fields
-      }
-    } = this.props;
-
-    if (validators) {
-      if (_.isFunction(validators)) {
-        return validators(data);
-      }
-      return validators;
-    }
-
-    return _.mapValues(fields, function(value, key) {
-      return _.isFunction(value.validators) ? value.validators(data) : value.validators;
+  onChange: function(name, value) {
+    const data = _.merge({}, this.state.data);
+    data[name] = value;
+    this.setState({
+      data: data
     });
   },
 
   render: function() {
     const {
-      // data,
-      // validators,
-      // onChange,
-      callbacks,
       schema,
+      formMap,
       fieldMap,
       actionMap,
-      config: {
-        fields,
-        actions
-      }
+      config
     } = this.props;
 
-    const data = this.props.data || this.state;
-    const validators = this.getValidators(data);
+    const {
+      key,
+      data
+    } = this.state;
+
+    const callbacks = {
+      onSubmit: this.onSubmit,
+      onResetForm: this.onResetForm
+    };
 
     return (
-      <Form
+      <SchemaForm
+        key={key}
         data={data}
-        validators={validators}
+        // validators={validators}
         onChange={this.onChange}
-        callbacks={callbacks}>
-        {(form) => (
-          <FormSection>
-            {schema.fields(form)(
-              _.keys(fields).map((key, index) => {
-                const field = fields[key];
-                const mappedField = fieldMap[field.type];
-                return (
-                  React.cloneElement(schema.field(form)(
-                    mappedField(form, _result(field.props, form), key)
-                  ), {
-                    key: key
-                  })
-                );
-              })
-            )}
-            {schema.actions(form)(
-              actions.map((action, index) => {
-                const mappedAction = actionMap[action.type];
-                return (
-                  React.cloneElement(schema.action(form)(
-                    mappedAction(form, _result(action.props, form))
-                  ), {
-                    key: index
-                  })
-                );
-              })
-            )}
-          </FormSection>
-        )}
-      </Form>
+        callbacks={callbacks}
+        schema={schema}
+        formMap={formMap}
+        fieldMap={fieldMap}
+        actionMap={actionMap}
+        config={config}
+      />
     );
   }
 
