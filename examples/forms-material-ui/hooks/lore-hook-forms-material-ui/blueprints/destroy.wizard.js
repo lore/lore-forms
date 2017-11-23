@@ -53,19 +53,6 @@ export default function(modelName, attributes) {
           }
         ]
       },
-      // {
-      //   form: 'request',
-      //   props: (form) => {
-      //     return {
-      //       request: (data) => {
-      //         return lore.actions[modelName].destroy(form.model).payload;
-      //       },
-      //       reducer: modelName,
-      //       onSuccess: form.callbacks.onRequestSuccess,
-      //       onError: form.callbacks.onRequestError
-      //     }
-      //   }
-      // },
       {
         form: 'wizardRequest',
         props: (form) => {
@@ -121,19 +108,7 @@ export default function(modelName, attributes) {
           }
         },
         actions: []
-      },
-      // {
-      //   form: 'custom',
-      //   props: {
-      //     render: (form) => {
-      //       return (
-      //         <div>
-      //           {_.upperFirst(modelName)} destroyed!
-      //         </div>
-      //       );
-      //     }
-      //   }
-      // }
+      }
     ]
   };
 }

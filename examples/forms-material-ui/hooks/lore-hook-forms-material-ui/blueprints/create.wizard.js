@@ -107,20 +107,7 @@ export default function(modelName, attributes) {
             }
           }
         ]
-      },
-      // {
-      //   form: 'request',
-      //   props: (form) => {
-      //     return {
-      //       request: (data) => {
-      //         return lore.actions[modelName].create(data).payload;
-      //       },
-      //       reducer: modelName,
-      //       onSuccess: form.callbacks.onResetWizard,
-      //       onError: form.callbacks.onRequestError
-      //     }
-      //   }
-      // }
+      }
     ]
   };
 }

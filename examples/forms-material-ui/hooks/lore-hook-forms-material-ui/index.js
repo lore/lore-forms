@@ -2,236 +2,15 @@
 
 import React from 'react';
 import _ from 'lodash';
-import { SchemaTemplate, OverlayTemplate, WizardTemplate, CustomTemplate } from '../lore-react-forms-material-ui';
-import { SchemaForm, WizardForm, RequestForm, WizardRequestForm, CustomForm } from '../lore-react-forms-material-ui';
-import { FormSection, PropBarrier } from 'lore-react-forms';
-import { FlatButton, RaisedButton, Step, StepLabel } from 'material-ui';
-// import SchemaForm from '../lore-react-forms-material-ui/forms/SchemaForm';
-// import WizardForm from '../lore-react-forms-material-ui/forms/WizardForm';
-// import RequestForm from '../lore-react-forms-material-ui/forms/RequestForm';
-// import CustomForm from '../lore-react-forms-material-ui/forms/CustomForm';
-
-import CreateDefaultBlueprint from './blueprints/create.default';
-import CreateOverlayBlueprint from './blueprints/create.overlay';
-import CreateWizardBlueprint from './blueprints/create.wizard';
-
-import UpdateDefaultBlueprint from './blueprints/update.default';
-import UpdateOverlayBlueprint from './blueprints/update.overlay';
-import UpdateWizardBlueprint from './blueprints/update.wizard';
-
-import DestroyDefaultBlueprint from './blueprints/destroy.default';
-import DestroyOverlayBlueprint from './blueprints/destroy.overlay';
-import DestroyWizardBlueprint from './blueprints/destroy.wizard';
-
-import {
-  TextField,
-//   PasswordField,
-  SelectField,
-  AutoCompleteField,
-//   CheckboxField,
-//   MarkdownField,
-  CustomField
-} from '../lore-react-forms-material-ui';
-
-import Connect from '../../src/components/Connect';
-
 import formLoader from './loaders/forms';
+import defaultFormConfig from './config';
 
 export default {
 
   dependencies: ['models'],
 
   defaults: {
-    forms: {
-      defaultTemplate: 'default',
-      defaultSchema: 'default',
-
-      templates: {
-        default: SchemaTemplate,
-        overlay: OverlayTemplate,
-        wizard: WizardTemplate,
-        custom: CustomTemplate
-      },
-
-      blueprints: {
-        create: {
-          default: CreateDefaultBlueprint,
-          overlay: CreateOverlayBlueprint,
-          wizard: CreateWizardBlueprint
-        },
-        destroy: {
-          default: DestroyDefaultBlueprint,
-          overlay: DestroyOverlayBlueprint,
-          wizard: DestroyWizardBlueprint
-        },
-        update: {
-          default: UpdateDefaultBlueprint,
-          overlay: UpdateOverlayBlueprint,
-          wizard: UpdateWizardBlueprint
-        }
-      },
-
-      schemas: {
-        default: {
-          stepper: (step) => {
-            return (steps) => {
-              return (
-                <Stepper activeStep={0}>
-                  {steps}
-                </Stepper>
-              );
-            };
-          },
-          step: (step) => {
-            return (step) => {
-              return (
-                <Step {...this.props}>
-                  <StepLabel>
-                    {step.name}
-                  </StepLabel>
-                </Step>
-              );
-            };
-          },
-          fields: (form) => {
-            return (fields) => {
-              return (
-                <FormSection className="mui-card-text">
-                  {fields}
-                </FormSection>
-              );
-            };
-          },
-          field: (form) => {
-            return (field) => {
-              return (
-                <FormSection className="row">
-                  <FormSection className="col-md-12">
-                    {field}
-                  </FormSection>
-                </FormSection>
-              );
-            }
-          },
-          actions: (form) => {
-            return (actions) => {
-              return (
-                <FormSection className="mui-card-actions">
-                  <PropBarrier>
-                    {actions}
-                  </PropBarrier>
-                </FormSection>
-              );
-            };
-          },
-          action: (form) => {
-            return (action) => {
-              return (
-                action
-              );
-            }
-          }
-        }
-      },
-
-      formMap: {
-        form: (props) => {
-          return (
-            <SchemaForm {...props} />
-          );
-        },
-        wizard: (props) => {
-          return (
-            <WizardForm {...props} />
-          );
-        },
-        request: (props) => {
-          return (
-            <RequestForm {...props} />
-          );
-        },
-        wizardRequest: (props) => {
-          return (
-            <WizardRequestForm {...props} />
-          );
-        },
-        custom: (props) => {
-          debugger
-          return (
-            <CustomForm {...props} />
-          );
-        }
-      },
-
-      fieldMap: {
-        custom: (form, props, name) => {
-          return (
-            <CustomField
-              name={name}
-              props={props}
-            />
-          );
-        },
-
-        text: (form, props, name) => {
-          return (
-            <TextField
-              name={name}
-              props={props}
-            />
-          );
-        },
-
-        select: function(form, props, name) {
-          const {
-            getOptions,
-            ...other
-          } = props;
-
-          return (
-            <Connect callback={getOptions}>
-              <SelectField
-                name={name}
-                props={other}
-              />
-            </Connect>
-          );
-        },
-
-        autocomplete: (form, props, name) => {
-          const {
-            getOptions,
-            ...other
-          } = props;
-
-          return (
-            <Connect callback={getOptions}>
-              <AutoCompleteField
-                name={name}
-                {...other}
-              />
-            </Connect>
-          );
-        }
-      },
-
-      actionMap: {
-        flat: (form, props) => {
-          return (
-            <FlatButton
-              {...props}
-            />
-          )
-        },
-        raised: (form, props) => {
-          return (
-            <RaisedButton
-              {...props}
-            />
-          )
-        }
-      }
-    }
+    forms: defaultFormConfig
   },
 
   load: function(lore) {
@@ -250,21 +29,10 @@ export default {
 
     lore.forms = {};
 
-    // Step 1: create convention-based forms from models
-    // _.mapValues(models, function(modelConfig, modelName) {
-    //   lore.forms[modelName] = lore.forms[modelName] || {};
-    //   _.assign(lore.forms[modelName], {
-    //     create: function(options) {
-    //       return blueprints.create[modelName][options.template || 'default'](modelName, modelConfig.attributes || {})
-    //     },
-    //     destroy: function(options) {
-    //       return blueprints.destroy[modelName][options.template || 'default'](modelName, modelConfig.attributes || {})
-    //     },
-    //     update: function(options) {
-    //       return blueprints.update[modelName][options.template || 'default'](modelName, modelConfig.attributes || {})
-    //     }
-    //   })
-    // });
+    /*
+     * Step 1:
+     * Create convention-based forms from models
+     */
     _.mapValues(models, function(modelConfig, modelName) {
       lore.forms[modelName] = lore.forms[modelName] || {};
 
@@ -297,18 +65,20 @@ export default {
         },
         destroy: function(model, props={}, options={}) {
           props.model = model;
-          // props.data = model.data;
           return generateForm(blueprints.destroy)(props, options);
         },
         update: function(model, props={}, options={}) {
           props.model = model;
-          // props.data = model.data;
           return generateForm(blueprints.update)(props, options);
         }
       });
     });
 
-    // Step 2: override with forms defined in /forms
+    /*
+     * Step 2:
+     * Override conventions with any forms defined in /forms, ignoring any
+     * folders that start with "_"
+     */
     _.mapKeys(formSchemas, function(folderSchema, folderName) {
       if (_.startsWith(folderName, '_')) {
         return;
