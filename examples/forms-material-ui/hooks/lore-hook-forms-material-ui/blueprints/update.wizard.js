@@ -1,3 +1,4 @@
+import React from 'react';
 import _ from 'lodash';
 import fields from './partials/fields';
 import validators from './partials/validators';
@@ -10,7 +11,7 @@ export default function(modelName, attributes) {
         form: 'wizard',
         props: (form) => {
           return {
-            title: `Update ${_.capitalize(modelName)}`,
+            title: `Update ${_.upperFirst(modelName)}`,
             subtitle: `Fill out the form to update the ${modelName}`,
             stepper: {
               stepIndex: 0,
@@ -39,18 +40,88 @@ export default function(modelName, attributes) {
           }
         ]
       },
+      // {
+      //   form: 'request',
+      //   props: (form) => {
+      //     return {
+      //       request: (data) => {
+      //         return lore.actions[modelName].update(form.model, data).payload;
+      //       },
+      //       reducer: modelName,
+      //       onSuccess: form.callbacks.onResetWizard,
+      //       onError: form.callbacks.onRequestError
+      //     }
+      //   }
+      // },
       {
-        form: 'request',
+        form: 'wizardRequest',
         props: (form) => {
           return {
+            title: `Update ${_.upperFirst(modelName)}`,
+            subtitle: `Fill out the form to update the ${modelName}`,
+            stepper: {
+              stepIndex: 1,
+              steps: [
+                'Data',
+                'Submit'
+              ]
+            },
             request: (data) => {
               return lore.actions[modelName].update(form.model, data).payload;
             },
             reducer: modelName,
-            onSuccess: form.callbacks.onResetWizard,
+            onSuccess: form.callbacks.onRequestSuccess,
             onError: form.callbacks.onRequestError
           }
         }
+      },
+      {
+        form: 'wizard',
+        props: (form) => {
+          return {
+            title: `Update ${_.upperFirst(modelName)}`,
+            subtitle: `Fill out the form to update the ${modelName}`,
+            stepper: {
+              stepIndex: 2,
+              steps: [
+                'Data',
+                'Submit'
+              ]
+            }
+          }
+        },
+        validators: {},
+        fields: {
+          confirm: {
+            type: 'custom',
+            props: (form) => {
+              return {
+                render: () => {
+                  return (
+                    <div>
+                      {_.upperFirst(modelName)} updated!
+                    </div>
+                  );
+                }
+              }
+            }
+          }
+        },
+        actions: [
+          {
+            type: 'raised',
+            props: (form) => {
+              return {
+                label: "Update Again",
+                primary: true,
+                disabled: form.hasError,
+                onTouchTap: () => {
+                  form.callbacks.onResetWizard()
+                }
+              }
+            }
+          }
+        ]
       }
     ]
   };

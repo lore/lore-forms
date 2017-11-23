@@ -25,7 +25,7 @@ export default createReactClass({
       <div>
         <div style={{paddingLeft: '256px'}}>
           <AppBar
-            title="Basic Form"
+            title="Hook - Create"
             showMenuIconButton={false}
           />
         </div>

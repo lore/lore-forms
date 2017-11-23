@@ -2,8 +2,8 @@
 
 import React from 'react';
 import _ from 'lodash';
-import { SchemaTemplate, OverlayTemplate, WizardTemplate } from '../lore-react-forms-material-ui';
-import { SchemaForm, WizardForm, RequestForm, CustomForm } from '../lore-react-forms-material-ui';
+import { SchemaTemplate, OverlayTemplate, WizardTemplate, CustomTemplate } from '../lore-react-forms-material-ui';
+import { SchemaForm, WizardForm, RequestForm, WizardRequestForm, CustomForm } from '../lore-react-forms-material-ui';
 import { FormSection, PropBarrier } from 'lore-react-forms';
 import { FlatButton, RaisedButton, Step, StepLabel } from 'material-ui';
 // import SchemaForm from '../lore-react-forms-material-ui/forms/SchemaForm';
@@ -30,6 +30,7 @@ import {
   AutoCompleteField,
 //   CheckboxField,
 //   MarkdownField,
+  CustomField
 } from '../lore-react-forms-material-ui';
 
 import Connect from '../../src/components/Connect';
@@ -48,7 +49,8 @@ export default {
       templates: {
         default: SchemaTemplate,
         overlay: OverlayTemplate,
-        wizard: WizardTemplate
+        wizard: WizardTemplate,
+        custom: CustomTemplate
       },
 
       blueprints: {
@@ -148,7 +150,13 @@ export default {
             <RequestForm {...props} />
           );
         },
+        wizardRequest: (props) => {
+          return (
+            <WizardRequestForm {...props} />
+          );
+        },
         custom: (props) => {
+          debugger
           return (
             <CustomForm {...props} />
           );
@@ -156,6 +164,15 @@ export default {
       },
 
       fieldMap: {
+        custom: (form, props, name) => {
+          return (
+            <CustomField
+              name={name}
+              props={props}
+            />
+          );
+        },
+
         text: (form, props, name) => {
           return (
             <TextField
@@ -256,7 +273,7 @@ export default {
       function generateForm(configTemplate) {
         return function form(props={}, options={}) {
           const config = configTemplate[props.template || defaultTemplate](modelName, attributes);
-          const template = templates[props.template || defaultTemplate];
+          const template = templates[props.template || config.template || defaultTemplate];
           const templateProps = {
             schema: schemas[props.schema || defaultSchema],
             // template: props.template || 'card',

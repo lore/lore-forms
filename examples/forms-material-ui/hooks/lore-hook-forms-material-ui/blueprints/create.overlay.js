@@ -6,7 +6,7 @@ export default function(modelName, attributes) {
   return {
     template: 'overlay',
     props: {
-      title: `Create ${_.capitalize(modelName)}`,
+      title: `Create ${_.upperFirst(modelName)}`,
       subtitle: `Fill out the form to create a ${modelName}`,
       successMessage: {
         title: 'Success!',

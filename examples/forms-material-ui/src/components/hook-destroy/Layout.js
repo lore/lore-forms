@@ -4,12 +4,12 @@ import { Drawer, AppBar, CircularProgress } from 'material-ui';
 import { PayloadStates } from 'lore-utils';
 
 // Forms
-import UpdateCardFormHook from './UpdateCard.form.hook';
-import updateCardFormHookCode from '!raw-loader!./UpdateCard.form.hook';
-import UpdateCardOverlayHook from './UpdateCard.overlay.hook';
-import updateCardOverlayHookCode from '!raw-loader!./UpdateCard.overlay.hook';
-import UpdateCardWizardHook from './UpdateCard.wizard.hook';
-import updateCardWizardHookCode from '!raw-loader!./UpdateCard.wizard.hook';
+import UpdateCardFormHook from './DestroyCard.form.hook';
+import updateCardFormHookCode from '!raw-loader!./DestroyCard.form.hook';
+import UpdateCardOverlayHook from './DestroyCard.overlay.hook';
+import updateCardOverlayHookCode from '!raw-loader!./DestroyCard.overlay.hook';
+import UpdateCardWizardHook from './DestroyCard.wizard.hook';
+import updateCardWizardHookCode from '!raw-loader!./DestroyCard.wizard.hook';
 
 import List from './List';
 import CodeExample from '../CodeExample';
@@ -43,7 +43,7 @@ createReactClass({
         <div>
           <div style={{paddingLeft: '256px'}}>
             <AppBar
-              title="Hook - Update"
+              title="Hook - Destroy"
               showMenuIconButton={false}
             />
           </div>
@@ -72,7 +72,7 @@ createReactClass({
         <div>
           <div style={{paddingLeft: '256px'}}>
             <AppBar
-              title="Hook - Update"
+              title="Hook - Destroy"
               showMenuIconButton={false}
             />
           </div>
@@ -100,7 +100,7 @@ createReactClass({
       <div key={tweetId}>
         <div style={{paddingLeft: '256px'}}>
           <AppBar
-            title="Hook - Update"
+            title="Hook - Destroy"
             showMenuIconButton={false}
           />
         </div>

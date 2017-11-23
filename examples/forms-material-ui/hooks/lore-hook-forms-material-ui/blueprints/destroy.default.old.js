@@ -1,4 +1,3 @@
-import React from 'react';
 import _ from 'lodash';
 
 export default function(modelName, attributes) {
@@ -12,22 +11,7 @@ export default function(modelName, attributes) {
       };
     },
     validators: {},
-    fields: {
-      confirm: {
-        type: 'custom',
-        props: (form) => {
-          return {
-            render: () => {
-              return (
-                <div>
-                  Are you sure you want to delete this {_.upperFirst(modelName)}?
-                </div>
-              );
-            }
-          }
-        }
-      }
-    },
+    fields: {},
     actions: [
       {
         type: 'raised',
