@@ -6,6 +6,26 @@ import validators from '../utils/validators';
 
 export default {
 
+  attributes: {
+    name: {
+      type: 'text'
+    },
+    username: {
+      type: 'text'
+    },
+    password: {
+      type: 'password'
+    },
+    countryId: {
+      type: 'model',
+      model: 'country'
+    },
+    regionId: {
+      type: 'model',
+      model: 'region'
+    }
+  },
+
   forms: {
     fields: {
       name: {

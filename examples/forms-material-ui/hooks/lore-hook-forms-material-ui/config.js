@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { FormSection, PropBarrier } from 'lore-react-forms';
-import { FlatButton, RaisedButton, Step, StepLabel } from 'material-ui';
+import { FlatButton, RaisedButton, Stepper, Step, StepLabel } from 'material-ui';
 
 import CreateDefaultBlueprint from './blueprints/create.default';
 import CreateOverlayBlueprint from './blueprints/create.overlay';
@@ -33,10 +33,10 @@ import {
 
   // Fields
   TextField,
-  // PasswordField,
+  PasswordField,
   SelectField,
   AutoCompleteField,
-  // CheckboxField,
+  CheckboxField,
   // MarkdownField,
   CustomField
 } from '../lore-react-forms-material-ui';
@@ -176,6 +176,24 @@ export default {
     text: (form, props, name) => {
       return (
         <TextField
+          name={name}
+          props={props}
+        />
+      );
+    },
+
+    password: (form, props, name) => {
+      return (
+        <PasswordField
+          name={name}
+          props={props}
+        />
+      );
+    },
+
+    checkbox: (form, props, name) => {
+      return (
+        <CheckboxField
           name={name}
           props={props}
         />

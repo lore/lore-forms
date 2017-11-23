@@ -27,6 +27,8 @@ import HookCreateLayout from './src/components/hook-create/Layout';
 import HookDestroyLayout from './src/components/hook-destroy/Layout';
 import HookUpdateLayout from './src/components/hook-update/Layout';
 
+import FieldsLayout from './src/components/fields/Layout';
+
 export default (
   <Route component={UserIsAuthenticated(withMuiTheme(Master))}>
     <Redirect path="/" to="/tweets" />
@@ -44,6 +46,8 @@ export default (
       <Route path="hook/update/:tweetId" component={HookUpdateLayout} />
       <Route path="hook/destroy" component={HookDestroyLayout} />
       <Route path="hook/destroy/:tweetId" component={HookDestroyLayout} />
+
+      <Route path="fields" component={FieldsLayout} />
 
       <Route path="users" component={Users} />
       <Route path="users/:userId" component={Users} />

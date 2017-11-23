@@ -16,7 +16,7 @@ class CheckboxField extends Field {
       data,
       errors,
       errorText,
-      ...other
+      props
     } = this.props;
 
     const value = data[name];
@@ -24,9 +24,9 @@ class CheckboxField extends Field {
 
     return (
       <Checkbox
-        {...other}
         checked={value}
         onCheck={this.onChange}
+        {...props}
       />
     );
   }

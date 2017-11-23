@@ -10,8 +10,7 @@ class PasswordField extends Field {
       name,
       data,
       errors,
-      errorText,
-      ...other
+      props
     } = this.props;
 
     const value = data[name];
@@ -19,13 +18,14 @@ class PasswordField extends Field {
 
     return (
       <TextField
-        {...other}
+        name={name}
         type="password"
         value={value}
         onChange={this.onChange}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
-        errorText={touched && (errors[name] || errorText)}
+        errorText={touched && errors[name]}
+        {...props}
       />
     );
   }

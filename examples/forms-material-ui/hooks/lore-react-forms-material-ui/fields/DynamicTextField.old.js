@@ -37,69 +37,27 @@ class DynamicTextField extends Field {
       errorText,
       _model,
       getMessage,
-      props
+      ...other
     } = this.props;
 
     const value = this.state.value;
     const touched = this.state.touched;
     const options = getMessage ? getMessage(_model) : {};
 
-    const messageStyle = {
-      position: 'relative',
-      bottom: 2,
-      fontSize: 12,
-      lineHeight: '12px',
-      color: 'rgba(0, 0, 0, 0.54)',
-      // transition: transitions.easeOut(),
-    };
-
-    const hasError = touched && (errors[name] || errorText);
-
     return (
       <PropBarrier style={{ position: 'relative' }}>
         <TextField
+          {...other}
           value={value}
           onChange={this.onChange}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
-          errorText={touched && (errors[name] || errorText)}
-          // errorStyle={{ color: 'rgba(0, 0, 0, 0.54)' }}
-          // underlineStyle={{ display: 'none' }}
-          {...props}
+          errorText={touched && (errors[name] || errorText) || options.message}
         />
         {options.icon}
-        {options.message && !hasError ? (
-          <div style={messageStyle}>
-            {options.message}
-          </div>
-        ) : null }
       </PropBarrier>
     );
   }
-
-  // render() {
-  //   const {
-  //     name,
-  //     data,
-  //     errors,
-  //     props
-  //   } = this.props;
-  //
-  //   const value = data[name];
-  //   const touched = this.state.touched;
-  //
-  //   return (
-  //     <MuiTextField
-  //       name={name}
-  //       value={value}
-  //       onChange={this.onChange}
-  //       onFocus={this.onFocus}
-  //       onBlur={this.onBlur}
-  //       errorText={touched && errors[name]}
-  //       {...props}
-  //     />
-  //   );
-  // }
 
 }
 
