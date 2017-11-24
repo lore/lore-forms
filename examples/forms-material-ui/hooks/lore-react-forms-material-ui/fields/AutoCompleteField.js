@@ -13,17 +13,24 @@ class AutoCompleteField extends Field {
     this.updateOptions = this.updateOptions.bind(this);
     this.updateOptions = _.debounce(this.updateOptions, 250);
 
-    const initialOption = _.find(props.options.data, function(option) {
+    const {
+      props: {
+        options,
+        field
+      }
+    } = props;
+
+    const initialOption = _.find(options.data, function(option) {
       // console.log(`props.data[props.name]: ${props.data[props.name]}`);
       return option.id === props.data[props.name];
     });
 
-    const searchText = initialOption ? initialOption.data[props.field] : '';
+    const searchText = initialOption ? initialOption.data[field] : '';
 
     this.state = {
       searchText: searchText,
       isModified: false,
-      options: this.props.options || {
+      options: options || {
         data: [],
         query: {}
       }
@@ -85,11 +92,15 @@ class AutoCompleteField extends Field {
   }
 
   handleNewRequest(item, index) {
+    const {
+      onChange,
+      name
+    } = this.props;
     // console.log('handleNewRequest');
     // this.setState({
     //   searchText: '',
     // });
-    this.props.onChange(this.props.name, item.value);
+    onChange(name, item.value);
   }
 
   render() {
@@ -99,8 +110,10 @@ class AutoCompleteField extends Field {
     } = this.state;
 
     const {
-      option,
-      field
+      props: {
+        option,
+        field
+      }
     } = this.props;
 
     const searchText = option ? (

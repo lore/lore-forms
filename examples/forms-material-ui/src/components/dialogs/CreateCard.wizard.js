@@ -9,8 +9,9 @@ import validators from '../../utils/validators';
 import Connect from '../Connect';
 import Request from '../../forms/_templates/_common/Request';
 import RequestError from '../../forms/_templates/_common/RequestError';
+import Dialog from '../../decorators/Dialog';
 
-export default createReactClass({
+const TheDialog = Dialog()(createReactClass({
   displayName: 'CreateCard.wizard.request',
 
   getInitialState: function() {
@@ -183,6 +184,18 @@ export default createReactClass({
                 <FormSection className="mui-card-text">
                   <FormSection className="row">
                     <FormSection className="col-md-12">
+                      <TextField
+                        name="text"
+                        props={{
+                          floatingLabelText: "Text",
+                          style: { width: '100%' },
+                          multiLine: true
+                        }}
+                      />
+                    </FormSection>
+                  </FormSection>
+                  <FormSection className="row">
+                    <FormSection className="col-md-12">
                       <Connect callback={(getState, props) => {
                         return {
                           options: getState('user.find')
@@ -272,6 +285,31 @@ export default createReactClass({
     }
 
 
+  }
+
+}));
+
+export default createReactClass({
+  displayName: 'CreateCard.wizard',
+
+  onClick: function() {
+    lore.dialog.show(() => {
+      return (
+        <TheDialog />
+      );
+    });
+  },
+
+  render: function() {
+    return (
+      <div>
+        <RaisedButton
+          label="Open Dialog"
+          primary={true}
+          onTouchTap={this.onClick}
+        />
+      </div>
+    );
   }
 
 });

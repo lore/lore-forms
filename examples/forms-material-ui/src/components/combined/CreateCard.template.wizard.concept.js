@@ -91,9 +91,6 @@ export default createReactClass({
   },
 
   onPrevious: function(data) {
-    console.log(this.state);
-    // return;
-
     const { stepIndex } = this.state;
 
     if (stepIndex > 0) {

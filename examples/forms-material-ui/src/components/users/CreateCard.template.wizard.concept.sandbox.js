@@ -81,7 +81,6 @@ export default createReactClass({
     }
 
     if (stepIndex === 1) {
-      console.log(this.state);
       this.setState({
         request: lore.actions.user.create({
           name: nextState.name,

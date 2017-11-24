@@ -54,21 +54,18 @@ export default createReactClass({
   },
 
   onNext: function() {
-    console.log('onNext');
     this.setState({
       stepIndex: this.state.stepIndex + 1
     });
   },
 
   onPrevious: function() {
-    console.log('onPrevious');
     this.setState({
       stepIndex: this.state.stepIndex - 1
     });
   },
 
   onRequestSuccess: function() {
-    console.log('onRequestSuccess');
     this.setState({
       isSaving: false,
       request: null,
@@ -79,7 +76,6 @@ export default createReactClass({
   },
 
   onRequestError: function(request) {
-    console.log('onRequestError');
     this.setState({
       isSaving: false,
       request: request,

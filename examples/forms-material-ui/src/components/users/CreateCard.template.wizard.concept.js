@@ -48,9 +48,6 @@ export default createReactClass({
   },
 
   onNext: function() {
-    console.log(this.state);
-    // return;
-
     const { stepIndex } = this.state;
     let nextState = _.extend({}, this.state);
 
@@ -68,9 +65,6 @@ export default createReactClass({
   },
 
   onPrevious: function(data) {
-    console.log(this.state);
-    // return;
-
     const { stepIndex } = this.state;
 
     if (stepIndex > 0) {
@@ -88,7 +82,6 @@ export default createReactClass({
   },
 
   onChange: function(name, value) {
-    console.log(`Changing: ${name}:${value}`);
     const state = {};
     state[name] = value;
 

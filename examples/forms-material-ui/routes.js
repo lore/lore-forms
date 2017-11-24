@@ -29,6 +29,10 @@ import HookUpdateLayout from './src/components/hook-update/Layout';
 
 import FieldsLayout from './src/components/fields/Layout';
 
+import DialogsForm from './src/components/dialogs/Layout.form';
+import DialogsOverlay from './src/components/dialogs/Layout.overlay';
+import DialogsWizard from './src/components/dialogs/Layout.wizard';
+
 export default (
   <Route component={UserIsAuthenticated(withMuiTheme(Master))}>
     <Redirect path="/" to="/tweets" />
@@ -48,6 +52,10 @@ export default (
       <Route path="hook/destroy/:tweetId" component={HookDestroyLayout} />
 
       <Route path="fields" component={FieldsLayout} />
+
+      <Route path="dialogs-basic" component={DialogsForm} />
+      <Route path="dialogs-overlay" component={DialogsOverlay} />
+      <Route path="dialogs-wizard" component={DialogsWizard} />
 
       <Route path="users" component={Users} />
       <Route path="users/:userId" component={Users} />

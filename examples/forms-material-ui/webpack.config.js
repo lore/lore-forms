@@ -59,6 +59,7 @@ module.exports = function(env) {
         // 'lore-hook-forms-material-ui': path.resolve(__dirname, '../../packages/lore-hook-forms-material-ui/es'),
         // 'lore-react-forms': path.resolve(__dirname, '../../packages/lore-react-forms/es'),
         // 'lore-react-forms-material-ui': path.resolve(__dirname, '../../packages/lore-react-forms-material-ui/es'),
+        'lore-hook-dialogs-material-ui': path.resolve(__dirname, './hooks/lore-hook-dialogs-material-ui'),
         'lore-hook-forms-material-ui': path.resolve(__dirname, './hooks/lore-hook-forms-material-ui'),
         'lore-react-forms': path.resolve(__dirname, './hooks/lore-react-forms'),
         'lore-react-forms-material-ui': path.resolve(__dirname, './hooks/lore-react-forms-material-ui')

@@ -52,6 +52,14 @@ export default withRouter(createReactClass({
             Fields
           </Subheader>
           <ListItem primaryText="All Fields" value="/fields" />
+          <Divider />
+          <Subheader>
+            Dialogs
+          </Subheader>
+          <ListItem primaryText="Basic Dialog" value="/dialogs-basic" />
+          <ListItem primaryText="Overlay Dialog" value="/dialogs-overlay" />
+          <ListItem primaryText="Wizard Dialog" value="/dialogs-wizard" />
+          <Divider />
         </SelectableList>
       </Drawer>
     );

@@ -30,7 +30,6 @@ export default createReactClass({
   },
 
   onSubmit: function(data) {
-    console.log('onSubmit');
     this.setState({
       isSaving: true,
       showSuccessMessage: false,
@@ -59,7 +58,6 @@ export default createReactClass({
   },
 
   onNext: function(data) {
-    console.log('onNext');
     this.setState({
       data: _.merge({}, this.state.data, data),
       stepIndex: this.state.stepIndex + 1
@@ -67,7 +65,6 @@ export default createReactClass({
   },
 
   onPrevious: function(data) {
-    console.log('onPrevious');
     this.setState({
       data: _.merge({}, this.state.data, data),
       stepIndex: this.state.stepIndex - 1
@@ -75,7 +72,6 @@ export default createReactClass({
   },
 
   onRequestSuccess: function() {
-    console.log('onRequestSuccess');
     // this.setState({
     //   isSaving: false,
     //   request: null,
