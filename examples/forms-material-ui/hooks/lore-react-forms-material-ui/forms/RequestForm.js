@@ -4,7 +4,7 @@ import createReactClass from 'create-react-class';
 import _ from 'lodash';
 import { CircularProgress } from 'material-ui';
 import Request from '../templates/_common/Request';
-import _result from '../_result';
+import { result as _result } from 'lore-utils';
 
 const styles = {
   container: {

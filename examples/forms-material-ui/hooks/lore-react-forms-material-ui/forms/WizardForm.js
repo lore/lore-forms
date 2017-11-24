@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Card, CardTitle, Stepper, Step, StepLabel } from 'material-ui';
 import SchemaForm from './SchemaForm';
 import RequestError from '../templates/_common/RequestError';
-import _result from '../_result';
+import { result as _result } from 'lore-utils';
 
 export default createReactClass({
   displayName: 'WizardForm',

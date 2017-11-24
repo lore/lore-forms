@@ -4,7 +4,7 @@ import createReactClass from 'create-react-class';
 import _ from 'lodash';
 import { Card, CardTitle, Stepper, Step, StepLabel } from 'material-ui';
 // import RequestError from '../templates/_common/RequestError';
-import _result from '../_result';
+import { result as _result } from 'lore-utils';
 import RequestForm from './RequestForm';
 
 export default createReactClass({

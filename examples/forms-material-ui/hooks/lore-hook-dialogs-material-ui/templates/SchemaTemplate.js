@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import _ from 'lodash';
 import SchemaForm from '../../lore-react-forms-material-ui/forms/SchemaForm';
-import _result from '../../lore-react-forms-material-ui/_result';
+import { result as _result } from 'lore-utils';
 import Dialog from '../../../src/decorators/Dialog';
 
 export default Dialog()(createReactClass({

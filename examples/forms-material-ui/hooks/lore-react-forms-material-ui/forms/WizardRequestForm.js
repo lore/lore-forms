@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Card, CardTitle, Stepper, Step, StepLabel, CircularProgress } from 'material-ui';
 import SchemaForm from './SchemaForm';
 import Request from '../templates/_common/Request';
-import _result from '../_result';
+import { result as _result } from 'lore-utils';
 
 const styles = {
   container: {

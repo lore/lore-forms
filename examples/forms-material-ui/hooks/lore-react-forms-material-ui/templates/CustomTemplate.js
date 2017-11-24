@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
-import _result from '../_result';
+import { result as _result } from 'lore-utils';
 
 export default createReactClass({
   displayName: 'CustomTemplate',

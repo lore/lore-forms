@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import createReactClass from 'create-react-class';
 import { connect } from '../../hooks/lore-hook-connect';
-import _result from '../../hooks/lore-react-forms-material-ui/_result';
+import { result as _result } from 'lore-utils';
 
 export default connect(function(getState, props) {
   return props.callback.apply(null, arguments)

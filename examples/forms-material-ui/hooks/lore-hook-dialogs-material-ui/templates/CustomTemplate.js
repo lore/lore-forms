@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
-import _result from '../../lore-react-forms-material-ui/_result';
+import { result as _result } from 'lore-utils';
 import Dialog from '../../../src/decorators/Dialog';
 
 export default Dialog()(createReactClass({
