@@ -19,7 +19,7 @@ import actions from 'lore-hook-actions';
 import bindActions from 'lore-hook-bind-actions';
 import collections from 'lore-hook-collections';
 import connections from 'lore-hook-connections';
-import connect from './hooks/lore-hook-connect';
+import connect from 'lore-hook-connect';
 import dialog from 'lore-hook-dialog';
 import dialogs from 'lore-hook-dialogs-material-ui';
 import forms from 'lore-hook-forms-material-ui';
@@ -33,6 +33,10 @@ import router from 'lore-hook-router';
 // the console. Remove this line if you don't want to be able to do that.
 window.lore = lore;
 
+// todo: remove this hack for grabbing muiTheme from context
+import muiTheme from './src/muiTheme';
+lore.muiTheme = muiTheme;
+
 // Summon the app!
 lore.summon({
   hooks: {
@@ -43,7 +47,7 @@ lore.summon({
     connections,
     connect,
     dialog,
-    // dialogs,
+    dialogs,
     forms,
     models,
     react,
