@@ -9,7 +9,7 @@ import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import PayloadStates from '../../constants/PayloadStates';
 import validators from '../../utils/validators';
 import Overlay from '../_common/Overlay';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 
 export default createReactClass({
   displayName: 'CreateCard.form',

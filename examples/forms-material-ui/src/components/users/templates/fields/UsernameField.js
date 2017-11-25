@@ -4,7 +4,7 @@ import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import _ from 'lodash';
 import { Field, PropBarrier } from 'lore-react-forms';
 import DynamicTextField from './DynamicTextField';
-import Connect from '../../../Connect';
+import { Connect } from 'lore-hook-connect';
 import PayloadStates from '../../../../constants/PayloadStates';
 
 function usernameConnect(getState, props) {

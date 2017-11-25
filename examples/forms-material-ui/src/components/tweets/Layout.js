@@ -35,7 +35,7 @@ import CreateCardWizardRequestHook from './CreateCard.wizard.request.hook';
 import createCardWizardRequestHookCode from '!raw-loader!./CreateCard.wizard.request.hook';
 
 import List from './List';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 import Spinner from '../Spinner';
 import CodeExample from '../CodeExample';
 

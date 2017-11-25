@@ -2,7 +2,7 @@ import React from 'react';
 import { CircularProgress } from 'material-ui';
 import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import { DynamicTextField } from 'lore-react-forms-material-ui';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 import PayloadStates from '../../constants/PayloadStates';
 
 function usernameConnect(getState, props) {

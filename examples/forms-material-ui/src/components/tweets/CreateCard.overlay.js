@@ -6,7 +6,7 @@ import { Card, CardTitle, RaisedButton } from 'material-ui';
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
 import validators from '../../utils/validators';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 import Overlay from '../../forms/_templates/_common/Overlay';
 import Request from '../../forms/_templates/_common/Request';
 import RequestError from '../../forms/_templates/_common/RequestError';

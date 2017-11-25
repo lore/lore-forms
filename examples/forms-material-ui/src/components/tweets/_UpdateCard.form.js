@@ -11,7 +11,7 @@ import Overlay from '../_common/Overlay';
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 
 import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 
 export default lore.connect(function(getState, props){
   return {

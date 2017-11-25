@@ -6,7 +6,7 @@ import { RaisedButton } from 'material-ui';
 import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import { TextField, AutoCompleteField } from 'lore-react-forms-material-ui';
 import validators from '../../utils/validators';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 
 let key = 0;
 

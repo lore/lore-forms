@@ -8,7 +8,7 @@ import validators from '../../utils/validators';
 import Overlay from '../_common/Overlay';
 import TemplateForm from './templates/TemplateForm';
 import UsernameField from './templates/fields/UsernameField';
-import { getState } from '../../../hooks/lore-hook-connect';
+import { getState } from 'lore-hook-connect';
 
 export default createReactClass({
   displayName: 'CreateCard.template.wizard.concept',

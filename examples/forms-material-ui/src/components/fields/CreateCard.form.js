@@ -7,7 +7,7 @@ import { Form, FormSection, PropBarrier } from 'lore-react-forms';
 import { TextField, PasswordField, SelectField, CheckboxField } from 'lore-react-forms-material-ui';
 import UsernameField from '../_common/UsernameField';
 import validators from '../../utils/validators';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 
 let key = 0;
 

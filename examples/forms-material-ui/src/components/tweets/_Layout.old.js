@@ -22,7 +22,7 @@ import updateCardHookCode from '!raw-loader!./_UpdateCard.hook';
 import CustomUpdateCardHook from './_UpdateCard.hook.custom';
 import customUpdateCardHookCode from '!raw-loader!./_UpdateCard.hook.custom';
 import List from './List';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 import Spinner from '../Spinner';
 import CodeExample from '../CodeExample';
 

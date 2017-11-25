@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from 'material-ui';
 import _ from 'lodash';
 import { Field, PropBarrier } from 'lore-react-forms';
-import { connect } from '../../../../../hooks/lore-hook-connect';
+import { connect } from 'lore-hook-connect';
 
 class DynamicTextField extends Field {
 

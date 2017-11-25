@@ -5,7 +5,7 @@ import _ from 'lodash';
 import DialogMixin from '../mixins/DialogMixin';
 import withMuiTheme from './withMuiTheme';
 import { Dialog } from 'material-ui';
-import { connect } from '../../hooks/lore-hook-connect';
+import { connect } from 'lore-hook-connect';
 
 function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component';

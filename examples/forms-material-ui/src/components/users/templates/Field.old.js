@@ -10,7 +10,7 @@ import _ from 'lodash';
 import TextField from './fields/TextField';
 import DynamicTextField from './fields/DynamicTextField';
 import SelectField from './fields/SelectField';
-import Connect from '../../Connect';
+import { Connect } from 'lore-hook-connect';
 // import { Connect } from '../../../../hooks/lore-hook-connect';
 
 export default createReactClass({

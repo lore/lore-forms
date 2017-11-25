@@ -46,7 +46,7 @@ import {
   CustomField
 } from '../lore-react-forms-material-ui';
 
-import Connect from '../../src/components/Connect';
+import { Connect } from 'lore-hook-connect';
 
 export default {
   defaultTemplate: 'default',

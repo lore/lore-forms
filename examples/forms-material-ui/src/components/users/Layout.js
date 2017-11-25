@@ -16,7 +16,7 @@ import createCardTemplateWizardConceptCode from '!raw-loader!./CreateCard.templa
 import UpdateCardHook from './UpdateCard.hook';
 import updateCardHookCode from '!raw-loader!./UpdateCard.hook';
 import List from './List';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 import Spinner from '../Spinner';
 import CodeExample from '../CodeExample';
 

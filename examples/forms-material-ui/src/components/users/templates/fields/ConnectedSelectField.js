@@ -4,7 +4,7 @@ import { MenuItem, CircularProgress, SelectField as MuiSelectField } from 'mater
 import _ from 'lodash';
 import { Field } from 'lore-react-forms';
 import { PayloadStates } from 'lore-utils';
-import { connect } from '../../../../../hooks/lore-hook-connect';
+import { connect } from 'lore-hook-connect';
 
 function mapDataToOptions(data, field) {
   return data.map(function(datum) {

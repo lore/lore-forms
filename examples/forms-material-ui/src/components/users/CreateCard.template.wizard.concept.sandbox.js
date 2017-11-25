@@ -10,7 +10,7 @@ import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import PayloadStates from '../../constants/PayloadStates';
 import validators from '../../utils/validators';
 import Overlay from '../_common/Overlay';
-import Connect from '../Connect';
+import { Connect } from 'lore-hook-connect';
 import FormSteps from '../common/FormSteps';
 import FormStep from '../common/FormStep';
 import RequestError from '../common/RequestError';

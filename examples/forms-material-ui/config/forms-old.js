@@ -17,7 +17,7 @@ import {
 } from 'lore-react-forms-material-ui';
 import Markdown from 'react-markdown';
 
-import Connect from '../src/components/Connect';
+import { Connect } from 'lore-hook-connect';
 import SchemaTemplate from '../hooks/lore-hook-forms-material-ui/templates/SchemaTemplate';
 import CardSchemaTemplate from '../src/forms/_templates/CardSchemaTemplate';
 import OverlayCardSchemaTemplate from '../src/forms/_templates/OverlayCardSchemaTemplate';
