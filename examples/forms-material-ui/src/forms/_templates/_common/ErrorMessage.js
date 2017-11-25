@@ -1,4 +1,6 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 const styles = {
@@ -17,14 +19,14 @@ const styles = {
   }
 };
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Error',
 
   propTypes: {
-    error: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array,
-      React.PropTypes.object
+    error: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object
     ]).isRequired
   },
 
