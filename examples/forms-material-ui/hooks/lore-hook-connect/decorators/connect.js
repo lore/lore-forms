@@ -4,9 +4,9 @@
 import React from 'react';
 import _ from 'lodash';
 import invariant from 'invariant';
-import storeShape from './utils/storeShape';
-import getDisplayName from './utils/getDisplayName';
-import _getState from './getState';
+import storeShape from '../utils/storeShape';
+import getDisplayName from '../utils/getDisplayName';
+import _getState from '../getState';
 
 /**
  * Decorator for React components that allows the component to specify what data they need

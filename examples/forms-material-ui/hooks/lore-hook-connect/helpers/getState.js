@@ -1,4 +1,4 @@
-import _getState from './getState';
+import _getState from '../getState';
 
 export default function(stateKey, params, options) {
   const getState = _getState(
