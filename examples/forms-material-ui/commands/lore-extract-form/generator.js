@@ -1,7 +1,6 @@
 var path = require('path');
 var camelCase = require('camel-case');
-// var Generator = require('lore-generate').Generator;
-var Generator = require('../lore-generate/generator');
+var Generator = require('lore-generate').Generator;
 var _ = require('lodash');
 
 function getFilename(model, blueprint) {
