@@ -1,6 +1,7 @@
 /* global lore */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { AutoComplete } from 'material-ui';
 import { Field } from 'lore-react-forms';
@@ -174,7 +175,7 @@ class AutoCompleteField extends Field {
 }
 
 AutoCompleteField.propTypes = _.assign({}, {
-  options: React.PropTypes.object.isRequired
+  options: PropTypes.object.isRequired
 });
 
 AutoCompleteField.defaultProps = _.assign({}, {

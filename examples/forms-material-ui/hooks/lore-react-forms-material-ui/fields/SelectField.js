@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MenuItem, CircularProgress, SelectField as MuiSelectField } from 'material-ui';
 import _ from 'lodash';
 import { Field } from 'lore-react-forms';
@@ -84,7 +85,7 @@ class SelectField extends Field {
 }
 
 SelectField.propTypes = _.assign({}, Field.propTypes, {
-  options: React.PropTypes.object.isRequired
+  options: PropTypes.object.isRequired
 });
 
 SelectField.defaultProps = _.assign({}, Field.defaultProps, {

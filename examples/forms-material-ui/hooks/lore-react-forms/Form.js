@@ -1,17 +1,19 @@
 /* eslint consistent-return: "off" */
 
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Form',
 
   propTypes: {
-    data: React.PropTypes.object.isRequired,
-    errors: React.PropTypes.object,
-    validators: React.PropTypes.object,
-    onChange: React.PropTypes.func.isRequired,
-    isSaving: React.PropTypes.bool.isRequired
+    data: PropTypes.object.isRequired,
+    errors: PropTypes.object,
+    validators: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    isSaving: PropTypes.bool.isRequired
   },
 
   getDefaultProps: function() {

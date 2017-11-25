@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import { CircularProgress, TextField } from 'material-ui';
 import { NavigationCheck, AvNotInterested } from 'material-ui/svg-icons';
 import _ from 'lodash';
 import { Field } from 'lore-react-forms';
 
-const PendingIcon = React.createClass({
+const PendingIcon = createReactClass({
   render: function() {
     return (
       <CircularProgress
@@ -20,7 +21,7 @@ const PendingIcon = React.createClass({
   }
 });
 
-const SuccessIcon = React.createClass({
+const SuccessIcon = createReactClass({
   render: function() {
     return (
       <NavigationCheck
@@ -35,7 +36,7 @@ const SuccessIcon = React.createClass({
   }
 });
 
-const ErrorIcon = React.createClass({
+const ErrorIcon = createReactClass({
   render: function() {
     return (
       <AvNotInterested

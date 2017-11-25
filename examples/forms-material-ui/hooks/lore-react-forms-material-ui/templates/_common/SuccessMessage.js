@@ -1,11 +1,13 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'SuccessMessage',
 
   propTypes: {
-    title: React.PropTypes.string.isRequired,
-    message: React.PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
   },
 
   getInitialState: function() {

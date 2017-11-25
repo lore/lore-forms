@@ -1,6 +1,7 @@
 /* eslint react/no-unused-prop-types: "off" */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 class Field extends React.Component {
@@ -48,10 +49,10 @@ class Field extends React.Component {
 }
 
 Field.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  data: React.PropTypes.object.isRequired,
-  onChange: React.PropTypes.func,
-  validators: React.PropTypes.object.isRequired
+  name: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  onChange: PropTypes.func,
+  validators: PropTypes.object.isRequired
 };
 
 Field.defaultProps = {

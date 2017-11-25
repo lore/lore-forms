@@ -2,6 +2,7 @@
 /* eslint arrow-parens: "off" */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Form from './Form';
 import FormSection from './FormSection';
@@ -134,7 +135,7 @@ class Template extends React.Component {
 }
 
 Template.propTypes = {
-  onSubmit: React.PropTypes.func
+  onSubmit: PropTypes.func
 };
 
 Template.defaultProps = {

@@ -1,12 +1,14 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'PropBarrier',
 
   propTypes: {
-    element: React.PropTypes.string,
-    className: React.PropTypes.string,
-    style: React.PropTypes.object
+    element: PropTypes.string,
+    className: PropTypes.string,
+    style: PropTypes.object
   },
 
   getDefaultProps: function() {

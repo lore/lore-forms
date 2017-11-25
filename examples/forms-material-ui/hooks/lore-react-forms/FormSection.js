@@ -1,16 +1,18 @@
 /* eslint consistent-return: "off" */
 
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'FormSection',
 
   propTypes: {
-    element: React.PropTypes.string,
-    className: React.PropTypes.string,
-    style: React.PropTypes.object,
-    children: React.PropTypes.node.isRequired
+    element: PropTypes.string,
+    className: PropTypes.string,
+    style: PropTypes.object,
+    children: PropTypes.node.isRequired
   },
 
   getDefaultProps: function() {

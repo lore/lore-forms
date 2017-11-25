@@ -1,18 +1,20 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import ErrorMessage from './ErrorMessage';
 import { PayloadStates } from 'lore-utils';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'RequestError',
 
   propTypes: {
-    request: React.PropTypes.object,
-    error: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array,
-      React.PropTypes.object
+    request: PropTypes.object,
+    error: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object
     ]),
-    children: React.PropTypes.func
+    children: PropTypes.func
   },
 
   render: function() {

@@ -22,7 +22,7 @@ export default createReactClass({
   // propTypes: {
   //   request: PropTypes.object,
   //   reducer: PropTypes.string.isRequired,
-  //   singleton: React.PropTypes.bool.isRequired,
+  //   singleton: PropTypes.bool.isRequired,
   //   onSuccess: PropTypes.func.isRequired,
   //   onError: PropTypes.func.isRequired,
   // },
