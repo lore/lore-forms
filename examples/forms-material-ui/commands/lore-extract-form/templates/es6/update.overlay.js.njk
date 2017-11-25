@@ -1,0 +1,44 @@
+export default {
+  template: 'overlay',
+  props: (form) => {
+    return {
+      title: 'Update {{ _.upperFirst(modelName) }}',
+      subtitle: 'Fill out the form to update the {{ modelName }}',
+      successMessage: {
+        title: 'Success!',
+        message: '{{ _.upperFirst(modelName) }} updated.'
+      },
+      reducer: modelName,
+      request: (data) => {
+        return lore.actions[modelName].update(form.model, data).payload;
+      }
+    }
+  },
+  validators: function(data) {
+    return {
+      {%- for key, attribute in attributes %}
+      {% include "partials/validator.njk" %}{% if (loop.last === false) %},{% endif %}
+      {%- endfor %}
+    };
+  },
+  fields: {
+    {%- for key, attribute in attributes %}
+    {% include "partials/field.njk" %}{% if (loop.last === false) %},{% endif %}
+    {%- endfor %}
+  },
+  actions: [
+    {
+      type: 'raised',
+      props: (form) => {
+        return {
+          label: "Update",
+          primary: true,
+          disabled: form.hasError,
+          onTouchTap: () => {
+            form.callbacks.onSubmit(form.data)
+          }
+        }
+      }
+    }
+  ]
+};

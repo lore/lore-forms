@@ -1,0 +1,42 @@
+export default {
+   template: 'overlay',
+   props: {
+     title: 'Create {{ _.upperFirst(modelName) }}',
+     subtitle: 'Fill out the form to create a {{ modelName}}',
+     successMessage: {
+       title: 'Success!',
+       message: '{{ _.upperFirst(modelName) }} created.'
+     },
+     reducer: {{ modelName }},
+     request: (data) => {
+       return lore.actions.{{ modelName }}.create(data).payload;
+     }
+   },
+   validators: function(data) {
+     return {
+       {%- for key, attribute in attributes %}
+       {% include "partials/validator.njk" %}{% if (loop.last === false) %},{% endif %}
+       {%- endfor %}
+     };
+   },
+   fields: {
+     {%- for key, attribute in attributes %}
+     {% include "partials/field.njk" %}{% if (loop.last === false) %},{% endif %}
+     {%- endfor %}
+   },
+   actions: [
+     {
+       type: 'raised',
+       props: (form) => {
+         return {
+           label: "Create",
+           primary: true,
+           disabled: form.hasError,
+           onTouchTap: () => {
+             form.callbacks.onSubmit(form.data)
+           }
+         }
+       }
+     }
+   ]
+ };

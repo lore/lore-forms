@@ -1,0 +1,37 @@
+export default {
+  template: 'default',
+  props: (form) => {
+    return {
+      onSubmit: (data) => {
+        lore.actions.{{ modelName }}.update(form.model, data);
+      }
+    }
+  },
+  validators: function(data) {
+    return {
+      {%- for key, attribute in attributes %}
+      {% include "partials/validator.njk" %}{% if (loop.last === false) %},{% endif %}
+      {%- endfor %}
+    };
+  },
+  fields: {
+    {%- for key, attribute in attributes %}
+    {% include "partials/field.njk" %}{% if (loop.last === false) %},{% endif %}
+    {%- endfor %}
+  },
+  actions: [
+    {
+      type: 'raised',
+      props: (form) => {
+        return {
+          label: "Update",
+          primary: true,
+          disabled: form.hasError,
+          onTouchTap: () => {
+            form.callbacks.onSubmit(form.data)
+          }
+        }
+      }
+    }
+  ]
+};

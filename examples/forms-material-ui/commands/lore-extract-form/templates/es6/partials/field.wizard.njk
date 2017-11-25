@@ -1,0 +1,25 @@
+{% if (attribute.type === 'string') -%}
+      {{ key }}: {
+        type: 'string',
+        props: {
+          floatingLabelText: '{{ _.upperFirst(key) }}',
+          style: { width: '100%' },
+          name: '{{ key }}'
+        }
+      }
+{%- elif (attribute.type === 'text') -%}
+      {{ key }}: {
+        type: 'text',
+        props: {
+          floatingLabelText: '{{ _.upperFirst(key) }}',
+          style: { width: '100%' },
+          name: '{{ key }}',
+          multiLine: true
+        }
+      }
+{%- else -%}
+      {{ key }}: {
+        type: '{{ attribute.type }}',
+        props: {}
+      }
+{%- endif -%}
