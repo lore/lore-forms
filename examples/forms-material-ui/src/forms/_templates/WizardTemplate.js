@@ -103,7 +103,7 @@ export default createReactClass({
 
     const config = steps[stepIndex];
 
-    return formMap[steps[stepIndex].template.type]({
+    return formMap[steps[stepIndex].form]({
       data: data,
       onChange: this.onChange,
       request: request,

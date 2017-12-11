@@ -8,16 +8,14 @@ export default createReactClass({
 
   propTypes: {
     config: PropTypes.shape({
-      template: PropTypes.shape({
-        type: PropTypes.string.isRequired,
-        props: PropTypes.func.isRequired,
-        // props: PropTypes.oneOfType([
-        //   PropTypes.func.isRequired,
-        //   PropTypes.shape({
-        //     render: PropTypes.func.isRequired
-        //   })
-        // ])
-      }).isRequired
+      form: PropTypes.string.isRequired,
+      props: PropTypes.func.isRequired,
+      // props: PropTypes.oneOfType([
+      //   PropTypes.func.isRequired,
+      //   PropTypes.shape({
+      //     render: PropTypes.func.isRequired
+      //   })
+      // ])
     }).isRequired
   },
 

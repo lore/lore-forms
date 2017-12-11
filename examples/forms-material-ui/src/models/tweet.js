@@ -31,11 +31,14 @@ export default {
         validators: [validators.number.isRequired],
         options: {
           label: 'User',
-          getOptions: function(getState, props) {
-            return {
-              options: getState('user.find')
-            }
-          }
+          // getOptions: function(getState, props) {
+          //   return {
+          //     options: getState('user.find')
+          //   }
+          // },
+          options: (getState, props) => {
+            return getState('user.find');
+          },
         }
       }
     },

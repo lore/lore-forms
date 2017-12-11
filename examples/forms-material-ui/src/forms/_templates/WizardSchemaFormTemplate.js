@@ -29,7 +29,7 @@ export default createReactClass({
     };
 
     return _.defaultsDeep({},
-      config.template.props ? config.template.props(this.props) : null,
+      config.props ? config.props(this.props) : null,
       defaultTemplateProps
     );
   },

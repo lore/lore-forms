@@ -28,7 +28,7 @@ export default {
   },
   fields: {
     text: {
-      type: 'text',
+      type: 'text2',
       props: (form) => {
         return {
           floatingLabelText: "Text",
@@ -40,15 +40,18 @@ export default {
       }
     },
     userId: {
-      type: 'autocomplete',
+      type: 'select2',
       props: (form) => {
         return {
           floatingLabelText: "User",
           name: "userId",
-          getOptions: (getState, props) => {
-            return {
-              options: getState('user.find')
-            }
+          // getOptions: (getState, props) => {
+          //   return {
+          //     options: getState('user.find')
+          //   }
+          // },
+          options: (getState, props) => {
+            return getState('user.find');
           },
           field: "username"
         };

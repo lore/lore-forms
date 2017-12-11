@@ -102,19 +102,19 @@ export default createReactClass({
                   <CreateCardWizardRequestConfig3 />
                 </CodeExample>
 
-                <br/>
-                <h3>Form (Hook)</h3>
-                <h4 style={{ paddingTop: 0 }}>
-                  The code below builds on the example above by breaking out certain components into a configuration.
-                </h4>
-                <br/>
-                <CodeExample
-                  code={createCardWizardRequestHookCode}
-                  title="Hook Form (Wizard w/ Request Step)"
-                  description="Created configuring the forms hook to use the template"
-                >
-                  <CreateCardWizardRequestHook />
-                </CodeExample>
+                {/*<br/>*/}
+                {/*<h3>Form (Hook)</h3>*/}
+                {/*<h4 style={{ paddingTop: 0 }}>*/}
+                  {/*The code below builds on the example above by breaking out certain components into a configuration.*/}
+                {/*</h4>*/}
+                {/*<br/>*/}
+                {/*<CodeExample*/}
+                  {/*code={createCardWizardRequestHookCode}*/}
+                  {/*title="Hook Form (Wizard w/ Request Step)"*/}
+                  {/*description="Created configuring the forms hook to use the template"*/}
+                {/*>*/}
+                  {/*<CreateCardWizardRequestHook />*/}
+                {/*</CodeExample>*/}
               </div>
               <Drawer width={300} openSecondary={true} open={true} >
                 <AppBar

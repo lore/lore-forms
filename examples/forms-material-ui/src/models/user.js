@@ -139,11 +139,14 @@ export default {
         options: {
           floatingLabelText: 'Country',
           field: 'name',
-          getOptions: function(getState, props) {
-            return {
-              options: getState('country.find')
-            }
-          }
+          // getOptions: function(getState, props) {
+          //   return {
+          //     options: getState('country.find')
+          //   }
+          // },
+          options: (getState, props) => {
+            return getState('country.find');
+          },
         }
       },
       region: {
@@ -153,25 +156,40 @@ export default {
         options: {
           floatingLabelText: 'Region',
           field: 'name',
-          getOptions: function(getState, props) {
-            var countryId = props.data.country;
+          // getOptions: function(getState, props) {
+          //   var countryId = props.data.country;
+          //
+          //   if (countryId) {
+          //     return {
+          //       options: getState('region.find', {
+          //         where: {
+          //           countryId: countryId
+          //         }
+          //       })
+          //     }
+          //   }
+          //
+          //   return {
+          //     options: {
+          //       data: []
+          //     }
+          //   }
+          // },
+          options: (getState, props) => {
+            const countryId = props.data.country;
 
             if (countryId) {
-              return {
-                options: getState('region.find', {
-                  where: {
-                    countryId: countryId
-                  }
-                })
-              }
+              return getState('region.find', {
+                where: {
+                  countryId: countryId
+                }
+              });
             }
 
             return {
-              options: {
-                data: []
-              }
-            }
-          }
+              data: []
+            };
+          },
         }
       }
     },

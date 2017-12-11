@@ -4,24 +4,22 @@ import moment from 'moment';
 import { Card, RaisedButton } from 'material-ui';
 
 export default {
-  templateName: 'wizard',
+  template: 'wizard',
   steps: [
     {
-      template: {
-        type: 'wizard',
-        props: (templateProps) => {
-          return {
-            title: 'Create Tweet',
-            subtitle: 'Enter text and select the user to tweet it',
-            stepper: {
-              stepIndex: 0,
-              steps: [
-                'Enter Text',
-                'Select User',
-              ]
-            }
-          };
-        }
+      form: 'wizard',
+      props: (templateProps) => {
+        return {
+          title: 'Create Tweet',
+          subtitle: 'Enter text and select the user to tweet it',
+          stepper: {
+            stepIndex: 0,
+            steps: [
+              'Enter Text',
+              'Select User',
+            ]
+          }
+        };
       },
       validators: function(data) {
         return {
@@ -30,7 +28,7 @@ export default {
       },
       fields: {
         text: {
-          type: 'text',
+          type: 'text2',
           props: (form) => {
             return {
               floatingLabelText: "Text",
@@ -58,21 +56,19 @@ export default {
       ]
     },
     {
-      template: {
-        type: 'wizard',
-        props: (templateProps) => {
-          return {
-            title: 'Create Tweet',
-            subtitle: 'Enter text and select the user to tweet it',
-            stepper: {
-              stepIndex: 1,
-              steps: [
-                'Enter Text',
-                'Select User',
-              ]
-            }
-          };
-        }
+      form: 'wizard',
+      props: (templateProps) => {
+        return {
+          title: 'Create Tweet',
+          subtitle: 'Enter text and select the user to tweet it',
+          stepper: {
+            stepIndex: 1,
+            steps: [
+              'Enter Text',
+              'Select User',
+            ]
+          }
+        };
       },
       validators: function(data) {
         return {
@@ -81,15 +77,18 @@ export default {
       },
       fields: {
         userId: {
-          type: 'autocomplete',
+          type: 'select2',
           props: (form) => {
             return {
               floatingLabelText: "User",
               name: "userId",
-              getOptions: (getState, props) => {
-                return {
-                  options: getState('user.find')
-                }
+              // getOptions: (getState, props) => {
+              //   return {
+              //     options: getState('user.find')
+              //   }
+              // },
+              options: (getState, props) => {
+                return getState('user.find');
               },
               field: "username"
             };
@@ -125,56 +124,61 @@ export default {
       ]
     },
     {
-      template: {
-        type: 'request',
-        props: (form) => {
-          return {
-            // request: form.props.request,
-            request: (data) => {
-              return lore.actions.tweet.create({
-                userId: data.userId,
-                text: data.text,
-                createdAt: moment().unix()
-              }).payload;
-            },
-            reducer: 'tweet',
-            onSuccess: form.callbacks.onRequestSuccess,
-            onError: form.callbacks.onRequestError
-          }
+      form: 'wizardRequest',
+      props: (form) => {
+        return {
+          title: 'Create Tweet',
+          subtitle: 'Enter text and select the user to tweet it',
+          stepper: {
+            stepIndex: 1,
+            steps: [
+              'Enter Text',
+              'Select User',
+            ]
+          },
+          request: (data) => {
+            return lore.actions.tweet.create({
+              userId: data.userId,
+              text: data.text,
+              createdAt: moment().unix()
+            }).payload;
+          },
+          reducer: 'tweet',
+          onSuccess: form.callbacks.onRequestSuccess,
+          onError: form.callbacks.onRequestError,
+
         }
       }
     },
     {
-      template: {
-        type: 'custom',
-        props: () => {
-          return {
-            render: (form) => {
-              return (
-                <Card style={{ paddingTop: '16px', paddingBottom: '24px'}}>
-                  <div className="mui-card-text">
-                    <div className="row">
-                      <div className="col-md-12">
-                        <div className="text-center">
-                          <h2 style={{ padding: 0, margin: 0 }}>
-                            Tweet posted!
-                          </h2>
-                        </div>
+      form: 'custom',
+      props: () => {
+        return {
+          render: (form) => {
+            return (
+              <Card style={{ paddingTop: '16px', paddingBottom: '24px'}}>
+                <div className="mui-card-text">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="text-center">
+                        <h2 style={{ padding: 0, margin: 0 }}>
+                          Tweet posted!
+                        </h2>
                       </div>
                     </div>
                   </div>
-                  <div className="mui-card-actions">
-                    <div className="text-center">
-                      <RaisedButton
-                        label="Create Another"
-                        primary={true}
-                        onTouchTap={form.callbacks.onResetWizard}
-                      />
-                    </div>
+                </div>
+                <div className="mui-card-actions">
+                  <div className="text-center">
+                    <RaisedButton
+                      label="Create Another"
+                      primary={true}
+                      onTouchTap={form.callbacks.onResetWizard}
+                    />
                   </div>
-                </Card>
-              );
-            }
+                </div>
+              </Card>
+            );
           }
         }
       }

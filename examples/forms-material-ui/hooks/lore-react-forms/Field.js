@@ -36,10 +36,39 @@ class Field extends React.Component {
   }
 
   render() {
-    const name = this.props.name;
+    // const name = this.props.name;
     // const error = this.props.errors[name];
     // const validators = this.props.validators[name];
-    const value = this.props.data[name];
+    // const value = this.props.data[name];
+
+    const {
+      name,
+      data,
+      validators,
+      errors,
+      hasError,
+      children
+    } = this.props;
+
+    const {
+      touched
+    } = this.state;
+
+    if (_.isFunction(children)) {
+      return children({
+        name: name,
+        data: data,
+        value: data[name],
+        validators: validators,
+        errors: errors,
+        error: errors[name],
+        hasError: hasError,
+        touched: touched,
+        onChange: this.onChange,
+        onFocus: this.onFocus,
+        onBlur: this.onBlur
+      });
+    }
 
     return (
       <div>{value}</div>
@@ -56,8 +85,10 @@ Field.propTypes = {
 };
 
 Field.defaultProps = {
-  validators: {},
+  name: '',
   data: {},
+  validators: {},
+  errors: {},
   onChange: function() {}
 };
 

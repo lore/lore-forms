@@ -87,11 +87,14 @@ export default {
         floatingLabelText: "Country *",
         style: { width: '100%' },
         field: 'name',
-        getOptions: (getState, props) => {
-          return {
-            options: getState('country.find')
-          }
-        }
+        // getOptions: (getState, props) => {
+        //   return {
+        //     options: getState('country.find')
+        //   }
+        // },
+        options: (getState, props) => {
+          return getState('country.find');
+        },
       }
     },
     region: {
@@ -102,25 +105,40 @@ export default {
           disabled: !form.data.country,
           style: { width: '100%' },
           field: 'name',
-          getOptions: (getState, props) => {
+          // getOptions: (getState, props) => {
+          //   const { country } = props.data;
+          //
+          //   if (country) {
+          //     return {
+          //       options: getState('region.find', {
+          //         where: {
+          //           countryId: country
+          //         }
+          //       })
+          //     }
+          //   }
+          //
+          //   return {
+          //     options: {
+          //       data: []
+          //     }
+          //   }
+          // },
+          options: (getState, props) => {
             const { country } = props.data;
 
             if (country) {
-              return {
-                options: getState('region.find', {
-                  where: {
-                    countryId: country
-                  }
-                })
-              }
+              return getState('region.find', {
+                where: {
+                  countryId: country
+                }
+              });
             }
 
             return {
-              options: {
-                data: []
-              }
-            }
-          }
+              data: []
+            };
+          },
         }
       }
     },

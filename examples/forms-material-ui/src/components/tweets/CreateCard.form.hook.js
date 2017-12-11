@@ -19,7 +19,7 @@ export default createReactClass({
       data
     } = this.state;
 
-    return lore.forms.tweet.create();
+    return lore.forms.tweet.default();
   }
 
 });

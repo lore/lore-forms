@@ -1,6 +1,7 @@
 /* eslint no-param-reassign: "off" */
 
 import React from 'react';
+import _ from 'lodash';
 
 import { FormSection, PropBarrier } from 'lore-react-forms';
 import { FlatButton, RaisedButton, Stepper, Step, StepLabel } from 'material-ui';
@@ -16,6 +17,12 @@ import UpdateWizardBlueprint from './blueprints/update.wizard';
 import DestroyDefaultBlueprint from './blueprints/destroy.default';
 import DestroyOverlayBlueprint from './blueprints/destroy.overlay';
 import DestroyWizardBlueprint from './blueprints/destroy.wizard';
+
+import text2 from './fields/text2';
+import password2 from './fields/password2';
+import select2 from './fields/select2';
+import checkbox2 from './fields/checkbox2';
+import custom2 from './fields/custom2';
 
 import {
   // Templates
@@ -173,6 +180,8 @@ export default {
       );
     },
 
+    custom2: custom2,
+
     text: (form, props, name) => {
       return (
         <TextField
@@ -181,6 +190,8 @@ export default {
         />
       );
     },
+
+    text2: text2,
 
     password: (form, props, name) => {
       return (
@@ -191,6 +202,8 @@ export default {
       );
     },
 
+    password2: password2,
+
     checkbox: (form, props, name) => {
       return (
         <CheckboxField
@@ -200,30 +213,65 @@ export default {
       );
     },
 
+    checkbox2: checkbox2,
+
     select: function(form, props, name) {
+      // const {
+      //   getOptions,
+      //   ...other
+      // } = props;
+      //
+      // return (
+      //   <Connect callback={getOptions}>
+      //     <SelectField
+      //       name={name}
+      //       props={other}
+      //     />
+      //   </Connect>
+      // );
+
       const {
-        getOptions,
+        options,
         ...other
       } = props;
 
       return (
-        <Connect callback={getOptions}>
+        <Connect callback={(getState, props) => {
+          return {
+            options: _.isFunction(options) ? options(getState, props) : options
+          }
+        }}>
           <SelectField
             name={name}
-            props={other}
+            {...other}
           />
         </Connect>
       );
     },
 
+    select2: select2,
+
     autocomplete: (form, props, name) => {
       const {
-        getOptions,
+        options,
         ...other
       } = props;
 
+      // return (
+      //   <Connect callback={getOptions}>
+      //     <AutoCompleteField
+      //       name={name}
+      //       {...other}
+      //     />
+      //   </Connect>
+      // );
+
       return (
-        <Connect callback={getOptions}>
+        <Connect callback={(getState, props) => {
+          return {
+            options: _.isFunction(options) ? options(getState, props) : options
+          }
+        }}>
           <AutoCompleteField
             name={name}
             {...other}
