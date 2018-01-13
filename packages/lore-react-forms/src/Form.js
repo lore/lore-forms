@@ -1,17 +1,19 @@
 /* eslint consistent-return: "off" */
 
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Form',
 
   propTypes: {
-    data: React.PropTypes.object.isRequired,
-    errors: React.PropTypes.object,
-    validators: React.PropTypes.object,
-    onChange: React.PropTypes.func.isRequired,
-    isSaving: React.PropTypes.bool.isRequired
+    data: PropTypes.object.isRequired,
+    errors: PropTypes.object,
+    validators: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    isSaving: PropTypes.bool.isRequired
   },
 
   getDefaultProps: function() {
@@ -60,7 +62,15 @@ export default React.createClass({
       return this.props.getErrors(validatorDictionary, data);
     }
 
-    return _.mapValues(data, function(value, key) {
+    // make sure we include errors for validator keys that aren't in data yet
+    const _data = _.merge({}, data);
+    _.keys(validatorDictionary).map(function (key, index) {
+      if (_data[key] === undefined) {
+        _data[key] = undefined;
+      }
+    });
+
+    return _.mapValues(_data, function(value, key) {
       const validators = validatorDictionary[key];
       let error = null;
       if (validators) {
@@ -104,7 +114,6 @@ export default React.createClass({
           data: this.props.data,
           errors: errors,
           hasError: hasError
-          // validators: this.props.validators
         };
 
         return React.cloneElement(child, _.assign(props, handlers));
@@ -120,9 +129,11 @@ export default React.createClass({
     const parentErrors = this.props.errors;
     const allErrors = _.assign({}, errors, parentErrors);
 
+    const other = _.omit(this.props, ['data', 'validators', 'errors']);
+
     return (
       <div>
-        {this.createFields(allErrors, hasError, {
+        {this.createFields(allErrors, hasError,  _.merge({
           data: data,
           validators: validators,
           errors: errors,
@@ -131,7 +142,7 @@ export default React.createClass({
           allErrors: allErrors,
           isModified: this.state.isModified,
           isSaving: this.state.isSaving
-        })}
+        }, other))}
       </div>
     );
   }

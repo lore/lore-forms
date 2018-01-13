@@ -1,36 +1,38 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'PropBarrier',
 
   propTypes: {
-    element: React.PropTypes.string,
-    className: React.PropTypes.string
+    element: PropTypes.string,
+    className: PropTypes.string,
+    style: PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       element: 'div',
-      className: ''
+      className: '',
+      style: {},
     };
   },
 
-  render: function() {
-    const element = this.props.element;
-    const className = this.props.className;
-    const children = this.props.children;
+  render: function () {
+    const {
+      element,
+      className,
+      style,
+      children
+    } = this.props;
 
     const props = {
-      className: className || null
+      className: className || null,
+      style: style || {}
     };
 
-    if (children.length) {
-      return React.createElement(element, props,
-        this.props.children
-      );
-    }
-
-    return this.props.children;
+    return React.createElement(element, props, children);
   }
 
 });
