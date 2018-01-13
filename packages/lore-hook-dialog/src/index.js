@@ -1,17 +1,38 @@
 /* eslint no-param-reassign: "off" */
 
-import dialogManager from './dialogManager';
+import React from 'react';
+import _ from 'lodash';
+import defaultConfig from './config';
 
 export default {
 
   defaults: {
-    dialog: {
-      domElementId: 'dialog'
-    }
+    dialog: defaultConfig
   },
 
   load: function(lore) {
-    lore.dialog = dialogManager(lore);
+    const {
+      domElementId,
+      buildDialogContainer,
+      renderDialogToDom
+    } = lore.config.dialog;
+
+    lore.dialog = {};
+
+    lore.dialog.show = function(component, options = {}) {
+      const dialog = _.isFunction(component) ? component() : component;
+
+      if (!dialog) {
+        throw new Error('Must provide a component to lore.dialog.show');
+      }
+
+      const DialogContainer = buildDialogContainer(lore, options);
+
+      // Find the proper DOM element and mount the dialog to it
+      renderDialogToDom(domElementId || options.domElementId, (
+        <DialogContainer dialog={dialog} />
+      ));
+    }
   }
 
 };
