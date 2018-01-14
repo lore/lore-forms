@@ -1,0 +1,52 @@
+import React from 'react';
+import createReactClass from 'create-react-class';
+import _ from 'lodash';
+import Wizard from './Wizard';
+import modelConfig from '../../../models/{{ modelName }}';
+
+export default createReactClass({
+  render: function() {
+    const {
+      schemas,
+      fieldMap,
+      actionMap
+    } = lore.config.dialogs;
+
+    const {
+      steps,
+      data,
+      validators,
+      fields,
+      actions
+    } = _.merge({}, _.result(modelConfig, 'dialogs.create', {}));
+
+    return (
+      <Wizard
+        modelName="{{ modelName }}"
+        schema={schemas.default}
+        fieldMap={fieldMap}
+        actionMap={actionMap}
+        data={data}
+        validators={validators}
+        steps={% raw %}{steps || [
+          {
+            form: 'step',
+            steps: [
+              'Enter Data'
+            ],
+            activeStep: 0,
+            validators: validators || {},
+            config: {
+              fields: fields || {},
+              actions: actions || []
+            }
+          },
+          {
+            form: 'confirmation'
+          }
+        ]}{% endraw %}
+        {...this.props}
+      />
+    );
+  }
+});

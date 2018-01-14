@@ -1,0 +1,38 @@
+import React from 'react';
+import createReactClass from 'create-react-class';
+import _ from 'lodash';
+import Overlay from './Overlay';
+import modelConfig from '../../../models/{{ modelName }}';
+
+export default createReactClass({
+  render: function() {
+    const {
+      schemas,
+      fieldMap,
+      actionMap
+    } = lore.config.dialogs;
+
+    const {
+      data,
+      validators,
+      fields,
+      actions
+    } = _.merge({}, _.result(modelConfig, 'dialogs.destroy', {}));
+
+    return (
+      <Overlay
+        modelName="{{ modelName }}"
+        schema={schemas.default}
+        fieldMap={fieldMap}
+        actionMap={actionMap}
+        data={data}
+        validators={validators}
+        config={% raw %}{{
+          fields: fields || {},
+          actions: actions || []
+        }}{% endraw %}
+        {...this.props}
+      />
+    );
+  }
+});
