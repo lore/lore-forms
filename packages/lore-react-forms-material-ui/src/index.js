@@ -1,21 +1,24 @@
-import AutoCompleteField from './AutoCompleteField';
-import CheckboxField from './CheckboxField';
-import DynamicTextField from './DynamicTextField';
-import NumberField from './NumberField';
-import PasswordField from './PasswordField';
-import SelectField from './SelectField';
-import SmartDynamicTextField from './SmartDynamicTextField';
-import TextAreaField from './TextAreaField';
-import TextField from './TextField';
+// actions
+export { default as flatAction } from './actions/flat';
+export { default as raisedAction } from './actions/raised';
 
-export {
-  AutoCompleteField,
-  CheckboxField,
-  DynamicTextField,
-  NumberField,
-  PasswordField,
-  SelectField,
-  SmartDynamicTextField,
-  TextAreaField,
-  TextField
-};
+// fields
+export { default as checkboxField } from './fields/checkbox';
+export { default as customField } from './fields/custom';
+export { default as passwordField } from './fields/password';
+export { default as selectField } from './fields/select';
+export { default as stringField } from './fields/string';
+export { default as textField } from './fields/text';
+
+// schemas
+export { default as actionSchema } from './schemas/action';
+export { default as actionsSchema } from './schemas/actions';
+export { default as fieldSchema } from './schemas/field';
+export { default as fieldsSchema } from './schemas/fields';
+
+// components
+export { default as ErrorMessage } from './components/ErrorMessage';
+export { default as Overlay } from './components/Overlay';
+export { default as Request } from './components/Request';
+export { default as RequestError } from './components/RequestError';
+export { default as SuccessMessage } from './components/SuccessMessage';
