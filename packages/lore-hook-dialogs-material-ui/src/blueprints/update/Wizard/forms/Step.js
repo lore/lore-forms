@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { CardTitle, Stepper, Step, StepLabel } from 'material-ui';
 import { result as _result } from 'lore-utils';
-import { SchemaForm, RequestError } from 'lore-hook-forms-material-ui';
+import { SchemaForm } from 'lore-react-forms';
+import { RequestError } from 'lore-react-forms-material-ui';
 
 export default createReactClass({
   displayName: 'Step',

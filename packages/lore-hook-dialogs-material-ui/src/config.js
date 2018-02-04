@@ -11,21 +11,22 @@ import DestroyOptimisticBlueprint from './blueprints/destroy/Optimistic';
 import DestroyOverlayBlueprint from './blueprints/destroy/Overlay';
 import DestroyWizardBlueprint from './blueprints/destroy/Wizard';
 
-import actionSchema from './schemas/action';
-import actionsSchema from './schemas/actions';
-import fieldSchema from './schemas/field';
-import fieldsSchema from './schemas/fields';
-
 import {
+  actionSchema,
+  actionsSchema,
+  fieldSchema,
+  fieldsSchema,
+
   textField,
   passwordField,
   selectField,
   checkboxField,
   customField,
   stringField,
+
   flatAction,
   raisedAction
-} from 'lore-hook-forms-material-ui';
+} from 'lore-react-forms-material-ui';
 
 export default {
   defaultBlueprint: 'optimistic',

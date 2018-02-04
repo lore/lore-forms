@@ -2,7 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { Overlay, Request } from 'lore-hook-forms-material-ui';
+import { Overlay, Request } from 'lore-react-forms-material-ui';
 import Step from './forms/Step';
 import Confirmation from './forms/Confirmation';
 

@@ -5,16 +5,6 @@ import _ from 'lodash';
 import dialogLoader from './loaders/dialogs';
 import defaultDialogConfig from './config';
 
-export { default as CreateOptimisticBlueprint } from './blueprints/create/Optimistic';
-export { default as CreateOverlayBlueprint } from './blueprints/create/Overlay';
-export { default as CreateWizardBlueprint } from './blueprints/create/Wizard';
-export { default as UpdateOptimisticBlueprint } from './blueprints/update/Optimistic';
-export { default as UpdateOverlayBlueprint } from './blueprints/update/Overlay';
-export { default as UpdateWizardBlueprint } from './blueprints/update/Wizard';
-export { default as DestroyOptimisticBlueprint } from './blueprints/destroy/Optimistic';
-export { default as DestroyOverlayBlueprint } from './blueprints/destroy/Overlay';
-export { default as DestroyWizardBlueprint } from './blueprints/destroy/Wizard';
-
 export default {
 
   dependencies: ['models'],
