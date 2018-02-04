@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "create-react-class": "^15.6.2",
-    "lodash": "^4.0.0"
+    "lodash": "^4.0.0",
+    "lore-utils": "^0.13.0-beta"
   },
   "devDependencies": {
     "chai": "^3.4.1",
