@@ -21,7 +21,11 @@
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register --recursive"
   },
   "dependencies": {
-    "lodash": "^4.0.0"
+    "lodash": "^4.0.0",
+    "lore-react-forms-bootstrap": "^0.13.0-beta",
+    "lore-react-forms": "^0.13.0-beta",
+    "lore-utils": "^0.13.0-beta",
+    "webpack-requiredir": "~0.2.1"
   },
   "devDependencies": {
     "chai": "3.4.1",
