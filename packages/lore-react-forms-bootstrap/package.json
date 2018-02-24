@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "lodash": "^4.0.0",
-    "lore-react-forms": "^0.13.0-beta.1",
-    "lore-utils": "^0.12.6",
-    "react-onclickoutside": "^6.1.1"
+    "lore-hook-connect": "^0.13.0-beta",
+    "lore-react-forms": "^0.13.0-beta",
+    "lore-utils": "^0.13.0-beta"
   },
   "devDependencies": {
     "chai": "^3.4.1",
