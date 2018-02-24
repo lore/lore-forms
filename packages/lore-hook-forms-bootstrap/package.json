@@ -22,8 +22,10 @@
   },
   "dependencies": {
     "lodash": "^4.0.0",
-    "lore-react-forms": "^0.13.0-beta.1",
-    "lore-react-forms-bootstrap": "^0.13.0-beta.1"
+    "lore-react-forms": "^0.13.0-beta",
+    "lore-react-forms-bootstrap": "^0.13.0-beta",
+    "lore-utils": "^0.13.0-beta",
+    "webpack-requiredir": "~0.2.1"
   },
   "devDependencies": {
     "chai": "3.4.1",
