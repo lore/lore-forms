@@ -31,6 +31,14 @@ module.exports = function(env) {
         'react',
         'react-dom',
         'react-router'
+      ],
+      material: [
+        'material-ui',
+        'material-ui/svg-icons',
+        'material-ui/svg-icons/content/add',
+        'material-ui/List',
+        'material-ui/svg-icons/navigation/more-vert',
+        'material-ui/styles/colors'
       ]
     },
     output: {
@@ -45,10 +53,12 @@ module.exports = function(env) {
     resolve: {
       alias: {
         'react': path.resolve(__dirname, 'node_modules/react'),
-        // 'lore-hook-actions': path.resolve(__dirname, '../../packages/lore-hook-actions'),
-        // 'lore-hook-forms-bootstrap': path.resolve(__dirname, '../../packages/lore-hook-forms-bootstrap'),
-        'lore-react-forms': path.resolve(__dirname, '../../packages/lore-react-forms'),
-        'lore-react-forms-bootstrap': path.resolve(__dirname, '../../packages/lore-react-forms-bootstrap')
+        'lore-actions': path.resolve(__dirname, './hooks/lore-actions'),
+        'lore-hook-dialog-bootstrap': path.resolve(__dirname, '../../packages/lore-hook-dialog-bootstrap/src'),
+        'lore-hook-dialogs-bootstrap': path.resolve(__dirname, '../../packages/lore-hook-dialogs-bootstrap/src'),
+        'lore-hook-forms-bootstrap': path.resolve(__dirname, '../../packages/lore-hook-forms-bootstrap/src'),
+        'lore-react-forms': path.resolve(__dirname, '../../packages/lore-react-forms/src'),
+        'lore-react-forms-bootstrap': path.resolve(__dirname, '../../packages/lore-react-forms-bootstrap/src')
       }
     },
     module: {
@@ -180,11 +190,20 @@ module.exports = function(env) {
       ifProduction(new ManifestPlugin({
         fileName: 'asset-manifest.json'
       })),
-      ifProduction(new webpack.optimize.CommonsChunkPlugin({
-        names: [
-          'vendor'
-        ]
-      })),
+      ifProduction(
+        new webpack.optimize.CommonsChunkPlugin({
+          names: [
+            'vendor',
+            'material'
+          ]
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+          names: [
+            'vendor',
+            'material'
+          ]
+        })
+      ),
       ifProduction(new CopyWebpackPlugin([{
         from: 'assets/images',
         to: 'assets/images'

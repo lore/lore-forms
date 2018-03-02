@@ -1,0 +1,109 @@
+import React from 'react';
+import _ from 'lodash';
+import validators from './validators';
+import Steps from '../_common/Steps';
+import modelConfig from '../../../../models/{{ modelName }}';
+
+const stepConfig = _.result(modelConfig, 'dialogs.update', {});
+
+export default {
+  blueprint: 'wizard',
+  data: stepConfig.data || {},
+  steps: [
+    {
+      form: 'step',
+      steps: [
+        '1. Enter Data',
+        '2. Custom Step',
+        '3. Confirmation'
+      ],
+      activeStep: Steps.STEP_ONE,
+      validators: stepConfig.validators || {},
+      fields: stepConfig.fields || {},
+      actions: [
+        {
+          type: 'default',
+          props: (form) => {
+            return {
+              label: 'Cancel',
+              onClick: () => {
+                form.callbacks.onCancel(form.data)
+              }
+            }
+          }
+        },
+        {
+          type: 'primary',
+          props: (form) => {
+            return {
+              label: 'Next',
+              onClick: () => {
+                form.callbacks.onNext(form.data)
+              }
+            }
+          }
+        }
+       ]
+    },
+    {
+      form: 'step',
+      steps: [
+        '1. Enter Data',
+        '2. Custom Step',
+        '3. Confirmation'
+      ],
+      activeStep: Steps.STEP_TWO,
+      validators: {},
+      fields: {
+        customExample: {
+          type: 'custom',
+          props: (form) => {
+            return {
+              render: () => {
+                return (
+                  <div>
+                    <p>
+                      Here is the data you entered in the previous step:
+                    </p>
+                    <p>
+                      {JSON.stringify(form.data, null, 2)}
+                    </p>
+                  </div>
+                );
+              }
+            };
+          }
+        }
+      },
+      actions: [
+        {
+          type: 'default',
+          props: (form) => {
+            return {
+              label: 'Back',
+              onClick: () => {
+                form.callbacks.onPrevious(form.data)
+              }
+            }
+          }
+        },
+        {
+          type: 'primary',
+          props: (form) => {
+            return {
+              label: 'Update',
+              onClick: () => {
+                form.callbacks.onSubmit(form.data)
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      form: 'confirmation',
+      title: 'Update {{ _.capitalize(modelName) }}',
+      successMessage: '{{ _.capitalize(modelName) }} updated.'
+    }
+  ]
+}

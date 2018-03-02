@@ -1,172 +1,22 @@
-var validators = require('../utils/validators');
-var React = require('react');
-var PayloadStates = require('../constants/PayloadStates');
+export default {
 
-module.exports = {
-
-  forms: {
-    fields: {
-      name: {
-        type: 'string',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Name'
-        }
-      },
-      username: {
-        type: 'dynamicString',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Username',
-          connect: function(getState, props) {
-            var username = props.data['username'];
-
-            if (!username) {
-              return {
-                _model: null
-              }
-            }
-
-            return {
-              _model: getState('username.byId', {
-                id: username
-              })
-            }
-          },
-          getMessage: function(model) {
-            var options = {
-              icon: null,
-              message: ''
-            };
-
-            if (!model) {
-              return options;
-            } else if (model.state === PayloadStates.FETCHING) {
-              options.icon = (
-                <span className="glyphicon glyphicon-repeat" style={{
-                  position: 'absolute',
-                  top: '35px',
-                  right: '8px'
-                }} />
-              );
-            } else if (model.state === PayloadStates.NOT_FOUND) {
-              options.icon = (
-                <span className="glyphicon glyphicon-ok" style={{
-                  position: 'absolute',
-                  top: '35px',
-                  right: '8px',
-                  color: 'green'
-                }} />
-              );
-            } else if (model.state === PayloadStates.RESOLVED) {
-              options.icon = (
-                <span className="glyphicon glyphicon-exclamation-sign" style={{
-                  position: 'absolute',
-                  top: '35px',
-                  right: '8px',
-                  color: 'red'
-                }} />
-              );
-              options.message = model.error.username || 'Username already taken';
-            }
-
-            return options;
-          }
-        }
-      },
-      avatar: {
-        type: 'string',
-        data: '',
-        validators: [validators.isUrl],
-        options: {
-          label: 'Avatar (optional)',
-          hintText: 'https://some.image/url'
-        }
-      },
-      password: {
-        type: 'string',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Password'
-        }
-      },
-      confirmPassword: {
-        type: 'string',
-        data: '',
-        validators: function(data) {
-          return [
-            validators.isPasswordMatch.bind(null, data.password)
-          ];
-        },
-        options: {
-          label: 'Confirm Password'
-        }
-      },
-      country: {
-        type: 'select',
-        data: null,
-        validators: [validators.number.isRequired],
-        options: {
-          label: 'Country',
-          field: 'name',
-          getOptions: function(getState, props) {
-            return {
-              options: getState('country.find')
-            }
-          }
-        }
-      },
-      region: {
-        type: 'select',
-        data: null,
-        validators: [validators.number.isRequired],
-        options: {
-          label: 'Region',
-          field: 'name',
-          getOptions: function(getState, props) {
-            var countryId = props.data.country;
-
-            if (countryId) {
-              return {
-                options: getState('region.find', {
-                  where: {
-                    countryId: countryId
-                  }
-                })
-              }
-            }
-
-            return {
-              options: {
-                data: []
-              }
-            }
-          }
-        }
-      }
+  attributes: {
+    name: {
+      type: 'text'
     },
-    actions: {
-      submit: {
-        type: 'submit',
-        options: {
-          label: 'Save',
-          // onTouchTap: this.onSubmit
-        }
-      }
+    username: {
+      type: 'text'
     },
-    onChange: function(name, value) {
-      var state = {};
-      state[name] = value;
-
-      // reset the region when the country changes
-      if (name === 'country') {
-        state.region = null;
-      }
-
-      this.setState(state);
+    password: {
+      type: 'password'
+    },
+    countryId: {
+      type: 'model',
+      model: 'country'
+    },
+    regionId: {
+      type: 'model',
+      model: 'region'
     }
   },
 
@@ -238,7 +88,7 @@ module.exports = {
      * call yourself or make a call to sync.apply(this, arguments).
      *
      * Use of 'sync' refers to sync method provided by the 'lore-models'
-     * package, i.e. require('lore-models').sync
+     * package, i.e. import { sync } from 'lore-models';
      */
 
     // sync: function() {

@@ -1,10 +1,13 @@
-const _ = require('lodash');
-const { payload, defaultOptions, validatePartialPairs } = require('../utils');
+/* eslint consistent-return: "off" */
+
+import _ from 'lodash';
+import { payload } from 'lore-utils';
+import { defaultOptions, validatePartialPairs } from '../utils';
 
 /*
  * Blueprint for Create method
  */
-module.exports = function(opts = {}) {
+export default function(opts = {}) {
   // clone the options so we don't unintentionally modify them
   let options = _.cloneDeep(opts);
 
@@ -50,6 +53,7 @@ module.exports = function(opts = {}) {
       });
       }, lore.config.actions.ajaxDelay);
 
+
       if (options.optimistic) {
         return dispatch({
           type: options.optimistic.actionType,
@@ -58,4 +62,4 @@ module.exports = function(opts = {}) {
       }
     };
   };
-};
+}

@@ -6,8 +6,24 @@
 * `lore.models.xyz`, etc.)
 **/
 
-var lore = require('lore');
-var _ = require('lodash');
+import lore from 'lore';
+import _ from 'lodash';
+
+// Hooks
+import auth from 'lore-hook-auth';
+import actions from 'lore-hook-actions';
+import bindActions from 'lore-hook-bind-actions';
+import collections from 'lore-hook-collections';
+import connections from 'lore-hook-connections';
+import connect from 'lore-hook-connect';
+import dialog from 'lore-hook-dialog-bootstrap';
+import dialogs from 'lore-hook-dialogs-bootstrap';
+import forms from 'lore-hook-forms-bootstrap';
+import models from 'lore-hook-models';
+import react from 'lore-hook-react';
+import reducers from 'lore-hook-reducers';
+import redux from 'lore-hook-redux';
+import router from 'lore-hook-router';
 
 // Allows you to access your lore app globally as well as from within
 // the console. Remove this line if you don't want to be able to do that.
@@ -16,20 +32,21 @@ window.lore = lore;
 // Summon the app!
 lore.summon({
   hooks: {
-    auth: require('/Users/jchansen/lore/lore/packages/lore-hook-auth'),
-    actions: require('/Users/jchansen/lore/lore/packages/lore-hook-actions'),
-    bindActions: require('/Users/jchansen/lore/lore/packages/lore-hook-bind-actions'),
-    collections: require('/Users/jchansen/lore/lore/packages/lore-hook-collections'),
-    connections: require('/Users/jchansen/lore/lore/packages/lore-hook-connections'),
-    connect: require('/Users/jchansen/lore/lore/packages/lore-hook-connect'),
-    dialog: require('/Users/jchansen/lore/lore/packages/lore-hook-dialog'),
-    forms: require('/Users/jchansen/lore/lore/packages/lore-hook-forms-bootstrap'),
-    models: require('/Users/jchansen/lore/lore/packages/lore-hook-models'),
-    react: require('/Users/jchansen/lore/lore/packages/lore-hook-react'),
-    reducers: require('/Users/jchansen/lore/lore/packages/lore-hook-reducers'),
-    redux: _.extend(require('/Users/jchansen/lore/lore/packages/lore-hook-redux'), {
+    auth,
+    actions,
+    bindActions,
+    collections,
+    connections,
+    connect,
+    dialog,
+    dialogs,
+    forms,
+    models,
+    react,
+    reducers,
+    redux: _.extend(redux, {
       dependencies: ['reducers', 'auth']
     }),
-    router: require('/Users/jchansen/lore/lore/packages/lore-hook-router')
+    router
   }
 });

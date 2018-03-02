@@ -1,0 +1,35 @@
+import React from 'react';
+import createReactClass from 'create-react-class';
+import _ from 'lodash';
+import Optimistic from './Optimistic';
+import modelConfig from '../../../models/{{ modelName }}';
+
+export default createReactClass({
+  render: function() {
+    const {
+      schemas,
+      fieldMap,
+      actionMap
+    } = lore.config.forms;
+
+    const {
+      data,
+      validators,
+      fields,
+      actions
+    } = _.merge({}, _.result(modelConfig, 'forms.update', {}));
+
+    return (
+      <Optimistic
+        schema={schemas.default}
+        fieldMap={fieldMap}
+        actionMap={actionMap}
+        data={data}
+        validators={validators}
+        fields={fields || {}}
+        actions={actions || []}
+        {...this.props}
+      />
+    );
+  }
+});

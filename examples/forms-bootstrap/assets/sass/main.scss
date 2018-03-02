@@ -1,1 +1,50 @@
 @import "../css/main.css";
+
+.description {
+  margin-bottom: 24px;
+}
+
+.box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+
+.example {
+  > p:last-of-type {
+    margin-bottom: 24px;
+  }
+
+  > h2 {
+    margin-bottom: 24px;
+  }
+}
+
+.form {
+  @extend .box-shadow;
+
+  .modal-header {
+    border-bottom: none;
+  }
+
+  .help-block {
+    margin-bottom: 0px;
+  }
+
+  .modal-footer {
+    padding-top: 0px;
+    border-top: none;
+  }
+
+  .alert {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+}
+
+#dialog .alert {
+  margin: 15px;
+  margin-bottom: 0px;
+}
+
+.btn:focus {
+  outline: none !important;
+}

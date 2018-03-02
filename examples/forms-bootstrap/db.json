@@ -1,5 +1,4 @@
 {
-  "todos": [],
   "users": [
     {
       "id": 1,
@@ -80,30 +79,41 @@
       "id": 5,
       "userId": 5,
       "text": "I never imagined that we would settle our score in this dusty old era. Come, let us finish this charade!",
-      "createdAt": 1480133005
+      "createdAt": 1480133005,
+      "firstName": "test",
+      "lastName": "test2"
     },
     {
       "id": 6,
       "userId": 6,
       "text": "Crono!! We can't keep sponging off my dad! Go and get a job!!",
-      "createdAt": 1480133005
+      "createdAt": 1480133005,
+      "firstName": "test",
+      "lastName": "test2"
     },
     {
       "id": 7,
       "userId": 7,
       "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \"Melchior!\".",
       "createdAt": 1480133005
-    }
-  ],
-  "usernames": [
-    {
-      "id": "marle"
     },
     {
-      "id": "crono"
+      "text": "test",
+      "userId": 1,
+      "createdAt": 1520148441,
+      "id": 8
     },
     {
-      "id": "lucca"
+      "text": "test",
+      "userId": 2,
+      "createdAt": 1520148461,
+      "id": 9
+    },
+    {
+      "text": "test",
+      "userId": 3,
+      "createdAt": 1520148468,
+      "id": 10
     }
   ],
   "countries": [

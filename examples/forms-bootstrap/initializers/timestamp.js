@@ -1,5 +1,5 @@
-var moment = require('moment');
+import moment from 'moment';
 
-module.exports = function() {
+export default function() {
   lore.timestamp = moment().unix();
 };

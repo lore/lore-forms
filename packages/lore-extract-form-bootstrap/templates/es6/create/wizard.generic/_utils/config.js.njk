@@ -1,0 +1,99 @@
+import React from 'react';
+import _ from 'lodash';
+import validators from './validators';
+import Steps from '../_common/Steps';
+import modelConfig from '../../../../models/{{ modelName }}';
+
+const stepConfig = _.result(modelConfig, 'forms.create', {});
+
+export default {
+  blueprint: 'wizard',
+  steps: [
+    {
+      form: 'step',
+      steps: [
+        '1. Enter Data',
+        '2. Custom Step',
+        '3. Confirmation'
+      ],
+      activeStep: Steps.STEP_ONE,
+      data: stepConfig.data || {},
+      validators: stepConfig.validators || {},
+      fields: stepConfig.fields || {},
+      actions: [
+        {
+          type: 'primary',
+          props: (form) => {
+            return {
+              label: 'Next',
+              onClick: () => {
+                form.callbacks.onNext(form.data)
+              }
+            }
+          }
+        }
+       ]
+    },
+    {
+      form: 'step',
+      steps: [
+        '1. Enter Data',
+        '2. Custom Step',
+        '3. Confirmation'
+      ],
+      activeStep: Steps.STEP_TWO,
+      data: {},
+      validators: {},
+      fields: {
+        customExample: {
+          type: 'custom',
+          props: (form) => {
+            return {
+              render: () => {
+                return (
+                  <div>
+                    <p>
+                      Here is the data you entered in the previous step:
+                    </p>
+                    <p>
+                      {JSON.stringify(form.data, null, 2)}
+                    </p>
+                  </div>
+                );
+              }
+            };
+          }
+        }
+      },
+      actions: [
+        {
+          type: 'default',
+          props: (form) => {
+            return {
+              label: 'Back',
+              onClick: () => {
+                form.callbacks.onPrevious(form.data)
+              }
+            }
+          }
+        },
+        {
+          type: 'primary',
+          props: (form) => {
+            return {
+              label: 'Create',
+              onClick: () => {
+                form.callbacks.onSubmit(form.data)
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      form: 'confirmation',
+      title: 'Create {{ modelName }}',
+      successMessage: '{{ _.capitalize(modelName) }} created.'
+    }
+  ]
+}

@@ -6,7 +6,7 @@
  * Lore uses for the action and reducer blueprints.
  **/
 
-module.exports = {
+export default {
   INITIAL_STATE: 'INITIAL_STATE',
   RESOLVED: 'RESOLVED',
   NOT_FOUND: 'NOT_FOUND',

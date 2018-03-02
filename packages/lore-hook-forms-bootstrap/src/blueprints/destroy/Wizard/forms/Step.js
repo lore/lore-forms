@@ -42,12 +42,15 @@ export default createReactClass({
   },
 
   render: function() {
+    const { modelName } = this.props;
     const {
+      title = `Delete ${_.capitalize(modelName)}`,
+      description = '',
       schema,
       fieldMap,
       actionMap,
-      config,
-      modelName,
+      fields,
+      actions,
       callbacks,
       hasError,
       request,
@@ -59,29 +62,35 @@ export default createReactClass({
 
     return (
       <div>
-        <div style={{ padding: '20px', fontSize: '20px', fontWeight: '500' }}>
-          {`Delete ${_.capitalize(modelName)}`}
-        </div>
-        {hasError ? (
-          <div style={{ padding: '0px 20px' }}>
+        <div className="modal-header">
+          {title ? (
+            <h4 className="modal-title">
+              {title}
+            </h4>
+          ) : null}
+          {description ? (
+            <p className="help-block">
+              {description}
+            </p>
+          ) : null}
+          {hasError ? (
             <RequestError request={request}>
               {(request) => {
                 return request.error;
               }}
             </RequestError>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
         {steps ? (
-          <div style={{ padding: '0px 20px' }}>
+          <div className="modal-body">
             <div className="btn-group btn-group-justified">
               {steps.map((step, index) => {
                 return (
                   <div
                     key={step}
                     className={`btn ${index <= activeStep ? 'btn-primary' : 'btn-default'}`}
-                    style={index === activeStep ? { fontWeight: 'bold' } : undefined}
                   >
-                    {index + 1}. {step}
+                    {step}
                   </div>
                 );
               })}
@@ -96,10 +105,8 @@ export default createReactClass({
           schema={schema}
           fieldMap={fieldMap}
           actionMap={actionMap}
-          config={_.merge({
-            fields: {},
-            actions: []
-          }, config)}
+          fields={fields}
+          actions={actions}
         />
       </div>
     );

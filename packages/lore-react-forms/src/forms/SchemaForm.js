@@ -18,15 +18,19 @@ export default createReactClass({
     schema: PropTypes.object.isRequired,
     fieldMap: PropTypes.object.isRequired,
     actionMap: PropTypes.object.isRequired,
-    config: PropTypes.object.isRequired,
+    fields: PropTypes.object.isRequired,
+    actions: PropTypes.array.isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      fields: {},
+      actions: []
+    }
   },
 
   getInitialState: function () {
-    const {
-      config: {
-        fields
-      }
-    } = this.props;
+    const { fields } = this.props;
 
     return _.mapValues(fields, function (value, key) {
       return value.initialValue;
@@ -48,10 +52,7 @@ export default createReactClass({
   getValidators: function (data) {
     const {
       validators,
-      config: {
-        // validators,
-        fields
-      }
+      fields
     } = this.props;
 
     if (validators) {
@@ -76,10 +77,8 @@ export default createReactClass({
       schema,
       fieldMap,
       actionMap,
-      config: {
-        fields,
-        actions
-      }
+      fields,
+      actions
     } = this.props;
 
     const data = this.props.data || this.state;

@@ -14,6 +14,12 @@ export default createReactClass({
     form: PropTypes.object.isRequired,
   },
 
+  getDefaultProps() {
+    return {
+      actions: []
+    }
+  },
+
   render: function () {
     const {
       schema,

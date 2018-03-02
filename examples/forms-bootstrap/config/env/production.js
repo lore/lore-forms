@@ -8,7 +8,7 @@
  * is automatically set when webpack is invoked using the --env=production argument.
  **/
 
-module.exports = {
+export default {
 
   /**
    * To override a config setting, specify the name of the config file you

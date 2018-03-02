@@ -4,18 +4,32 @@
  * top-level navigation. All other components should be rendered by route handlers.
  **/
 
-var React = require('react');
-var Header = require('./Header');
+import React from 'react';
+import createReactClass from 'create-react-class';
+import Navigation from './Navigation';
 
-module.exports = React.createClass({
+export default createReactClass({
   displayName: 'Layout',
 
   render: function() {
     return (
       <div>
-        <Header />
-        <div className="container" style={{paddingTop: '8px'}}>
-          {React.cloneElement(this.props.children)}
+        <nav className="navbar navbar-default navbar-static-top header">
+          <div className="container">
+            <div className="navbar-header">
+              <a className="navbar-brand" href="/">Lore Example: Bootstrap Forms & Dialogs</a>
+            </div>
+          </div>
+        </nav>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-2">
+              <Navigation/>
+            </div>
+            <div className="col-md-10">
+              {React.cloneElement(this.props.children)}
+            </div>
+          </div>
         </div>
       </div>
     );

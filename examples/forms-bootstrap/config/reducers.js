@@ -4,7 +4,7 @@
  * This file is where you define overrides for the default reducer behaviors.
  */
 
-module.exports = {
+export default {
 
   /**
    * Specify dependencies between child reducers, which will determine the

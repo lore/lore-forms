@@ -1,41 +1,26 @@
-var validators = require('../utils/validators');
+import React from 'react';
+import fields from '../fields/tweet';
 
-module.exports = {
+export default {
+
+  attributes: {
+    text: {
+      type: 'text'
+    },
+    userId: {
+      type: 'model',
+      model: 'user'
+    }
+  },
 
   forms: {
-    fields: {
-      text: {
-        type: 'string',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Text',
-          hintText: 'Required'
-        }
-      },
-      userId: {
-        type: 'autocomplete',
-        data: null,
-        validators: [validators.number.isRequired],
-        options: {
-          label: 'User',
-          getOptions: function(getState, props) {
-            return {
-              options: getState('user.find')
-            }
-          }
-        }
-      }
-    },
-    actions: {
-      submit: {
-        type: 'submit',
-        options: {
-          label: 'Save',
-          // onTouchTap: this.onSubmit
-        }
-      }
-    }
+    create: fields,
+    update: fields
+  },
+
+  dialogs: {
+    create: fields,
+    update: fields
   },
 
   properties: {
@@ -106,7 +91,7 @@ module.exports = {
      * call yourself or make a call to sync.apply(this, arguments).
      *
      * Use of 'sync' refers to sync method provided by the 'lore-models'
-     * package, i.e. require('lore-models').sync
+     * package, i.e. import { sync } from 'lore-models';
      */
 
     // sync: function() {

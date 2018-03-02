@@ -42,12 +42,15 @@ export default createReactClass({
   },
 
   render: function() {
+    const { modelName } = this.props;
     const {
+      title = `Create ${_.capitalize(modelName)}`,
+      description = '',
       schema,
       fieldMap,
       actionMap,
-      config,
-      modelName,
+      fields,
+      actions,
       callbacks,
       hasError,
       request,
@@ -60,21 +63,26 @@ export default createReactClass({
     return (
       <div>
         <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal">
+          <button type="button" className="close" onClick={this.onCancel}>
             <span>&times;</span>
           </button>
-          <h4 className="modal-title">
-            {`Create ${_.capitalize(modelName)}`}
-          </h4>
+          {title ? (
+            <h4 className="modal-title">
+              {title}
+            </h4>
+          ) : null}
+          {description ? (
+            <p className="help-block">
+              {description}
+            </p>
+          ) : null}
         </div>
         {hasError ? (
-          <div className="modal-body">
-            <RequestError request={request}>
-              {(request) => {
-                return request.error;
-              }}
-            </RequestError>
-          </div>
+          <RequestError request={request}>
+            {(request) => {
+              return request.error;
+            }}
+          </RequestError>
         ) : null}
         {steps ? (
           <div className="modal-body">
@@ -84,9 +92,8 @@ export default createReactClass({
                   <div
                     key={step}
                     className={`btn ${index <= activeStep ? 'btn-primary' : 'btn-default'}`}
-                    style={index === activeStep ? { fontWeight: 'bold' } : undefined}
                   >
-                    {index + 1}. {step}
+                    {step}
                   </div>
                 );
               })}
@@ -101,10 +108,8 @@ export default createReactClass({
           schema={schema}
           fieldMap={fieldMap}
           actionMap={actionMap}
-          config={_.merge({
-            fields: {},
-            actions: []
-          }, config)}
+          fields={fields || {}}
+          actions={actions || []}
         />
       </div>
     );

@@ -44,7 +44,7 @@ export default createReactClass({
     const {isVisible} = this.state;
 
     return (
-      <div className="alert alert-success" style={{ display: isVisible ? 'block' : 'none', marginBottom: 0 }}>
+      <div className="alert alert-success" style={{ display: isVisible ? 'block' : 'none' }}>
         <strong>{this.props.title}</strong> {this.props.message}
       </div>
     );

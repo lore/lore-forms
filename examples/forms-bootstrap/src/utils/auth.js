@@ -3,7 +3,7 @@
  * if your app is using a token-based authentication strategy.
  **/
 
-module.exports = {
+export default {
 
   saveToken(token) {
     localStorage.userToken = token;
