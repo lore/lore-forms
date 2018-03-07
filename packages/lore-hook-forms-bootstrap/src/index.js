@@ -50,16 +50,21 @@ export default {
 
       function generateForm(blueprints, method) {
         return function form(props = {}, options = {}) {
+          const {
+            blueprint: blueprintName = defaultBlueprint,
+            schema: schemaName = defaultSchema,
+            ...other
+          } = props;
+
           const config = formsConfig[method] || {};
-          const blueprint = blueprints[props.blueprint || defaultBlueprint];
+          const blueprint = blueprints[blueprintName];
           const blueprintProps = {
-            schema: schemas[props.schema || defaultSchema],
+            modelName: modelName,
+            schema: schemas[schemaName],
             fieldMap: fieldMap,
             actionMap: actionMap,
-            modelName: modelName,
-            validators: config.validators,
-            config: config,
-            ..._.omit(props, ['blueprint', 'reducer', 'action'])
+            ...config,
+            ...other
           };
 
           return React.createElement(blueprint, blueprintProps);

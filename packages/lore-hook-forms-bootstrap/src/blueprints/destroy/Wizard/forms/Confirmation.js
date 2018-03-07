@@ -10,25 +10,37 @@ export default createReactClass({
   },
 
   render: function() {
+    const { modelName } = this.props;
     const {
-      callbacks,
-      modelName
+      title = `Delete ${_.capitalize(modelName)}`,
+      description = '',
+      successMessage = `${_.capitalize(modelName)} deleted.`,
+      callbacks
     } = this.props;
 
     return (
       <div>
-        <div style={{ padding: '20px', fontSize: '20px', fontWeight: '500' }}>
-          {`Delete ${_.capitalize(modelName)}`}
+        <div className="modal-header">
+          {title ? (
+            <h4 className="modal-title">
+              {title}
+            </h4>
+          ) : null}
+          {description ? (
+            <p className="help-block">
+              {description}
+            </p>
+          ) : null}
         </div>
-        <div style={{ padding: '0px 20px', fontSize: '16px', color: 'rgba(0,0,0,0.67)' }}>
-          {`${_.capitalize(modelName)} deleted!`}
+        <div className="modal-body">
+          {successMessage}
         </div>
-        <div style={{ padding: '20px', textAlign: 'right' }}>
+        <div className="modal-footer">
           <button
             className="btn btn-primary"
             onClick={callbacks.onResetWizard}
           >
-            Destroy Again
+            Delete Again
           </button>
         </div>
       </div>

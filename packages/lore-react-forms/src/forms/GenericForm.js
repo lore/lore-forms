@@ -13,21 +13,11 @@ export default createReactClass({
     validators: PropTypes.object,
     onChange: PropTypes.func,
     callbacks: PropTypes.object,
-    schema: PropTypes.object.isRequired,
-    config: PropTypes.object.isRequired,
     children: PropTypes.func.isRequired,
   },
 
   getInitialState: function () {
-    const {
-      config: {
-        fields
-      }
-    } = this.props;
-
-    return _.mapValues(fields, function (value, key) {
-      return value.initialValue;
-    });
+    return {};
   },
 
   onChange: function (name, value) {
@@ -43,23 +33,12 @@ export default createReactClass({
   },
 
   getValidators: function (data) {
-    const {
-      config: {
-        validators,
-        fields
-      }
-    } = this.props;
+    const { validators } = this.props;
 
-    if (validators) {
-      if (_.isFunction(validators)) {
-        return validators(data);
-      }
-      return validators;
+    if (_.isFunction(validators)) {
+      return validators(data);
     }
-
-    return _.mapValues(fields, function (value, key) {
-      return _.isFunction(value.validators) ? value.validators(data) : value.validators;
-    });
+    return validators || {};
   },
 
   render: function () {

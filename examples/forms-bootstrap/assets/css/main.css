@@ -1,34 +1,104 @@
 /*
- * Card
+ * Create Tweet Button
  */
 
-.card {
+.create-button {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  z-index: 1000;
+  border-radius: 100px;
+  outline: none;
+}
+
+/*
+ * Edit and Delete Links
+ */
+
+.link {
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+/*
+ * Feed
+ */
+
+.feed .title {
+  text-align: center;
+}
+
+.feed .tweets {
+  margin-top: 32px;
+}
+
+.feed .pagination {
+  text-align: center;
+}
+
+.feed nav {
+  text-align: center;
+}
+
+/*
+ * Filter
+ */
+
+.filter {
+  marginTop: 20px;
+}
+
+
+/*
+ * Header
+ */
+
+.header .container {
   position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  background-color: #fff;
-  /*border: 1px solid rgba(0,0,0,.125);*/
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 }
 
-.card-block {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  padding: 1.25rem;
+/*
+ * Footer
+ */
+
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 64px;
 }
 
-.card-title {
+.footer button {
+  outline: none;
+}
+
+/*
+ * Profile
+ */
+
+.profile {
+  position: relative;
+  display: block;
   margin-bottom: .75rem;
+  background-color: #fff;
+  border-radius: .25rem;
+  border: 1px solid rgba(0,0,0,.125);
+  margin-top: 20px;
+}
+
+.profile .card-block {
+  padding: 1.25rem
+}
+
+.profile .avatar {
+  width: 48px;
+  position: absolute;
+  top: -24px;
+  left: calc(50% - 24px);
+  border: 1px solid gray
+}
+
+.profile .permissions {
+  margin-left: -12px;
 }
 
 /*
@@ -37,29 +107,28 @@
 
 .tweet .avatar {
   width: 32px;
-  border: 1px solid gray;
+  border: 1px solid gray
 }
 
 .tweet .image-container {
   display: inline-block;
   vertical-align: top;
-  width: 32px;
+  width: 32px
 }
 
 .tweet .content-container {
   display: inline-block;
   margin-left: 8px;
-  max-width: 85%;
+  max-width: calc(100% - 40px);
 }
 
 .tweet .title {
   line-height: 32px;
-  display: inline-block;
+  display: inline-block
 }
 
 .tweet .text {
-  margin-bottom: 5px;
-  overflow: auto;
+  margin-bottom: 5px
 }
 
 .tweet .timestamp {
@@ -69,9 +138,131 @@
   font-size: 14px
 }
 
-.card-block .state {
-  background-color: #f7f7f7;
-  margin-left: -1.25rem;
-  margin-right: -1.25rem;
-  padding: 1.25rem;
+/*
+ * Sidebar
+ */
+
+.bd-links {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-right: -15px;
+  margin-left: -15px;
+  border-right: 1px solid rgba(0,0,0,.1);
+}
+
+.bd-toc-item.active {
+  margin-bottom: 1rem;
+}
+
+.bd-toc-item.active:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.bd-toc-item>.bd-sidenav {
+  display: block;
+}
+
+.bd-toc-link {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-weight: 500;
+  color: rgba(0,0,0,.65);
+}
+
+.bd-toc-item.active>.bd-toc-link {
+  color: rgba(0,0,0,.85);
+}
+
+.bd-toc-item.active>.bd-toc-link {
+  color: rgba(0,0,0,.85);
+}
+
+.bd-sidebar .nav>li>a, .bd-sidebar .nav a {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-size: 90%;
+  color: rgba(0,0,0,.65);
+}
+
+.bd-sidebar .nav>.active:hover>a,
+.bd-sidebar .nav>.active>a,
+.bd-sidebar .nav a.active:hover,
+.bd-sidebar .nav a.active
+{
+  font-weight: 500;
+  color: rgba(0,0,0,.85);
+  background-color: transparent;
+}
+
+.bd-sidebar {
+  height: 100%;
+}
+
+.bd-toc-link:hover {
+  color: rgba(0,0,0,.85);
+  text-decoration: none;
+}
+
+.bd-sidebar .nav>li>a:hover, .bd-sidebar .nav a:hover {
+  color: rgba(0,0,0,.85);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+/*
+ * Loader
+ */
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+
+.loader {
+  /*color: #ffffff;*/
+  /*font-size: 10px;*/
+  /*margin: 80px auto;*/
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+  color: darkgray;
+  font-size: 8px;
+  margin: 0px auto 40px auto;
+
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.loader:after {
+  left: 3.5em;
+}
+
+/*
+ * Utilities
+ */
+
+.clickable {
+  cursor: pointer;
 }

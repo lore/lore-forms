@@ -27,7 +27,7 @@ export default createReactClass({
     }
 
     return (
-      <div className="alert alert-danger" style={{ marginBottom: 0 }}>
+      <div className="alert alert-danger">
         <strong>Error!</strong> {text}
       </div>
     );

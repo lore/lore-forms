@@ -4,7 +4,7 @@
  * This file is where you define overrides for the default collection behaviors.
  */
 
-module.exports = {
+export default {
 
   default: {
 

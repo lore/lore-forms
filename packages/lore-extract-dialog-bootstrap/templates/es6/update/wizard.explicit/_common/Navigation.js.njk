@@ -1,0 +1,38 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
+
+export default createReactClass({
+  displayName: 'Navigation',
+
+  propTypes: {
+    activeStep: PropTypes.number
+  },
+
+  render: function () {
+    const { activeStep } = this.props;
+
+    return (
+      <div className="modal-body">
+        <div className="btn-group btn-group-justified">
+          {[
+            '1. First Name',
+            '2. Last Name',
+            '3. Confirmation'
+          ].map((step, index) => {
+            return (
+              <div
+                key={step}
+                className={`btn ${index <= activeStep ? 'btn-primary' : 'btn-default'}`}
+                style={index === activeStep ? { fontWeight: 'bold' } : undefined}
+              >
+                {step}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+});

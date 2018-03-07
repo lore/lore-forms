@@ -1,0 +1,31 @@
+import React from 'react';
+import createReactClass from 'create-react-class';
+import _ from 'lodash';
+import Wizard from './Wizard';
+import config from './_utils/config';
+
+export default createReactClass({
+  render: function() {
+    const {
+      schemas,
+      fieldMap,
+      actionMap
+    } = lore.config.forms;
+
+    const {
+      data,
+      steps
+    } = config;
+
+    return (
+      <Wizard
+        schema={schemas.default}
+        fieldMap={fieldMap}
+        actionMap={actionMap}
+        data={data}
+        steps={steps}
+        {...this.props}
+      />
+    );
+  }
+});

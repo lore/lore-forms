@@ -4,7 +4,7 @@
  * This file is where you define overrides for the default connect behavior.
  */
 
-module.exports = {
+export default {
 
   /**
    * Extend or override the built-in blueprints. This is helpful if you want to
