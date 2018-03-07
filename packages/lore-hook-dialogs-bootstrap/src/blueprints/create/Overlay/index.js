@@ -31,7 +31,7 @@ export default createReactClass({
               render: (form) => {
                 return (
                   <p>
-                    No fields have not provided.
+                    No fields have been provided.
                   </p>
                 );
               }

@@ -26,8 +26,34 @@ export default createReactClass({
         actionMap={actionMap}
         data={data}
         validators={validators}
-        fields={fields || {}}
-        actions={actions || {}}
+        fields={fields || {
+          question: {
+            type: 'custom',
+            props: {
+              render: (form) => {
+                return (
+                  <p>
+                    No fields have been provided.
+                  </p>
+                );
+              }
+            }
+          },
+        }}
+        actions={actions || [
+          {
+            type: 'primary',
+            props: (form) => {
+              return {
+                label: 'Create',
+                disabled: form.hasError,
+                onClick: () => {
+                  form.callbacks.onSubmit(form.data)
+                }
+              }
+            }
+          }
+        ]}
         {...this.props}
       />
     );
