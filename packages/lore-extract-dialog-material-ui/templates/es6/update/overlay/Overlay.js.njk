@@ -50,6 +50,10 @@ export default createReactClass({
     });
   },
 
+  onCancel: function() {
+    this.props.onCancel();
+  },
+
   onRequestSuccess: function (request) {
     this.setState({
       isSaving: false,
@@ -58,7 +62,7 @@ export default createReactClass({
       hasError: false
     });
 
-    this.props.onCancel();
+    this.onCancel();
   },
 
   onRequestError: function (request) {
@@ -134,7 +138,7 @@ export default createReactClass({
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             callbacks={% raw %}{{
-              onCancel: this.props.onCancel
+              onCancel: this.onCancel
             }}{% endraw %}
             schema={schema}
             fieldMap={fieldMap}

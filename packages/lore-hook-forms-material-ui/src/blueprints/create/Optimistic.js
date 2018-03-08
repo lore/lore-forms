@@ -41,6 +41,10 @@ export default createReactClass({
     });
   },
 
+  onCancel: function() {
+    this.props.onCancel();
+  },
+
   onChange: function(name, value) {
     const nextData = _.merge({}, this.state.data);
     nextData[name] = value;
@@ -73,7 +77,7 @@ export default createReactClass({
         onSubmit={this.onSubmit}
         callbacks={{
           onSubmit: this.onSubmit,
-          onCancel: this.props.onCancel
+          onCancel: this.onCancel
         }}
         schema={schema}
         fieldMap={fieldMap}

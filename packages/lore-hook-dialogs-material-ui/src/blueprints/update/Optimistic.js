@@ -33,6 +33,10 @@ export default createReactClass({
   onSubmit: function(data) {
     const { modelName, model } = this.props;
     lore.actions[modelName].update(model, data);
+    this.onCancel();
+  },
+
+  onCancel: function() {
     this.props.onCancel();
   },
 
@@ -70,7 +74,7 @@ export default createReactClass({
           onSubmit={this.onSubmit}
           callbacks={{
             onSubmit: this.onSubmit,
-            onCancel: this.props.onCancel
+            onCancel: this.onCancel
           }}
           schema={schema}
           fieldMap={fieldMap}

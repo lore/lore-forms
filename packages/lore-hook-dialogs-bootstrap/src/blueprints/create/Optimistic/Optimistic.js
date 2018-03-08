@@ -31,7 +31,8 @@ export default createReactClass({
 
   onSubmit: function(data) {
     const { modelName } = this.props;
-    lore.actions[modelName].create(data);
+    const { onSubmit } = this.props;
+    onSubmit ? onSubmit(data) : lore.actions[modelName].create(data);
     this.onCancel();
   },
 

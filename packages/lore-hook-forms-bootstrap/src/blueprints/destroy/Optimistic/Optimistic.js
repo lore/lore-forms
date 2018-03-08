@@ -32,9 +32,8 @@ export default createReactClass({
 
   onSubmit: function(data) {
     const { modelName } = this.props;
-    const { model } = this.props;
-
-    lore.actions[modelName].destroy(model);
+    const { model, onSubmit } = this.props;
+    onSubmit ? onSubmit(data) : lore.actions[modelName].destroy(model);
   },
 
   onChange: function(name, value) {
