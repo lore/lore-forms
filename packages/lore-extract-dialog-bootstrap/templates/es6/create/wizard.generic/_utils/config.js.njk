@@ -8,6 +8,7 @@ const stepConfig = _.result(modelConfig, 'dialogs.create', {});
 
 export default {
   blueprint: 'wizard',
+  data: stepConfig.data || {},
   steps: [
     {
       form: 'step',
@@ -17,7 +18,6 @@ export default {
         '3. Confirmation'
       ],
       activeStep: Steps.STEP_ONE,
-      data: stepConfig.data || {},
       validators: stepConfig.validators || {},
       fields: stepConfig.fields || {},
       actions: [
@@ -53,7 +53,6 @@ export default {
         '3. Confirmation'
       ],
       activeStep: Steps.STEP_TWO,
-      data: {},
       validators: {},
       fields: {
         customExample: {
@@ -103,7 +102,7 @@ export default {
     },
     {
       form: 'confirmation',
-      title: 'Create {{ modelName }}',
+      title: 'Create {{ _.capitalize(modelName) }}',
       successMessage: '{{ _.capitalize(modelName) }} created.'
     }
   ]

@@ -1,0 +1,100 @@
+import React from 'react';
+import _ from 'lodash';
+import validators from './validators';
+import Steps from '../_common/Steps';
+import modelConfig from '../../../../models/{{ modelName }}';
+
+const stepConfig = _.result(modelConfig, 'forms.create', {});
+
+export default {
+  blueprint: 'wizard',
+  data: stepConfig.data || {},
+  steps: [
+    {
+      form: 'step',
+      steps: [
+        'Enter Data',
+        'Custom Step',
+        'Confirmation'
+      ],
+      activeStep: Steps.STEP_ONE,
+      validators: stepConfig.validators || {},
+      fields: stepConfig.fields || {},
+      actions: [
+        {
+          type: 'raised',
+          props: (form) => {
+            return {
+              label: 'Next',
+              primary: true,
+              onClick: () => {
+                form.callbacks.onNext(form.data)
+              }
+            }
+          }
+        }
+       ]
+    },
+    {
+      form: 'step',
+      steps: [
+        'Enter Data',
+        'Custom Step',
+        'Confirmation'
+      ],
+      activeStep: Steps.STEP_TWO,
+      validators: {},
+      fields: {
+        customExample: {
+          type: 'custom',
+          props: (form) => {
+            return {
+              render: () => {
+                return (
+                  <div>
+                    <p>
+                      Here is the data you entered in the previous step:
+                    </p>
+                    <p>
+                      {JSON.stringify(form.data, null, 2)}
+                    </p>
+                  </div>
+                );
+              }
+            };
+          }
+        }
+      },
+      actions: [
+        {
+          type: 'flat',
+          props: (form) => {
+            return {
+              label: 'Back',
+              onClick: () => {
+                form.callbacks.onPrevious(form.data)
+              }
+            }
+          }
+        },
+        {
+          type: 'raised',
+          props: (form) => {
+            return {
+              label: 'Create',
+              primary: true,
+              onClick: () => {
+                form.callbacks.onSubmit(form.data)
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      form: 'confirmation',
+      title: 'Create {{ _.capitalize(modelName) }}',
+      successMessage: '{{ _.capitalize(modelName) }} created.'
+    }
+  ]
+}

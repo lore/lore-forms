@@ -113,11 +113,11 @@ export default (
         <IndexRoute component={EmptyView} />
         <Route path=":tweetId" component={FormsDestroyOptimisticLayout} />
       </Route>
-      <Route path="forms-destroy-overlay" component={(props) => getFormLayout(props, 'Destroy: Destroy, Overlay', 'forms-destroy-overlay')}>
+      <Route path="forms-destroy-overlay" component={(props) => getFormLayout(props, 'Forms: Destroy, Overlay', 'forms-destroy-overlay')}>
         <IndexRoute component={EmptyView} />
         <Route path=":tweetId" component={FormsDestroyOverlayLayout} />
       </Route>
-      <Route path="forms-destroy-wizard" component={(props) => getFormLayout(props, 'Destroy: Destroy, Wizard', 'forms-destroy-wizard')}>
+      <Route path="forms-destroy-wizard" component={(props) => getFormLayout(props, 'Forms: Destroy, Wizard', 'forms-destroy-wizard')}>
         <IndexRoute component={EmptyView} />
         <Route path=":tweetId" component={FormsDestroyWizardLayout} />
       </Route>

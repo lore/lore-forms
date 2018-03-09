@@ -19,7 +19,7 @@ export default {
     } = lore.config.dialog;
 
     if (!muiTheme) {
-      throw new Error('Must provide a muiTheme in the config for lore-hook-dialog');
+      throw new Error('Must provide muiTheme in config/dialog.js in order to use lore-hook-dialog-material-ui');
     }
 
     lore.dialog = {};
@@ -34,7 +34,7 @@ export default {
       const DialogContainer = buildDialogContainer(lore, options);
 
       // Find the proper DOM element and mount the dialog to it
-      renderDialogToDom(domElementId || options.domElementId, (
+      renderDialogToDom(options.domElementId || domElementId, (
         <DialogContainer dialog={dialog} />
       ));
     }

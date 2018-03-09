@@ -7,7 +7,7 @@ import { Connect } from 'lore-hook-connect';
 export default function(form, props, name) {
   const {
     options,
-    label,
+    optionLabel,
     ...other
   } = props;
 
@@ -37,7 +37,7 @@ export default function(form, props, name) {
                       <MenuItem
                         key={datum.id}
                         value={datum.id}
-                        primaryText={_.isFunction(label) ? label(datum) : datum.data[label]}
+                        primaryText={_.isFunction(optionLabel) ? optionLabel(datum) : datum.data[optionLabel]}
                       />
                     );
                   })}

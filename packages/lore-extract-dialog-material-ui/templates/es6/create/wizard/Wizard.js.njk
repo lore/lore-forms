@@ -2,38 +2,13 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { Overlay, Request } from 'lore-hook-forms-material-ui';
-import Step from './forms/Step';
-import Confirmation from './forms/Confirmation';
-
-const formMap = {
-  step: {
-    render: (props, config) => {
-      return (
-        <Step
-          {...props}
-          {...config}
-        />
-      );
-    }
-  },
-  confirmation: {
-    render: (props, config) => {
-      return (
-        <Confirmation
-          {...props}
-          {...config}
-        />
-      );
-    }
-  }
-};
+import { Overlay, Request } from 'lore-react-forms-material-ui';
+import formMap from './formMap';
 
 export default createReactClass({
   displayName: 'Wizard',
 
   propTypes: {
-    onCancel: PropTypes.func.isRequired,
     steps: PropTypes.array.isRequired
   },
 
@@ -41,6 +16,7 @@ export default createReactClass({
     const { data } = this.props;
 
     return {
+      key: 0,
       stepIndex: 0,
       data: data || {},
       isSaving: false,
@@ -65,6 +41,10 @@ export default createReactClass({
     });
   },
 
+  onCancel: function(data) {
+    this.props.onCancel(data);
+  },
+
   onRequestSuccess: function (request) {
     const { steps } = this.props;
     const lastStepIndex = steps.length - 1;
@@ -87,7 +67,7 @@ export default createReactClass({
 
   onResetWizard: function () {
     this.setState(_.extend(this.getInitialState(), {
-      stepIndex: 0
+      key: this.state.key + 1
     }));
   },
 
@@ -126,13 +106,14 @@ export default createReactClass({
 
   render: function () {
     const {
-      onSubmit,
-      onCancel,
-      config,
+      schema,
+      fieldMap,
+      actionMap,
       steps
     } = this.props;
 
     const {
+      key,
       data,
       stepIndex,
       request,
@@ -140,18 +121,12 @@ export default createReactClass({
       hasError
     } = this.state;
 
-    const {
-      schemas,
-      fieldMap,
-      actionMap
-    } = lore.config.dialogs;
-
     const stepConfig = steps[stepIndex];
     const form = formMap[stepConfig.form];
 
     const step = form.render({
       data: data,
-      schema: schemas.default,
+      schema: schema,
       fieldMap: fieldMap,
       actionMap: actionMap,
       hasError: hasError,
@@ -166,18 +141,18 @@ export default createReactClass({
         onSubmit: (newData) => {
           this.onSubmit(newData)
         },
-        onCancel: onCancel,
+        onCancel: this.onCancel,
         onResetWizard: this.onResetWizard
       }
     }, stepConfig);
 
     return (
       <Overlay isVisible={isSaving}>
-        <div>
+        <div key={key}>
           {(request && isSaving) ? (
             <Request
               request={request}
-              reducer='{{ modelName }}'
+              reducer="{{ modelName }}"
               onSuccess={this.onRequestSuccess}
               onError={this.onRequestError}
             />

@@ -28,6 +28,7 @@
     "webpack-requiredir": "~0.2.1"
   },
   "devDependencies": {
+    "create-react-class": "^15.6.2",
     "chai": "3.4.1",
     "mocha": "2.3.4",
     "react": "^16.0.0",
@@ -35,6 +36,7 @@
     "rimraf": "2.5.2"
   },
   "peerDependencies": {
+    "create-react-class": "^15.6.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   }

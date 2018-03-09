@@ -67,7 +67,7 @@ export default createReactClass({
   },
 
   onResetWizard: function() {
-    this.setState(_.extend(this.getInitialState(), {
+    this.setState(_.merge(this.getInitialState(), {
       key: this.state.key + 1
     }));
   },
@@ -155,7 +155,8 @@ export default createReactClass({
             <Confirmation
               {...props}
               callbacks={% raw %}{{
-                onResetWizard: this.onResetWizard
+                onResetWizard: this.onResetWizard,
+                onCancel: this.onCancel
               }}{% endraw %}
             />
           );

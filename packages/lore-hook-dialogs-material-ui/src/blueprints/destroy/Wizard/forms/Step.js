@@ -2,10 +2,10 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { CardTitle, Stepper, Step, StepLabel } from 'material-ui';
 import { result as _result } from 'lore-utils';
 import { SchemaForm } from 'lore-react-forms';
 import { RequestError } from 'lore-react-forms-material-ui';
+import { CardTitle, Stepper, Step, StepLabel } from 'material-ui';
 
 export default createReactClass({
   displayName: 'Step',
@@ -43,12 +43,15 @@ export default createReactClass({
   },
 
   render: function() {
+    const { modelName } = this.props;
     const {
+      title = `Delete ${_.capitalize(modelName)}`,
+      description = '',
       schema,
       fieldMap,
       actionMap,
-      config,
-      modelName,
+      fields,
+      actions,
       callbacks,
       hasError,
       request,
@@ -60,17 +63,16 @@ export default createReactClass({
 
     return (
       <div>
-        <CardTitle title={`Delete ${_.capitalize(modelName)}`} />
+        <CardTitle
+          title={title}
+          subtitle={description}
+        />
         {hasError ? (
-          <div className="row">
-            <div className="col-md-12">
-              <RequestError request={request}>
-                {(request) => {
-                  return request.error;
-                }}
-              </RequestError>
-            </div>
-          </div>
+          <RequestError request={request}>
+            {(request) => {
+              return request.error;
+            }}
+          </RequestError>
         ) : null}
         {steps ? (
           <Stepper activeStep={activeStep}>
@@ -93,10 +95,8 @@ export default createReactClass({
           schema={schema}
           fieldMap={fieldMap}
           actionMap={actionMap}
-          config={_.merge({
-            fields: {},
-            actions: []
-          }, config)}
+          fields={fields || {}}
+          actions={actions || []}
         />
       </div>
     );

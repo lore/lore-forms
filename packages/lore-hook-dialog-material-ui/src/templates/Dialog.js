@@ -47,8 +47,7 @@ export default connect(function() {
         bodyStyle={{ padding: 0 }}
       >
         {React.cloneElement(dialog, {
-          onCancel: this.onDismiss,
-          onSubmit: this.onDismiss
+          onCancel: this.onDismiss
         })}
       </Dialog>
     );

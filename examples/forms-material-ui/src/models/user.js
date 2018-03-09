@@ -1,179 +1,22 @@
-import React from 'react';
-import { CircularProgress } from 'material-ui';
-import SvgIcons from 'material-ui/svg-icons';
-import PayloadStates from '../constants/PayloadStates';
-import validators from '../utils/validators';
-
 export default {
 
-  forms: {
-    fields: {
-      name: {
-        type: 'string',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Name'
-        }
-      },
-      username: {
-        type: 'dynamicString',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Username',
-          connect: function(getState, props) {
-            var username = props.data['username'];
-
-            if (!username) {
-              return {
-                _model: null
-              }
-            }
-
-            return {
-              _model: getState('username.byId', {
-                id: username
-              })
-            }
-          },
-          getMessage: function(model) {
-            var options = {
-              icon: null,
-              message: ''
-            };
-
-            if (!model) {
-              return options;
-            } else if (model.state === PayloadStates.FETCHING) {
-              options.icon = (
-                <CircularProgress
-                  style={{
-                    position: 'absolute',
-                    bottom: '16px',
-                    right: '0px'
-                  }}
-                  size={16}
-                  thickness={2} />
-              );
-            } else if (model.state === PayloadStates.NOT_FOUND) {
-              options.icon = (
-                <SvgIcons.NavigationCheck
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    right: '0px',
-                    color: 'green'
-                  }} />
-              );
-            } else if (model.state === PayloadStates.RESOLVED) {
-              options.icon = (
-                <SvgIcons.AvNotInterested
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    right: '0px',
-                    color: 'red'
-                  }} />
-              );
-              options.message = model.error.username || 'Username already taken';
-            }
-
-            return options;
-          }
-        }
-      },
-      avatar: {
-        type: 'string',
-        data: '',
-        validators: [validators.isUrl],
-        options: {
-          label: 'Avatar (optional)',
-          hintText: 'https://some.image/url'
-        }
-      },
-      password: {
-        type: 'string',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Password'
-        }
-      },
-      confirmPassword: {
-        type: 'string',
-        data: '',
-        validators: function(data) {
-          return [
-            validators.isPasswordMatch.bind(null, data.password)
-          ];
-        },
-        options: {
-          label: 'Confirm Password'
-        }
-      },
-      country: {
-        type: 'select',
-        data: null,
-        validators: [validators.number.isRequired],
-        options: {
-          label: 'Country',
-          field: 'name',
-          getOptions: function(getState, props) {
-            return {
-              options: getState('country.find')
-            }
-          }
-        }
-      },
-      region: {
-        type: 'select',
-        data: null,
-        validators: [validators.number.isRequired],
-        options: {
-          label: 'Region',
-          field: 'name',
-          getOptions: function(getState, props) {
-            var countryId = props.data.country;
-
-            if (countryId) {
-              return {
-                options: getState('region.find', {
-                  where: {
-                    countryId: countryId
-                  }
-                })
-              }
-            }
-
-            return {
-              options: {
-                data: []
-              }
-            }
-          }
-        }
-      }
+  attributes: {
+    name: {
+      type: 'text'
     },
-    actions: {
-      submit: {
-        type: 'submit',
-        options: {
-          label: 'Save',
-          // onTouchTap: this.onSubmit
-        }
-      }
+    username: {
+      type: 'text'
     },
-    onChange: function(name, value) {
-      var state = {};
-      state[name] = value;
-
-      // reset the region when the country changes
-      if (name === 'country') {
-        state.region = null;
-      }
-
-      this.setState(state);
+    password: {
+      type: 'password'
+    },
+    countryId: {
+      type: 'model',
+      model: 'country'
+    },
+    regionId: {
+      type: 'model',
+      model: 'region'
     }
   },
 

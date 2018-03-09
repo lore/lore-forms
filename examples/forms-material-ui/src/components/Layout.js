@@ -6,7 +6,7 @@
 
 import React from 'react';
 import createReactClass from 'create-react-class';
-import Header from './Header';
+import Navigation from './Navigation';
 
 export default createReactClass({
   displayName: 'Layout',
@@ -14,10 +14,8 @@ export default createReactClass({
   render: function() {
     return (
       <div>
-        <Header />
-        <div className="container" style={{paddingTop: '64px'}}>
-          {React.cloneElement(this.props.children)}
-        </div>
+        <Navigation />
+        {React.cloneElement(this.props.children)}
       </div>
     );
   }

@@ -18,6 +18,16 @@ module.exports = {
         description: 'Name of the template to use for the dialog',
         type: 'string'
       },
+      generic: {
+        describe: 'Generate a version of the dialog that uses GenericForm instead of SchemaForm',
+        type: 'boolean',
+        default: false
+      },
+      explicit: {
+        describe: 'Generate a version of the dialog that does not use any schemas. Use this version if you need full control of the dialog styling',
+        type: 'boolean',
+        default: false
+      }
     },
 
     handler: function(argv) {

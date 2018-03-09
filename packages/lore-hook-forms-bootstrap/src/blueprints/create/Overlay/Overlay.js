@@ -157,7 +157,7 @@ export default createReactClass({
             fieldMap={fieldMap}
             actionMap={actionMap}
             fields={fields || {}}
-            actions={actions || {}}
+            actions={actions || []}
           />
         </div>
       </Overlay>

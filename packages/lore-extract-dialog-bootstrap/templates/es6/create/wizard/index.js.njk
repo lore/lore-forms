@@ -27,7 +27,7 @@ export default createReactClass({
         actionMap={actionMap}
         data={data}
         validators={validators}
-        steps={% raw %}{steps || [
+        steps={steps || [
           {
             form: 'step',
             // steps: [
@@ -78,7 +78,7 @@ export default createReactClass({
           {
             form: 'confirmation'
           }
-        ]}{% endraw %}
+        ]}
         {...this.props}
       />
     );
