@@ -44,8 +44,8 @@ export default createReactClass({
   render: function() {
     const { modelName } = this.props;
     const {
-      title= `Create ${_.capitalize(modelName)}`,
-      description= '',
+      title = `Create ${_.capitalize(modelName)}`,
+      description = '',
       schema,
       fieldMap,
       actionMap,
@@ -106,7 +106,7 @@ export default createReactClass({
           fieldMap={fieldMap}
           actionMap={actionMap}
           fields={fields || {}}
-          actions={actions || {}}
+          actions={actions || []}
         />
       </div>
     );

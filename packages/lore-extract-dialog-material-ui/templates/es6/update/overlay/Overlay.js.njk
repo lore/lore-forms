@@ -2,14 +2,16 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { CardTitle } from 'material-ui';
 import { result as _result } from 'lore-utils';
-import { SchemaForm, Overlay, Request, RequestError, SuccessMessage } from 'lore-hook-forms-material-ui';
+import { SchemaForm } from 'lore-react-forms';
+import { Overlay, Request, RequestError, SuccessMessage } from 'lore-react-forms-material-ui';
+import { CardTitle } from 'material-ui';
 
 export default createReactClass({
   displayName: 'Overlay',
 
   propTypes: {
+    model: PropTypes.object.isRequired,
     data: PropTypes.object,
     validators: PropTypes.object,
     onChange: PropTypes.func,
@@ -18,15 +20,18 @@ export default createReactClass({
     schema: PropTypes.object.isRequired,
     fieldMap: PropTypes.object.isRequired,
     actionMap: PropTypes.object.isRequired,
-    config: PropTypes.object.isRequired,
-    modelName: PropTypes.string.isRequired
+    fields: PropTypes.object.isRequired,
+    actions: PropTypes.array.isRequired
   },
 
   getInitialState: function() {
-    const { model, data } = this.props;
+    const {
+      data,
+      model
+    } = this.props;
 
     return {
-      data: _.merge({}, model.data, data),
+      data: _.merge({}, data, model.data),
       isSaving: false,
       showSuccessMessage: false,
       hasError: false,
@@ -35,8 +40,8 @@ export default createReactClass({
   },
 
   request: function(data) {
-    const { modelName, model } = this.props;
-    return lore.actions[modelName].update(model, data).payload;
+    const { model } = this.props;
+    return lore.actions.{{ modelName }}.update(model, data).payload;
   },
 
   onSubmit: function () {
@@ -46,12 +51,12 @@ export default createReactClass({
       isSaving: true,
       showSuccessMessage: false,
       hasError: false,
-      request: this.request(data)
+      request: this.request(data, this)
     });
   },
 
-  onCancel: function() {
-    this.props.onCancel();
+  onCancel: function(data) {
+    this.props.onCancel(data);
   },
 
   onRequestSuccess: function (request) {
@@ -61,7 +66,6 @@ export default createReactClass({
       showSuccessMessage: true,
       hasError: false
     });
-
     this.onCancel();
   },
 
@@ -88,11 +92,14 @@ export default createReactClass({
 
   render: function() {
     const {
+      title = `Update {{ _.capitalize(modelName) }}`,
+      description = '',
+      successMessage = `{{ _.capitalize(modelName) }} updated.`,
       schema,
       fieldMap,
       actionMap,
-      config,
-      modelName
+      fields,
+      actions
     } = this.props;
 
     const {
@@ -107,7 +114,7 @@ export default createReactClass({
 
     const requestProps = {
       request: request,
-      reducer: modelName,
+      reducer: '{{ modelName }}',
       onSuccess: this.onRequestSuccess,
       onError: this.onRequestError
     };
@@ -115,14 +122,17 @@ export default createReactClass({
     return (
       <Overlay isVisible={isSaving}>
         <div>
-          <CardTitle title={`Update ${_.capitalize('{{ modelName }}')}`} />
+          <CardTitle
+            title={title}
+            subtitle={description}
+          />
           {(request && isSaving) ? (
             <Request {...requestProps} />
           ) : null}
           {showSuccessMessage ? (
             <SuccessMessage
               title="Success!"
-              message={`${_.capitalize(modelName)} updated.`}
+              message={successMessage}
             />
           ) : null}
           {hasError ? (
@@ -136,17 +146,15 @@ export default createReactClass({
             data={data}
             validators={validators}
             onChange={this.onChange}
-            onSubmit={this.onSubmit}
             callbacks={% raw %}{{
+              onSubmit: this.onSubmit,
               onCancel: this.onCancel
             }}{% endraw %}
             schema={schema}
             fieldMap={fieldMap}
             actionMap={actionMap}
-            config={_.merge({
-              fields: {},
-              actions: []
-            }, config)}
+            fields={fields}
+            actions={actions}
           />
         </div>
       </Overlay>

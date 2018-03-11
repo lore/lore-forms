@@ -35,6 +35,17 @@ export default {
       },
       actions: [
         {
+          type: 'default',
+          props: (form) => {
+            return {
+              label: 'Cancel',
+              onClick: () => {
+                form.callbacks.onCancel(form.data)
+              }
+            }
+          }
+        },
+        {
           type: 'primary',
           props: (form) => {
             return {

@@ -12,7 +12,7 @@ export default createReactClass({
       validators,
       fields,
       actions,
-      other
+      ...other
     } = this.props;
 
     return (

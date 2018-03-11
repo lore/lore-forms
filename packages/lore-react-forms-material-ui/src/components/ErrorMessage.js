@@ -6,7 +6,6 @@ import _ from 'lodash';
 const styles = {
   alert: {
     padding: '15px',
-    marginBottom: '20px',
     border: '1px solid transparent',
     fontSize: '14px'
   },

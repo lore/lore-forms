@@ -24,7 +24,7 @@ module.exports = {
         default: false
       },
       explicit: {
-        describe: 'Generate a version of the dialog that does not use any schemas. Use this version if you need full control of the diaog styling',
+        describe: 'Generate a version of the dialog that does not use any schemas. Use this version if you need full control of the dialog styling',
         type: 'boolean',
         default: false
       }

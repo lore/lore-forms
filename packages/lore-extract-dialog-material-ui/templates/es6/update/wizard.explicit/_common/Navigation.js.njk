@@ -1,0 +1,35 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
+import { Stepper, Step, StepLabel } from 'material-ui';
+
+export default createReactClass({
+  displayName: 'Navigation',
+
+  propTypes: {
+    activeStep: PropTypes.number
+  },
+
+  render: function () {
+    const { activeStep } = this.props;
+
+    return (
+      <Stepper activeStep={activeStep}>
+        {[
+          'First Name',
+          'Last Name',
+          'Confirmation'
+        ].map((step) => {
+          return (
+            <Step key={step}>
+              <StepLabel>
+                {step}
+              </StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+    );
+  }
+
+});

@@ -12,9 +12,9 @@ export default createReactClass({
   render: function() {
     const { modelName } = this.props;
     const {
-      title= `Create ${_.capitalize(modelName)}`,
-      description= '',
-      successMessage= `${_.capitalize(modelName)} created.`,
+      title = `Create ${_.capitalize(modelName)}`,
+      description = '',
+      successMessage = `${_.capitalize(modelName)} created.`,
       callbacks
     } = this.props;
 

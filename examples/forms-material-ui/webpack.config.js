@@ -54,9 +54,12 @@ module.exports = function(env) {
       alias: {
         'react': path.resolve(__dirname, 'node_modules/react'),
         'material-ui': path.resolve(__dirname, 'node_modules/material-ui'),
-        'lore-hook-forms-material-ui': path.resolve(__dirname, '../../packages/lore-hook-forms-material-ui'),
-        'lore-react-forms': path.resolve(__dirname, '../../packages/lore-react-forms'),
-        'lore-react-forms-material-ui': path.resolve(__dirname, '../../packages/lore-react-forms-material-ui')
+        'lore-actions': path.resolve(__dirname, './hooks/lore-actions'),
+        'lore-hook-dialog-material-ui': path.resolve(__dirname, '../../packages/lore-hook-dialog-material-ui/src'),
+        'lore-hook-dialogs-material-ui': path.resolve(__dirname, '../../packages/lore-hook-dialogs-material-ui/src'),
+        'lore-hook-forms-material-ui': path.resolve(__dirname, '../../packages/lore-hook-forms-material-ui/src'),
+        'lore-react-forms': path.resolve(__dirname, '../../packages/lore-react-forms/src'),
+        'lore-react-forms-material-ui': path.resolve(__dirname, '../../packages/lore-react-forms-material-ui/src')
       }
     },
     module: {

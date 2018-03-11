@@ -2,5 +2,12 @@
   "generators": {
     "language": "es5"
   },
-  "commands": {}
+   "commands": {
+     "extract": {
+       "commands": {
+         "dialog": "../../packages/lore-extract-dialog-material-ui",
+         "form": "../../packages/lore-extract-form-material-ui"
+       }
+     }
+   }
 }

@@ -29,7 +29,7 @@ export default {
       const DialogContainer = buildDialogContainer(lore, options);
 
       // Find the proper DOM element and mount the dialog to it
-      renderDialogToDom(domElementId || options.domElementId, (
+      renderDialogToDom(options.domElementId || domElementId, (
         <DialogContainer dialog={dialog} />
       ));
     }

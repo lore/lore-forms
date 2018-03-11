@@ -1,41 +1,26 @@
-import validators from '../utils/validators';
+import React from 'react';
+import fields from '../fields/tweet';
 
 export default {
 
-  forms: {
-    fields: {
-      text: {
-        type: 'string',
-        data: '',
-        validators: [validators.isRequired],
-        options: {
-          label: 'Text',
-          hintText: 'Required'
-        }
-      },
-      userId: {
-        type: 'autocomplete',
-        data: null,
-        validators: [validators.number.isRequired],
-        options: {
-          label: 'User',
-          getOptions: function(getState, props) {
-            return {
-              options: getState('user.find')
-            }
-          }
-        }
-      }
+  attributes: {
+    text: {
+      type: 'text'
     },
-    actions: {
-      submit: {
-        type: 'submit',
-        options: {
-          label: 'Save',
-          // onTouchTap: this.onSubmit
-        }
-      }
+    userId: {
+      type: 'model',
+      model: 'user'
     }
+  },
+
+  forms: {
+    create: fields,
+    update: fields
+  },
+
+  dialogs: {
+    create: fields,
+    update: fields
   },
 
   properties: {

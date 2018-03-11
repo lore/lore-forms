@@ -11,7 +11,6 @@ export default {
   steps: [
     {
       form: 'step',
-      modelName: 'tweet',
       steps: [
         '1. Enter Text',
         '2. Select User'
@@ -26,9 +25,7 @@ export default {
           props: (form) => {
             return {
               label: 'Text',
-              placeholder: 'Typing \'explode\' will cause an error to occur',
-              style: { width: '100%' },
-              name: 'text'
+              placeholder: 'Typing \'explode\' will cause an error to occur'
             };
           }
         },
@@ -61,7 +58,6 @@ export default {
     },
     {
       form: 'step',
-      modelName: 'tweet',
       steps: [
         '1. Enter Text',
         '2. Select User'
@@ -76,7 +72,6 @@ export default {
           props: (form) => {
             return {
               label: 'User',
-              name: 'userId',
               options: (getState, props) => {
                 return getState('user.find');
               },
@@ -112,8 +107,7 @@ export default {
       ]
     },
     {
-      form: 'confirmation',
-      modelName: 'tweet'
+      form: 'confirmation'
     }
   ]
 }

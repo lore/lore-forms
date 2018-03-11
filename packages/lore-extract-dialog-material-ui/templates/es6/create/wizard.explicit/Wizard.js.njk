@@ -1,0 +1,191 @@
+import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+import { Overlay, Request } from 'lore-react-forms-material-ui';
+import StepOne from './forms/StepOne';
+import StepTwo from './forms/StepTwo';
+import Confirmation from './forms/Confirmation';
+import Steps from './_common/Steps';
+
+export default createReactClass({
+  displayName: 'Wizard',
+
+  propTypes: {
+    // no props
+  },
+
+  request: function(data) {
+    return lore.actions.{{ modelName }}.create(data).payload;
+  },
+
+  getInitialState() {
+    return {
+      key: 0,
+      stepIndex: Steps.STEP_ONE,
+      isSaving: false,
+      request: null,
+      hasError: false,
+      data: {
+        firstName: '',
+        lastName: ''
+      },
+    }
+  },
+
+  onSubmit: function(newData) {
+    const { data } = this.state;
+    const nextData = _.extend({}, data, newData);
+
+    this.setState({
+      isSaving: true,
+      hasError: false,
+      data: nextData,
+      request: this.request(nextData, this)
+    });
+  },
+
+  onCancel: function(data) {
+    this.props.onCancel(data);
+  },
+
+  onRequestSuccess: function(request) {
+    this.setState({
+      isSaving: false,
+      request: request,
+      hasError: false,
+      stepIndex: Steps.CONFIRMATION
+    });
+  },
+
+  onRequestError: function(request) {
+    this.setState({
+      isSaving: false,
+      request: request,
+      hasError: true
+    });
+  },
+
+  onResetWizard: function() {
+    this.setState(_.extend(this.getInitialState(), {
+      key: this.state.key + 1
+    }));
+  },
+
+  onNext: function(newData, newStepIndex) {
+    const {
+      data,
+      stepIndex
+    } = this.state;
+
+    this.setState({
+      stepIndex: newStepIndex || (stepIndex + 1),
+      data: _.extend({}, data, newData)
+    });
+  },
+
+  onPrevious: function(newData, newStepIndex) {
+    const {
+      data,
+      stepIndex
+    } = this.state;
+
+    this.setState({
+      stepIndex: newStepIndex || (stepIndex - 1),
+      data: _.extend({}, data, newData)
+    });
+  },
+
+  onChangeStep(newData, newStepIndex) {
+    const { data } = this.state;
+
+    this.setState({
+      stepIndex: newStepIndex,
+      data: _.extend({}, data, newData)
+    });
+  },
+
+  render: function() {
+    const { onSubmit } = this.props;
+
+    const {
+      key,
+      data,
+      stepIndex,
+      request,
+      isSaving,
+      hasError
+    } = this.state;
+
+    const steps = [
+      {
+        form: 'custom',
+        render: (props) => {
+          return (
+            <StepOne
+              {...props}
+              callbacks={% raw %}{{
+                onNext: (newData) => {
+                  this.onNext(newData, Steps.STEP_TWO)
+                },
+                onCancel: this.onCancel
+              }}{% endraw %}
+            />
+          );
+        }
+      },
+      {
+        render: (props) => {
+          return (
+            <StepTwo
+              {...props}
+              callbacks={% raw %}{{
+                onPrevious: (newData) => {
+                  this.onPrevious(newData, Steps.STEP_ONE)
+                },
+                onSubmit: this.onSubmit
+              }}{% endraw %}
+            />
+          );
+        }
+      },
+      {
+        render: (props) => {
+          return (
+            <Confirmation
+              {...props}
+              callbacks={% raw %}{{
+                onResetWizard: this.onResetWizard,
+                onCancel: this.onCancel
+              }}{% endraw %}
+            />
+          );
+        }
+      }
+    ];
+
+    const form = steps[stepIndex];
+    const step = form.render({
+      data: data,
+      hasError: hasError,
+      request: request
+    });
+
+    return (
+      <Overlay isVisible={isSaving}>
+        <div key={key}>
+          {(request && isSaving) ? (
+            <Request
+              request={request}
+              reducer="{{ modelName }}"
+              onSuccess={this.onRequestSuccess}
+              onError={this.onRequestError}
+            />
+          ) : null}
+          {step}
+        </div>
+      </Overlay>
+    );
+  }
+
+});

@@ -1,0 +1,62 @@
+import React from 'react';
+import createReactClass from 'create-react-class';
+import _ from 'lodash';
+import Overlay from './Overlay';
+import modelConfig from '../../../models/{{ modelName }}';
+
+export default createReactClass({
+  render: function() {
+    const {
+      schemas,
+      fieldMap,
+      actionMap
+    } = lore.config.forms;
+
+    const {
+      data,
+      validators,
+      fields,
+      actions
+    } = _.merge({}, _.result(modelConfig, 'forms.create', {}));
+
+    return (
+      <Overlay
+        schema={schemas.default}
+        fieldMap={fieldMap}
+        actionMap={actionMap}
+        data={data}
+        validators={validators}
+        fields={fields || {
+          question: {
+            type: 'custom',
+            props: {
+              render: (form) => {
+                return (
+                  <p>
+                    No fields have been provided.
+                  </p>
+                );
+              }
+            }
+          },
+        }}
+        actions={actions || [
+          {
+            type: 'raised',
+            props: (form) => {
+              return {
+                label: 'Create',
+                primary: true,
+                disabled: form.hasError,
+                onClick: () => {
+                  form.callbacks.onSubmit(form.data)
+                }
+              }
+            }
+          }
+        ]}
+        {...this.props}
+      />
+    );
+  }
+});
