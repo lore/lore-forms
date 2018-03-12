@@ -27,7 +27,8 @@ export default createReactClass({
 
   request: function(data) {
     const { modelName } = this.props;
-    return lore.actions[modelName].create(data).payload;
+    const { request } = this.props;
+    return request ? request(data) : lore.actions[modelName].create(data).payload;
   },
 
   onSubmit: function (newData) {

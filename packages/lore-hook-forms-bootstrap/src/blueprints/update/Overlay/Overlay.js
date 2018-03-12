@@ -40,9 +40,8 @@ export default createReactClass({
 
   request: function(data) {
     const { modelName } = this.props;
-    const { model } = this.props;
-
-    return lore.actions[modelName].update(model, data).payload;
+    const { model, request } = this.props;
+    return request ? request(data) : lore.actions[modelName].update(model, data).payload;
   },
 
   onSubmit: function () {
