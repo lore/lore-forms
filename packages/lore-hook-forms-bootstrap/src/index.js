@@ -132,7 +132,9 @@ export default {
         }
 
         // set the form to the component we found
-        lore.forms[folderName][fileName] = Component;
+        lore.forms[folderName][fileName] = function(props = {}) {
+          return React.createElement(Component, props);
+        };
 
         // if the name of the file is create, wrap it in a function so it mirrors
         // the behavior of the blueprint, so it can be invoked as a function
