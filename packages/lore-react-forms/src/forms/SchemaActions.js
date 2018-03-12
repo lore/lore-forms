@@ -33,9 +33,14 @@ export default createReactClass({
         {schema.actions(form)(
           actions.map((action, index) => {
             const mappedAction = actionMap[action.type];
+            if (!mappedAction) {
+              throw new Error(`There is no actionMap entry for "${action.type}". Valid options are ${Object.keys(actionMap).join(', ')}.`);
+            }
+            const actionProps = _result(action.props, form);
             return (
               React.cloneElement(schema.action(form)(
-                mappedAction(form, _result(action.props, form))
+                mappedAction(form, actionProps),
+                actionProps
               ), {
                 key: index
               })

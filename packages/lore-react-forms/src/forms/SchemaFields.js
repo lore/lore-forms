@@ -35,9 +35,14 @@ export default createReactClass({
           _.keys(fields).map((key, index) => {
             const field = fields[key];
             const mappedField = fieldMap[field.type];
+            if (!mappedField) {
+              throw new Error(`There is no fieldMap entry for "${field.type}". Valid options are ${Object.keys(fieldMap).join(', ')}.`);
+            }
+            const fieldProps = _result(field.props, form);
             return (
               React.cloneElement(schema.field(form)(
-                mappedField(form, _result(field.props, form), key)
+                mappedField(form, fieldProps, key),
+                fieldProps
               ), {
                 key: key
               })
