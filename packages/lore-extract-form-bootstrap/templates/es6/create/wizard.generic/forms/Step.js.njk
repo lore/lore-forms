@@ -12,7 +12,10 @@ export default createReactClass({
 
   propTypes: {
     data: PropTypes.object,
-    validators: PropTypes.object,
+    validators: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object
+    ]),
     onChange: PropTypes.func,
     request: PropTypes.object,
     callbacks: PropTypes.object,
