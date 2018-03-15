@@ -1,6 +1,6 @@
 {
   "name": "lore-extract-dialog",
-  "version": "0.13.0-beta.17",
+  "version": "0.13.0-beta.18",
   "license": "MIT",
   "main": "index.js",
   "description": "Placeholder command to extract a dialog matching the implicit pattern used by lore-hook-dialog-*",

@@ -1,6 +1,6 @@
 {
   "name": "lore-hook-dialogs-bootstrap",
-  "version": "0.13.0-beta.17",
+  "version": "0.13.0-beta.18",
   "license": "MIT",
   "main": "lib/index.js",
   "description": "A lore hook that generates dialogs using Bootstrap",
@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "lodash": "^4.0.0",
-    "lore-react-forms": "^0.13.0-beta.17",
-    "lore-react-forms-bootstrap": "^0.13.0-beta.17",
+    "lore-react-forms": "^0.13.0-beta.18",
+    "lore-react-forms-bootstrap": "^0.13.0-beta.18",
     "lore-utils": "^0.13.0-beta",
     "webpack-requiredir": "~0.2.1"
   },
