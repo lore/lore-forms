@@ -44,7 +44,8 @@ export default connect(function() {
         modal={false}
         onRequestClose={this.onDismiss}
         open={this.state.isOpen}
-        bodyStyle={{ padding: 0 }}
+        bodyStyle={{ padding: 0, border: 'none' }}
+        autoScrollBodyContent={true}
       >
         {React.cloneElement(dialog, {
           onCancel: this.onDismiss
