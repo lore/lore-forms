@@ -40,6 +40,38 @@ export default {
     lore.dialogs = {};
 
     /*
+     * Step 0:
+     * Create utility for constructing custom dialogs
+     */
+    lore.dialogs._custom = {};
+
+    function generateGenericForm(blueprints) {
+      return function form(props = {}, options = {}) {
+        const {
+          blueprint: blueprintName = defaultBlueprint,
+          schema: schemaName = defaultSchema,
+          ...other
+        } = props;
+
+        const blueprint = blueprints[blueprintName];
+        const blueprintProps = {
+          schema: schemas[schemaName],
+          fieldMap: fieldMap,
+          actionMap: actionMap,
+          ...other
+        };
+
+        return React.createElement(blueprint, blueprintProps);
+      };
+    }
+
+    _.assign(lore.dialogs._custom, {
+      create: function(props={}, options={}) {
+        return generateGenericForm(blueprints.create)(props, options);
+      }
+    });
+
+    /*
      * Step 1:
      * Create convention-based dialogs from models
      */
