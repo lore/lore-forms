@@ -56,6 +56,15 @@ export default createReactClass({
       hasError: false,
       stepIndex: lastStepIndex
     });
+
+    this.afterRequestSuccess(request);
+  },
+
+  afterRequestSuccess: function(request) {
+    const { afterRequestSuccess } = this.props;
+    if (afterRequestSuccess) {
+      afterRequestSuccess(request, this);
+    }
   },
 
   onRequestError: function (request) {
@@ -111,7 +120,8 @@ export default createReactClass({
       steps,
       schema,
       fieldMap,
-      actionMap
+      actionMap,
+      requestProps
     } = this.props;
 
     const {
@@ -152,12 +162,13 @@ export default createReactClass({
       <Overlay isVisible={isSaving}>
         <div key={key}>
           {(request && isSaving) ? (
-            <Request
-              request={request}
-              reducer={modelName}
-              onSuccess={this.onRequestSuccess}
-              onError={this.onRequestError}
-            />
+            <Request {..._.assign({
+              request: request,
+              reducer: modelName,
+              singleton: false,
+              onSuccess: this.onRequestSuccess,
+              onError: this.onRequestError
+            }, requestProps)} />
           ) : null}
           {step}
         </div>

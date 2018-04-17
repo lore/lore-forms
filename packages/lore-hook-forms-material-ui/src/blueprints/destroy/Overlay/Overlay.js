@@ -63,6 +63,15 @@ export default createReactClass({
       showSuccessMessage: true,
       hasError: false
     });
+
+    this.afterRequestSuccess(request);
+  },
+
+  afterRequestSuccess: function(request) {
+    const { afterRequestSuccess } = this.props;
+    if (afterRequestSuccess) {
+      afterRequestSuccess(request, this);
+    }
   },
 
   onRequestError: function (request) {
@@ -96,7 +105,8 @@ export default createReactClass({
       fieldMap,
       actionMap,
       fields,
-      actions
+      actions,
+      requestProps
     } = this.props;
 
     const {
@@ -109,13 +119,6 @@ export default createReactClass({
 
     const validators = this.getValidators(data);
 
-    const requestProps = {
-      request: request,
-      reducer: modelName,
-      onSuccess: this.onRequestSuccess,
-      onError: this.onRequestError
-    };
-
     return (
       <Overlay isVisible={isSaving}>
         <div>
@@ -124,7 +127,13 @@ export default createReactClass({
             subtitle={description}
           />
           {(request && isSaving) ? (
-            <Request {...requestProps} />
+            <Request {..._.assign({
+              request: request,
+              reducer: modelName,
+              singleton: false,
+              onSuccess: this.onRequestSuccess,
+              onError: this.onRequestError
+            }, requestProps)} />
           ) : null}
           {showSuccessMessage ? (
             <SuccessMessage
