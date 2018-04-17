@@ -60,6 +60,15 @@ export default createReactClass({
       hasError: false,
       stepIndex: lastStepIndex
     });
+
+    this.afterRequestSuccess(request);
+  },
+
+  afterRequestSuccess: function(request) {
+    const { afterRequestSuccess } = this.props;
+    if (afterRequestSuccess) {
+      afterRequestSuccess(request, this);
+    }
   },
 
   onRequestError: function (request) {

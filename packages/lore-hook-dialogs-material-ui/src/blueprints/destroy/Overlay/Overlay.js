@@ -68,6 +68,15 @@ export default createReactClass({
       hasError: false
     });
     this.onCancel();
+
+    this.afterRequestSuccess(request);
+  },
+
+  afterRequestSuccess: function(request) {
+    const { afterRequestSuccess } = this.props;
+    if (afterRequestSuccess) {
+      afterRequestSuccess(request, this);
+    }
   },
 
   onRequestError: function (request) {
