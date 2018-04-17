@@ -25,7 +25,7 @@ export default {
   },
   custom: {
     render: (props, config) => {
-      return props.render(props, config);
+      return config.render(props, config);
     }
   }
 };
