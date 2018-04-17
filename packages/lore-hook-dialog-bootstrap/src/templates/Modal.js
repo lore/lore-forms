@@ -39,8 +39,7 @@ export default connect(function() {
     return (
       <div ref="modal" className="modal fade">
         {React.cloneElement(dialog, {
-          onCancel: this.dismiss,
-          onSubmit: this.dismiss
+          onCancel: this.dismiss
         })}
       </div>
     );
