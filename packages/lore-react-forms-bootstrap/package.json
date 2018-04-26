@@ -1,6 +1,6 @@
 {
   "name": "lore-react-forms-bootstrap",
-  "version": "0.13.0-beta.19",
+  "version": "0.13.0-beta.20",
   "license": "MIT",
   "description": "Bootstrap components for lore-react-forms",
   "homepage": "http://github.com/lore/lore",
@@ -34,7 +34,7 @@
   "dependencies": {
     "lodash": "^4.0.0",
     "lore-hook-connect": "^0.13.0-beta",
-    "lore-react-forms": "^0.13.0-beta.19",
+    "lore-react-forms": "^0.13.0-beta.20",
     "lore-utils": "^0.13.0-beta"
   },
   "devDependencies": {

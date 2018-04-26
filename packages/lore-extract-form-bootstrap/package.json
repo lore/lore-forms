@@ -1,6 +1,6 @@
 {
   "name": "lore-extract-form-bootstrap",
-  "version": "0.13.0-beta.19",
+  "version": "0.13.0-beta.20",
   "license": "MIT",
   "main": "index.js",
   "description": "Creates a dialog matching the implicit pattern used by lore-hook-forms-bootstrap",
