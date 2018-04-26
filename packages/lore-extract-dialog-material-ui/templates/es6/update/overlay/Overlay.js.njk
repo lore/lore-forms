@@ -54,7 +54,7 @@ export default createReactClass({
       isSaving: true,
       showSuccessMessage: false,
       hasError: false,
-      request: this.request(data, this)
+      request: this.request(data)
     });
   },
 

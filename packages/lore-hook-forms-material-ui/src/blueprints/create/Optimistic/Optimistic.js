@@ -34,10 +34,15 @@ export default createReactClass({
     };
   },
 
-  onSubmit: function(data) {
+  request: function(data) {
     const { modelName } = this.props;
-    const { onSubmit } = this.props;
-    onSubmit ? onSubmit(data) : lore.actions[modelName].create(data);
+    const { request } = this.props;
+    return request ? request(data) : lore.actions[modelName].create(data).payload;
+  },
+
+  onSubmit: function() {
+    const { data } = this.state;
+    this.request(data);
     this.setState({
       key: this.state.key + 1,
       data: this.getInitialState().data

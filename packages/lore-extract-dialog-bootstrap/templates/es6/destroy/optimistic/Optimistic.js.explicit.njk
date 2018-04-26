@@ -23,9 +23,15 @@ export default createReactClass({
     };
   },
 
-  onSubmit: function(data) {
-    const { model } = this.props;
-    lore.actions.{{ modelName }}.destroy(model);
+  request: function(data) {
+    const { modelName } = this.props;
+    const { model, request } = this.props;
+    return request ? request(data) : lore.actions.{{ modelName }}.destroy(model).payload;
+  },
+
+  onSubmit: function() {
+    const { data } = this.state;
+    this.request(data);
     this.onCancel();
   },
 

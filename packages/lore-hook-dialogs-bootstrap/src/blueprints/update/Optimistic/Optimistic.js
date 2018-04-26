@@ -33,10 +33,15 @@ export default createReactClass({
     };
   },
 
-  onSubmit: function(data) {
+  request: function(data) {
     const { modelName } = this.props;
-    const { model, onSubmit } = this.props;
-    onSubmit ? onSubmit(data) : lore.actions[modelName].update(model, data);
+    const { model, request } = this.props;
+    return request ? request(data) : lore.actions[modelName].update(model, data).payload;
+  },
+
+  onSubmit: function () {
+    const { data } = this.state;
+    this.request(data);
     this.onCancel();
   },
 
