@@ -1,6 +1,6 @@
 {
   "name": "lore-hook-forms-bootstrap",
-  "version": "0.13.0-beta.20",
+  "version": "0.13.0-beta.21",
   "license": "MIT",
   "main": "lib/index.js",
   "description": "A lore hook that generates forms using Bootstrap",
@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "lodash": "^4.0.0",
-    "lore-react-forms": "^0.13.0-beta.20",
-    "lore-react-forms-bootstrap": "^0.13.0-beta.20",
+    "lore-react-forms": "^0.13.0-beta.21",
+    "lore-react-forms-bootstrap": "^0.13.0-beta.21",
     "lore-utils": "^0.13.0-beta",
     "webpack-requiredir": "~0.2.1"
   },
