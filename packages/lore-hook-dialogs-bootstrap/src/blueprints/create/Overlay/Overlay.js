@@ -142,7 +142,7 @@ export default createReactClass({
               {(request && isSaving) ? (
                 <Request {...requestProps} />
               ) : null}
-              {showSuccessMessage ? (
+              {false && showSuccessMessage ? (
                 <SuccessMessage
                   title="Success!"
                   message={successMessage}
