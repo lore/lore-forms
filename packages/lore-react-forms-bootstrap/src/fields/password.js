@@ -36,9 +36,11 @@ export default function(form, props, name) {
                 {errorText}
               </span>
             ) : null}
-            <small className="form-text text-muted">
-              {description}
-            </small>
+            {description ? (
+              <span className="help-block">
+                {description}
+              </span>
+            ) : null}
           </div>
         );
       }}

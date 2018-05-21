@@ -8,6 +8,7 @@ export default function(form, props, name) {
     options,
     label,
     optionLabel,
+    description,
     ...other
   } = props;
 
@@ -53,6 +54,11 @@ export default function(form, props, name) {
             {errorText ? (
               <span className="help-block">
                 {errorText}
+              </span>
+            ) : null}
+            {description ? (
+              <span className="help-block">
+                {description}
               </span>
             ) : null}
           </div>
