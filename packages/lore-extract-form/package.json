@@ -1,6 +1,6 @@
 {
   "name": "lore-extract-form",
-  "version": "0.13.0-beta.21",
+  "version": "0.13.0-rc.1",
   "license": "MIT",
   "main": "index.js",
   "description": "Placeholder command to extract a form matching the implicit pattern used by lore-hook-form-*",
