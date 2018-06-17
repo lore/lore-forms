@@ -21,7 +21,7 @@ export default createReactClass({
     schema: PropTypes.object.isRequired,
     fieldMap: PropTypes.object.isRequired,
     actionMap: PropTypes.object.isRequired,
-    fields: PropTypes.object.isRequired,
+    fields: PropTypes.array.isRequired,
     actions: PropTypes.array.isRequired
   },
 

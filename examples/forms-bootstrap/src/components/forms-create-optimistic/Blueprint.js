@@ -30,8 +30,9 @@ export default createReactClass({
           userId: [validators.number.isRequired]
         }}
         config={{
-          fields: {
-            text: {
+          fields: [
+            {
+              key: 'text',
               type: 'text',
               props: (form) => {
                 return {
@@ -40,7 +41,8 @@ export default createReactClass({
                 };
               }
             },
-            userId: {
+            {
+              key: 'userId',
               type: 'select',
               props: (form) => {
                 return {
@@ -52,7 +54,7 @@ export default createReactClass({
                 };
               }
             }
-          },
+          ],
           actions: [
             {
               type: 'primary',

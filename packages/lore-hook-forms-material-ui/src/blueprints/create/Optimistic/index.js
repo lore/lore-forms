@@ -22,8 +22,9 @@ export default createReactClass({
         actionMap={actionMap}
         data={data}
         validators={validators}
-        fields={fields || {
-          question: {
+        fields={fields || [
+          {
+            key: 'question',
             type: 'custom',
             props: {
               render: (form) => {
@@ -34,8 +35,8 @@ export default createReactClass({
                 );
               }
             }
-          },
-        }}
+          }
+        ]}
         actions={actions || [
           {
             type: 'raised',

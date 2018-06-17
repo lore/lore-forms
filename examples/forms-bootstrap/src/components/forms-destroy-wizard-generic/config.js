@@ -19,8 +19,9 @@ export default {
       ],
       activeStep: Steps.STEP_1,
       validators: {},
-      fields: {
-        question: {
+      fields: [
+        {
+          key: 'question',
           type: 'custom',
           props: {
             render: (form) => {
@@ -32,7 +33,7 @@ export default {
             }
           }
         }
-      },
+      ],
       actions: [
         {
           type: 'primary',
@@ -56,8 +57,9 @@ export default {
       ],
       activeStep: Steps.STEP_2,
       validators: {},
-      fields: {
-        customExample: {
+      fields: [
+        {
+          key: 'customExample',
           type: 'custom',
           props: (form) => {
             return {
@@ -76,7 +78,7 @@ export default {
             };
           }
         }
-      },
+      ],
       actions: [
         {
           type: 'default',

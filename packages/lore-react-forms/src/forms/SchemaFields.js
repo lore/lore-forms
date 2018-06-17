@@ -11,13 +11,13 @@ export default createReactClass({
   propTypes: {
     schema: PropTypes.object.isRequired,
     fieldMap: PropTypes.object.isRequired,
-    fields: PropTypes.object.isRequired,
+    fields: PropTypes.array.isRequired,
     form: PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
     return {
-      fields: {}
+      fields: []
     }
   },
 
@@ -32,9 +32,12 @@ export default createReactClass({
     return (
       <FormSection data={form.data} onChange={form.onChange} errors={form.errors}>
         {schema.fields(form)(
-          _.keys(fields).map((key, index) => {
-            const field = fields[key];
+          fields.map((field, index) => {
+            const key = field.key;
             const mappedField = fieldMap[field.type];
+            if (!key) {
+              throw new Error(`Must provide a key for field of type "${field.type}"`);
+            }
             if (!mappedField) {
               throw new Error(`There is no fieldMap entry for "${field.type}". Valid options are ${Object.keys(fieldMap).join(', ')}.`);
             }

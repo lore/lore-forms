@@ -18,13 +18,13 @@ export default createReactClass({
     schema: PropTypes.object.isRequired,
     fieldMap: PropTypes.object.isRequired,
     actionMap: PropTypes.object.isRequired,
-    fields: PropTypes.object.isRequired,
+    fields: PropTypes.array.isRequired,
     actions: PropTypes.array.isRequired
   },
 
   getDefaultProps() {
     return {
-      fields: {},
+      fields: [],
       actions: []
     }
   },
@@ -32,9 +32,10 @@ export default createReactClass({
   getInitialState: function () {
     const { fields } = this.props;
 
-    return _.mapValues(fields, function (value, key) {
-      return value.initialValue;
-    });
+    return _.reduce(fields, function(result, field) {
+      result[field.key] = field.initialValue;
+      return result;
+    }, {});
   },
 
   onChange: function (name, value) {
@@ -62,9 +63,10 @@ export default createReactClass({
       return validators;
     }
 
-    return _.mapValues(fields, function (value, key) {
-      return _.isFunction(value.validators) ? value.validators(data) : value.validators;
-    });
+    return _.reduce(fields, function(result, field) {
+      result[field.key] = _.isFunction(field.validators) ? field.validators(data) : field.validators;
+      return result;
+    }, {});
   },
 
   render: function () {
@@ -94,9 +96,12 @@ export default createReactClass({
         {(form) => (
           <FormSection>
             {schema.fields(form)(
-              _.keys(fields).map((key, index) => {
-                const field = fields[key];
+              fields.map((field, index) => {
+                const key = field.key;
                 const mappedField = fieldMap[field.type];
+                if (!key) {
+                  throw new Error(`Must provide a key for field of type "${field.type}"`);
+                }
                 if (!mappedField) {
                   throw new Error(`There is no fieldMap entry for "${field.type}". Valid options are ${Object.keys(fieldMap).join(', ')}.`);
                 }

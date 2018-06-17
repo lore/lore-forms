@@ -60,8 +60,9 @@ export default createReactClass({
         fieldMap={lore.config.forms.fieldMap}
         actionMap={lore.config.forms.actionMap}
         config={{
-          fields: {
-            text: {
+          fields: [
+            {
+              key: 'text',
               type: 'text',
               props: (form) => {
                 return {
@@ -70,7 +71,8 @@ export default createReactClass({
                 };
               }
             },
-            userId: {
+            {
+              key: 'userId',
               type: 'select',
               props: (form) => {
                 return {
@@ -82,7 +84,7 @@ export default createReactClass({
                 };
               }
             }
-          },
+          ],
           actions: [
             {
               type: 'primary',

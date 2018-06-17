@@ -98,7 +98,7 @@ export default createReactClass({
           schema={schema}
           fieldMap={fieldMap}
           actionMap={actionMap}
-          fields={fields || {}}
+          fields={fields || []}
           actions={actions || []}
         />
       </div>

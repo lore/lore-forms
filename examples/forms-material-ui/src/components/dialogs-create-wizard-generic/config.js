@@ -19,8 +19,9 @@ export default {
       validators: {
         text: [validators.isRequired]
       },
-      fields: {
-        text: {
+      fields: [
+        {
+          key: 'text',
           type: 'text',
           props: (form) => {
             return {
@@ -28,8 +29,8 @@ export default {
               hintText: 'Typing \'explode\' will cause an error to occur'
             };
           }
-        },
-      },
+        }
+      ],
       actions: [
         {
           type: 'flat',
@@ -67,8 +68,9 @@ export default {
       validators: {
         userId: [validators.number.isRequired]
       },
-      fields: {
-        userId: {
+      fields: [
+        {
+          key: 'userId',
           type: 'select',
           props: (form) => {
             return {
@@ -80,7 +82,7 @@ export default {
             };
           }
         }
-      },
+      ],
       actions: [
         {
           type: 'flat',

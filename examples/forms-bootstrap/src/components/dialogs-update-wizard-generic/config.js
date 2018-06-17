@@ -19,8 +19,9 @@ export default {
       validators: {
         text: [validators.isRequired]
       },
-      fields: {
-        text: {
+      fields: [
+        {
+          key: 'text',
           type: 'text',
           props: (form) => {
             return {
@@ -29,7 +30,7 @@ export default {
             };
           }
         },
-      },
+      ],
       actions: [
         {
           type: 'default',
@@ -66,8 +67,9 @@ export default {
       validators: {
         userId: [validators.number.isRequired]
       },
-      fields: {
-        userId: {
+      fields: [
+        {
+          key: 'userId',
           type: 'select',
           props: (form) => {
             return {
@@ -79,7 +81,7 @@ export default {
             };
           }
         }
-      },
+      ],
       actions: [
         {
           type: 'default',

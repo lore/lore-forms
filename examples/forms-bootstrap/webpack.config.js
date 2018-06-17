@@ -31,14 +31,6 @@ module.exports = function(env) {
         'react',
         'react-dom',
         'react-router'
-      ],
-      material: [
-        'material-ui',
-        'material-ui/svg-icons',
-        'material-ui/svg-icons/content/add',
-        'material-ui/List',
-        'material-ui/svg-icons/navigation/more-vert',
-        'material-ui/styles/colors'
       ]
     },
     output: {
@@ -193,14 +185,12 @@ module.exports = function(env) {
       ifProduction(
         new webpack.optimize.CommonsChunkPlugin({
           names: [
-            'vendor',
-            'material'
+            'vendor'
           ]
         }),
         new webpack.optimize.CommonsChunkPlugin({
           names: [
-            'vendor',
-            'material'
+            'vendor'
           ]
         })
       ),

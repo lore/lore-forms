@@ -34,8 +34,9 @@ export default createReactClass({
             // ],
             // activeStep: 0,
             validators: validators || {},
-            fields: fields || {
-              question: {
+            fields: fields || [
+              {
+                key: 'question',
                 type: 'custom',
                 props: {
                   render: (form) => {
@@ -46,8 +47,8 @@ export default createReactClass({
                     );
                   }
                 }
-              },
-            },
+              }
+            ],
             actions: actions || [
               {
                 type: 'primary',
