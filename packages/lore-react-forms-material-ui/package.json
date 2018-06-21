@@ -1,6 +1,6 @@
 {
   "name": "lore-react-forms-material-ui",
-  "version": "0.13.0-rc.1",
+  "version": "0.13.0-rc.2",
   "license": "MIT",
   "description": "Material UI components for lore-react-forms",
   "homepage": "http://github.com/lore/lore-forms",
@@ -35,7 +35,7 @@
   "dependencies": {
     "lodash": "^4.0.0",
     "lore-hook-connect": "^0.13.0-rc",
-    "lore-react-forms": "^0.13.0-rc.1",
+    "lore-react-forms": "^0.13.0-rc.2",
     "lore-utils": "^0.13.0-rc"
   },
   "devDependencies": {
